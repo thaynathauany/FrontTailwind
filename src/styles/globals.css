@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* regras globais */
+body {
+  font-family: var(--font-sans);
+}
+
+@theme {
+  /* 🎨 Cores principais */
+  --color-primary: #73737f;
+  --color-secondary: #03a5a8;
+  --color-white: #ffffff;
+  --color-btnsecondary: #00696b;
+  --color-gray: #e0e0e0;
+  --color-black: #1a1925;
+  --color-success: #d7fbe8;
+  --color-danger: #ffd6d6;
+  --color-warning: #fff4cc;
+  --color-orange: #cb5608;
+}

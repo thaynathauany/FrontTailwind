@@ -1,0 +1,189 @@
+{
+  "Header": {
+    "_comment_navigation": "Itens do menu de navegação principal",
+    "home": "Home",
+    "comoFunciona": "Como funciona",
+    "contato": "Contato",
+    "sobre": "Sobre",
+
+    "_comment_user": "Itens do menu de navegação do usuário",
+    "profile": "Minha área",
+    "send_money": "Nova transferência",
+    "signOut": "Sair",
+
+    "_comment_language": "Opções de idioma exibidas no seletor",
+    "portuguese": "PT-BR",
+    "spanish": "ES-MX",
+
+    "btn_signIn": "Entrar",
+    "btn_signUp": "Cadastrar"
+  },
+
+  "Footer": {
+    "company": "Dinero Latam",
+    "description": "Conectando moedas e unindo pessoas de onde for, para onde quiser.",
+    "slogan": "Rápido, seguro, global.",
+    "privacy": "Política de privacidade",
+    "terms": "Termos e condições",
+    "navigate": "Navegue",
+    "nav_home": "Inicial",
+    "nav_about": "Quem Somos",
+    "nav_transfers": "Transferências",
+    "nav_contact": "Contato",
+    "follow_us": "Siga-nos",
+    "social_instagram": "Instagram",
+    "social_facebook": "Facebook",
+    "social_youtube": "YouTube",
+    "phone_text": "Fale com nosso time de especialista.",
+    "phone_number": "+52 56 1312 8976",
+    "watermark": "DINERO LATAM"
+  },
+
+  "Home": {
+    "banner": {
+      "title1": "Envie dinheiro",
+      "title2": "internacionalmente",
+      "descriptionLine1": "Faça transferências internacionais de forma rápida",
+      "descriptionLine2": "e barata, economizando nas tarifas.",
+      "simulateTitle": "Simule e comprove como é fácil e rápido:",
+      "youSend": "Você envia",
+      "beneficiaryReceives": "Beneficiário recebe",
+      "exchangeRate": "Câmbio",
+      "details": "Detalhes",
+      "sendMoney": "Enviar dinheiro"
+    },
+    "benefits": {
+      "tarifasBaixasTitulo": "Tarifas baixas",
+      "tarifasBaixasDescricao": "Economize com taxas competitivas ao enviar dinheiro internacionalmente",
+      "rapidezTitulo": "Rapidez",
+      "rapidezDescricao": "Uma maneira fácil, rápida e segura de enviar dinheiro internacionalmente.",
+      "transparenciaTitulo": "Transparência",
+      "transparenciaDescricao": "Cada etapa do processo para entregar seu dinheiro com segurança, proporcionando tranquilidade."
+    },
+    "bannerIntro": {
+      "title": "Câmbio sem complicação para a sua viagem.",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+      "button": "Veja mais"
+    },
+    "bannerSecond": {
+      "title": "Seja para um cafezinho ou uma emergência",
+      "description": "Transferências internacionais do seu jeito, para o que você precisar.",
+      "button": "Veja mais"
+    },
+    "conexao": {
+      "linha1parte1": "Conectando",
+      "linha1parte2": "moedas e unindo pessoas",
+      "linha2parte1": "de onde for",
+      "linha2parte2": "para onde quiser.",
+      "fulltext": "Conectando moedas e unindo pessoas de onde for para onde quiser.",
+      "descricao": "Ajudamos milhares de clientes a economizar tempo e dinheiro em pagamentos internacionais de todos os valores.",
+      "botao": "Enviar dinheiro"
+    },
+    "faq": {
+      "q1": {
+        "question": "Como funciona a Dinero Latam?",
+        "answer": "A Dinero Latam facilita transferências internacionais de forma simples, rápida e segura. Você envia um valor em reais (via PIX) ou em Peso Mexicano (chave CoDi) e nós cuidamos de todo o processo de câmbio e envio para o destinatário em outro país. Tudo 100% digital. A Dinero Latam segue o modelo “P2P”, onde são realizadas transferências instantâneas entre particulares através de uma plataforma digital."
+      },
+      "q2": {
+        "question": "O que eu preciso para começar?",
+        "answer": "Você só precisa:\n- Ter mais de 18 anos\n- Um e-mail ou número de celular ativo\n- Um documento válido com foto (RG, CNH ou passaporte)\n- Um comprovante de residência atualizado"
+      },
+      "q3": {
+        "question": "Como faço meu cadastro?",
+        "answer": "Clique em \"Criar Conta\" no topo do site. Informe seu e-mail ou celular e coloque seu token enviado para eles. Complete seu perfil com os dados pessoais e envie seus documentos. Após a verificação, você já pode começar a enviar!"
+      },
+      "q4": {
+        "question": "Quais são as taxas e impostos cobrados?",
+        "answer": "A Dinero Latam acredita em transparência total. Antes de confirmar qualquer envio, você verá:\n- A cotação do câmbio atualizada em tempo real\n- A taxa de serviço, que varia conforme o valor enviado\n- Impostos e encargos aplicáveis, já embutidos no cálculo final\nVocê saberá exatamente quanto vai pagar e quanto o destinatário vai receber. Sem surpresas."
+      },
+      "q5": {
+        "question": "Quais são os prazos para enviar ou receber dinheiro?",
+        "answer": "O envio do valor é feito via PIX, que é instantâneo. Após o pagamento, o processamento da operação pode levar de 15 a 60 minutos. Em casos que exigem análise adicional, o prazo pode se estender para até 24h úteis. Você acompanha tudo em tempo real pelo painel da plataforma."
+      },
+      "q6": {
+        "question": "Quais transferências eu posso fazer?",
+        "answer": "Neste momento, operamos entre Brasil e México. Outros destinos serão incluídos em breve."
+      },
+      "q7": {
+        "question": "Qual o meu limite de envio?",
+        "answer": "O limite inicial é definido com base nas informações do seu cadastro. Geralmente, começa em R$ 50.000 por transação, atingindo o mesmo limite ao mês. Após isso, será necessário o envio de mais documentação com comprovação de renda. Você poderá fazer isso direto na plataforma."
+      },
+      "q8": {
+        "question": "Como posso aumentar o meu limite de envio?",
+        "answer": "Ao atingir o valor mensal de R$50.000, você poderá enviar a documentação complementar solicitada (ex: comprovante de renda ou declaração de imposto). Caso queira antecipar, basta entrar em contato com nosso suporte solicitando o aumento. Nosso time fará uma análise e você será avisado(a) assim que o novo limite for liberado."
+      },
+      "q9": {
+        "question": "Como acompanho minha transferência?",
+        "answer": "Logo após o pagamento você recebe atualizações por e-mail e na plataforma você poderá ver o status da operação em tempo real. Ao final, recebe um comprovante digital com todos os detalhes."
+      },
+      "q10": {
+        "question": "É seguro usar a Dinero Latam?",
+        "answer": "Sim! Usamos criptografia avançada, verificação de identidade e análise antifraude. Além disso, todas as transações são rastreáveis."
+      },
+      "q11": {
+        "question": "Posso cancelar uma transferência?",
+        "answer": "Enquanto a transferência ainda não tiver sido confirmada, você pode cancelar entrando em contato com nosso suporte."
+      },
+      "q12": {
+        "question": "Como falo com o suporte?",
+        "answer": "Nosso time está aqui para ajudar! Você pode chamar no WhatsApp (XXX-XXX) ou enviar um e-mail para suporte@dinerolatam.com"
+      }
+    }
+  },
+
+  "HowItWorks": {
+    "title": "Como funciona?",
+    "description": "Enviar dinheiro para o exterior nunca foi tão simples. Na Dinero Latam, você faz tudo em poucos minutos, com total segurança e 100% online.",
+    "step1": {
+      "title": "Crie sua conta gratuita",
+      "desc": "Leva menos de 2 minutos. Você só precisa de um e-mail ou número de celular.\n\nValidamos seus dados e pronto: sua conta está ativa."
+    },
+    "step2": {
+      "title": "Preencha seus dados",
+      "desc": "Para garantir segurança e seguir as normas, pedimos alguns documentos:\n\nDocumento com foto\nComprovante de residência\nNúmero de celular válido"
+    },
+    "step3": {
+      "title": "Simule sua transferência",
+      "desc": "Você escolhe quanto quer enviar e já vê:\n\nO câmbio aplicado\nAs taxas (transparentes e justas)\nO valor final da operação\n\nNada escondido. Nada confuso."
+    },
+    "step4": {
+      "title": "Envie o valor via PIX ou CoDi",
+      "desc": "Fazemos o câmbio assim que o pagamento for confirmado.\n\nVocê acompanha o status em tempo real na plataforma."
+    },
+    "step5": {
+      "title": "O valor é depositado no destino",
+      "desc": "Em poucos minutos, o dinheiro chega na conta indicada no país de destino."
+    },
+    "step6": {
+      "title": "Receba o comprovante",
+      "desc": "Assim que finalizarmos a operação, você recebe um comprovante digital e tem acesso ao histórico completo no seu painel."
+    },
+    "footerTitle": "Seguro. Rápido. Sem burocracia.",
+    "footerDesc": "Com a Dinero Latam, seja para um cafezinho ou uma emergência, as transferências são do seu jeito, para o que você precisar.",
+    "button": "Enviar dinheiro"
+  },
+
+  "Settings": {
+    "_comment": "Itens da navegação lateral da página de configurações",
+    "general": "Geral",
+    "security": "Segurança",
+    "notifications": "Notificações",
+    "plan": "Plano",
+    "billing": "Faturamento",
+    "teamMembers": "Membros da equipe"
+  },
+
+  "Login": {
+    "title": "Acesse sua conta",
+    "subtitle": "Ainda não tem conta?",
+    "startTrial": "Comece um teste gratuito de 14 dias",
+    "email": "Endereço de e-mail",
+    "password": "Senha",
+    "rememberMe": "Lembrar de mim",
+    "forgotPassword": "Esqueceu a senha?",
+    "signIn": "Entrar",
+    "orContinueWith": "Ou continue com",
+    "google": "Google",
+    "github": "GitHub"
+  }
+}

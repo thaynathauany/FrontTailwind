@@ -82,8 +82,14 @@ export default function Footer() {
                 </div>
 
                 {/* Marca d’água */}
-                <div className="w-[1440px] absolute bottom-0 left-1/2 -translate-x-1/2 text-[177px] font-extrabold opacity-50 text-btnsecondary text-center z-[-1] pointer-events-none leading-none tracking-tight">
-                    <span className="block translate-y-[15%]">{t("watermark")}</span>
+                <div className="absolute bottom-0 left-0 right-0 z-[-1] pointer-events-none">
+                    <div className="mx-auto max-w-[1440px] px-4 md:px-12 lg:px-[80px]">
+                        <img
+                            src="/images/logos/dinerolatam-footer.png"
+                            alt="Marca d’água"
+                            className="w-[1333px] max-w-full"
+                        />
+                    </div>
                 </div>
             </footer>
 

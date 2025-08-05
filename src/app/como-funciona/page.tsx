@@ -45,7 +45,7 @@ export default function HowItWorksSection() {
             {/* MOBILE Banner */}
             <div className="relative block md:hidden w-full">
                 <img
-                    src="/images/destaques/Banner_Como_Funciona_Mobile.png"
+                    src="/images/destaques/Mobile_Banner_Como_Funciona.png"
                     alt="Banner Mobile"
                     className="w-full h-auto"
                 />

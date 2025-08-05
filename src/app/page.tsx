@@ -243,7 +243,7 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section className="mt-20 mb-20">
+      <section className="mt-20">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 md:gap-6">
             <div className="w-full flex flex-col gap-4 max-w-[500px] p-4">
@@ -258,7 +258,7 @@ export default function Home() {
               />
             </div>
             <div className="w-full p-4">
-              <dl className="divide-y divide-primary">
+              <dl className="divide-y divide-[#C1C1C1]">
                 {faqs.map((faq) => (
                   <Disclosure key={faq.question} as="div" className="py-6 first:pt-0 last:pb-0">
                     <dt>

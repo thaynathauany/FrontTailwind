@@ -46,10 +46,12 @@ export default function HowItWorksSection() {
              bg-[url('/images/destaques/Banner_Como_Funciona_Mobile.png')]
              md:bg-[url('/images/destaques/Banner_Como_Funciona.png')]"
             >
-                <div className="relative z-10 h-full min-h-[300px] md:aspect-[3/1]">
+                <div className="relative z-10 h-full min-h-[350px] md:aspect-[3/1]">
                     <div className="h-full w-full max-w-7xl mx-auto px-4 md:px-20 flex flex-col justify-center items-start text-left">
-                        <div className="w-md mt-30">
-                            <h2 className="text-3xl font-bold text-black mb-2">{t("title")}</h2>
+                        <div className="w-[200px] mt-20 md:w-[448px]">
+                            <h2 className="text-[24px] md:text-[30px] font-bold text-black mb-2">
+                                {t("title")}
+                            </h2>
                             <p className="text-primary font-normal">{t("description")}</p>
                         </div>
                     </div>

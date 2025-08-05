@@ -35,10 +35,10 @@ export default function Banner() {
     };
 
     return (
-        <section className=" bg-secondary text-white py-12 px-4 sm:px-6 mt-[120px] min-h-[476px]"
+        <section className=" bg-secondary text-white py-12 px-4 sm:px-6 mt-[110px] min-h-[476px]"
             style={{ backgroundImage: "url(/images/banner/background_header.png)" }}>
             <Container>
-                <div className="flex flex-col lg:flex-row items-center lg:items-center justify-center lg:justify-between gap-10 mt-[40px]">
+                <div className="flex flex-col lg:flex-row items-center lg:items-center justify-center lg:justify-between gap-10 lg:mt-[50px] lg:mt-0">
                     {/* Texto */}
                     <div className="flex flex-col gap-4 lg:text-left">
                         <div className="text-2xl sm:text-3xl font-semibold">

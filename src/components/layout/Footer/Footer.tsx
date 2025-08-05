@@ -88,7 +88,7 @@ export default function Footer() {
             </footer>
 
             {/* FOOTER MOBILE */}
-            <footer className="md:hidden bg-[#03a5a8] text-white py-20 px-8 relative z-0">
+            <footer className="md:hidden bg-[#03a5a8] text-white pt-20 pb-10 px-8 relative z-0 overflow-hidden">
                 <div className="flex flex-col items-center text-center space-y-8">
                     <h3 className="text-2xl font-bold">{t("company")}</h3>
 
@@ -118,14 +118,18 @@ export default function Footer() {
                         </a>
                     </div>
 
-                    <div className="text-xs text-white/80 space-x-2 pt-4">
+                    <div className="text-xs text-white/80 space-x-2 pt-4 pb-6">
                         <a href="#" className="underline">{t("privacy")}</a>
                         <span>•</span>
                         <a href="#" className="underline">{t("terms")}</a>
                     </div>
                 </div>
-                <div className="w-full absolute bottom-0 left-1/2 -translate-x-1/2 text-5xl font-extrabold opacity-50 text-btnsecondary text-center z-[-1] pointer-events-none leading-none tracking-tight">
-                    <span className="block translate-y-[15%]">DINERO LATAM</span>
+
+                {/* Marca d’água corrigida */}
+                <div className="absolute inset-0 flex items-end justify-center pointer-events-none z-[-1]">
+                    <span className="text-5xl font-extrabold opacity-50 text-btnsecondary text-center leading-none tracking-tight mb-[-10px]">
+                        DINERO LATAM
+                    </span>
                 </div>
             </footer>
         </>

@@ -1,6 +1,7 @@
 "use client";
 
 import CustomButton from "@/components/ui/CustomButton";
+import Container from "@/components/ui/Container";
 import { useTranslations } from "next-intl";
 
 export default function HowItWorksSection() {
@@ -41,27 +42,46 @@ export default function HowItWorksSection() {
 
     return (
         <section className="bg-white mt-[120px]">
-            <div
-                className="w-full bg-no-repeat bg-cover bg-center relative mt-[-30px] mb-10
-             bg-[url('/images/destaques/Banner_Como_Funciona_Mobile.png')]
-             md:bg-[url('/images/destaques/Banner_Como_Funciona.png')]"
-            >
-                <div className="relative z-10 h-full min-h-[350px] md:aspect-[3/1]">
-                    <div className="h-full w-full max-w-7xl mx-auto px-4 md:px-20 flex flex-col justify-center items-start text-left">
-                        <div className="w-[200px] mt-20 md:w-[448px]">
-                            <h2 className="text-[24px] md:text-[30px] font-bold text-black mb-2">
-                                {t("title")}
-                            </h2>
-                            <p className="text-primary font-normal">{t("description")}</p>
-                        </div>
+            {/* MOBILE Banner */}
+            <div className="relative block md:hidden w-full">
+                <img
+                    src="/images/destaques/Banner_Como_Funciona_Mobile.png"
+                    alt="Banner Mobile"
+                    className="w-full h-auto"
+                />
+                <div className="absolute top-0 left-0 w-full h-full flex items-center justify-start px-4 pt-[60px]">
+                    <div className="text-black max-w-[200px] space-y-2 px-4">
+                        <h2 className="text-[24px] font-bold">{t("title")}</h2>
+                        <p className="text-primary">{t("description")}</p>
                     </div>
                 </div>
             </div>
 
+            {/* DESKTOP Banner */}
+            <div className="relative hidden md:block w-full h-[483px]">
+                <img
+                    src="/images/destaques/Banner_Como_Funciona.png"
+                    alt="Banner Como Funciona"
+                    className="w-full h-full object-fill"
+                />
+
+                <div className="absolute bottom-0 left-0 w-full">
+                    <Container>
+                        <div className="w-[448px] pb-30 px-4">
+                            <h2 className="text-[30px] font-bold text-black mb-2">
+                                {t("title")}
+                            </h2>
+                            <p className="text-primary font-normal">
+                                {t("description")}
+                            </p>
+                        </div>
+                    </Container>
+                </div>
+            </div>
 
             {/* Etapas */}
-            <div className="max-w-6xl mx-auto px-4 py-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Container>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4 mt-10">
                     {steps.map((step, index) => (
                         <div
                             key={index}
@@ -77,14 +97,16 @@ export default function HowItWorksSection() {
                         </div>
                     ))}
                 </div>
-            </div>
+            </Container>
 
             {/* Call-to-action final */}
-            <div className="text-center py-12 bg-white px-4">
-                <h3 className="text-2xl sm:text-4xl font-bold text-secondary mb-6">{t("footerTitle")}</h3>
-                <p className="text-primary font-normal mb-6 mt-2 mx-auto max-w-2xl">{t("footerDesc")}</p>
-                <CustomButton text={t("button")} onClick={() => { }} />
-            </div>
+            <Container>
+                <div className="text-center bg-white p-4 py-12">
+                    <h3 className="text-2xl sm:text-4xl font-bold text-secondary mb-6">{t("footerTitle")}</h3>
+                    <p className="text-primary font-normal mb-6 mt-2 ">{t("footerDesc")}</p>
+                    <CustomButton text={t("button")} onClick={() => { }} />
+                </div>
+            </Container>
         </section>
     );
 }

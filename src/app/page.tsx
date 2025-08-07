@@ -6,6 +6,7 @@ import Container from "@/components/ui/Container";
 import { useTranslations } from "next-intl";
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
+import Image from "next/image";
 
 export default function Home() {
   const t = useTranslations("Home");
@@ -71,7 +72,12 @@ export default function Home() {
           {/* Tarifa baixa */}
           <div className="max-w-[400px]">
             <div className="flex items-center gap-2 mb-2">
-              <img src="/images/icones/money-icon.png" />
+              <Image
+                src="/images/icones/money-icon.png"
+                alt="Ícone de dinheiro"
+                width={24}
+                height={24}
+              />
               <h3 className="text-secondary font-bold text-lg">{t("benefits.tarifasBaixasTitulo")}</h3>
             </div>
             <p className="text-primary text-sm">
@@ -82,7 +88,12 @@ export default function Home() {
           {/* Rapidez */}
           <div className="max-w-[400px]">
             <div className="flex items-center gap-2 mb-2">
-              <img src="/images/icones/money-icon.png" />
+              <Image
+                src="/images/icones/rapidez-icon.png"
+                alt="Ícone de dinheiro"
+                width={24}
+                height={24}
+              />
               <h3 className="text-secondary font-bold text-lg">{t("benefits.rapidezTitulo")}</h3>
             </div>
             <p className="text-primary text-sm">
@@ -93,7 +104,12 @@ export default function Home() {
           {/* Transparência */}
           <div className="max-w-[400px]">
             <div className="flex items-center gap-2 mb-2">
-              <img src="/images/icones/money-icon.png" />
+              <Image
+                src="/images/icones/transparencia-icon.png"
+                alt="Ícone de dinheiro"
+                width={24}
+                height={24}
+              />
               <h3 className="text-secondary font-bold text-lg">{t("benefits.transparenciaTitulo")}</h3>
             </div>
             <p className="text-primary text-sm">
@@ -122,9 +138,11 @@ export default function Home() {
 
       {/* Banner intro - MOBILE */}
       <section className="relative block md:hidden w-full">
-        <img
+        <Image
           src="/images/destaques/Mobile_Banner_Dinero_Mobile.png"
           alt="Banner Mobile"
+          width={375}
+          height={435}
           className="w-full h-auto"
         />
 
@@ -219,9 +237,11 @@ export default function Home() {
 
       {/* Banner secundario - MOBILE */}
       <section className="relative block md:hidden w-full">
-        <img
+        <Image
           src="/images/destaques/Mobile_Banner_Cafe.png"
           alt="Banner Mobile"
+          width={750}
+          height={500}
           className="w-full h-auto"
         />
 

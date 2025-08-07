@@ -3,6 +3,7 @@
 import CustomButton from "@/components/ui/CustomButton";
 import Container from "@/components/ui/Container";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export default function HowItWorksSection() {
     const t = useTranslations("HowItWorks");
@@ -58,13 +59,20 @@ export default function HowItWorksSection() {
             </div>
 
             {/* DESKTOP Banner */}
-            <div className="relative hidden md:block w-full h-[483px]">
-                <img
+            <div className="relative hidden md:block w-full">
+                <Image
+                    src="/images/destaques/Banner_Como_Funciona.png"
+                    alt="Banner Como Funciona"
+                    width={1440}
+                    height={483}
+                    className="w-full h-full object-cover"
+                    priority
+                />
+                {/* <img
                     src="/images/destaques/Banner_Como_Funciona.png"
                     alt="Banner Como Funciona"
                     className="w-full h-full object-fill"
-                />
-
+                /> */}
                 <div className="absolute bottom-0 left-0 w-full">
                     <Container>
                         <div className="w-[448px] pb-30 px-4">

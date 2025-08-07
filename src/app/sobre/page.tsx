@@ -13,11 +13,16 @@ export default function AboutSection() {
             <section className="mt-[120px]">
                 {/* MOBILE Banner */}
                 <div className="relative block md:hidden w-full">
-                    <img
-                        src="/images/destaques/Banner_Sobre_Mobile.png"
-                        alt="Banner Sobre Mobile"
-                        className="w-full h-auto"
-                    />
+                    <div className="block md:hidden relative w-full aspect-[1.2]">
+                        <Image
+                            src="/images/destaques/Banner_Sobre_Mobile.png"
+                            alt="Banner Sobre Mobile"
+                            fill
+                            className="object-cover"
+                            sizes="100vw"
+                            priority
+                        />
+                    </div>
                     <div className="absolute top-0 left-0 w-full h-full flex items-end justify-center px-4 pb-12">
                         <div className="text-white space-y-2 max-w-[320px] text-center">
                             <p className="text-sm font-normal">{t("bannerTitle1")}</p>
@@ -28,11 +33,19 @@ export default function AboutSection() {
 
                 {/* DESKTOP Banner */}
                 <div className="relative hidden md:block w-full aspect-[2.057] max-h-[790px] mt-[120px]">
-                    <img
+                    <Image
+                        src="/images/destaques/Banner_Sobre.png"
+                        alt="Banner Sobre"
+                        fill
+                        className="object-cover"
+                        sizes="100"
+                        priority
+                    />
+                    {/* <img
                         src="/images/destaques/Banner_Sobre.png"
                         alt="Banner Sobre"
                         className="absolute inset-0 w-full h-full object-cover"
-                    />
+                    /> */}
                     <div className="absolute bottom-0 left-0 w-full h-full flex items-end">
                         <div className="w-[561px] px-4 text-left ml-[36%] mb-12">
                             <p className="text-white text-2xl font-normal">
@@ -50,18 +63,26 @@ export default function AboutSection() {
             <div className="flex flex-col md:flex-row w-full mt-20 gap-y-12 md:gap-y-0">
                 <div className="w-full md:w-[600px] flex-shrink-0">
                     {/* Imagem desktop */}
-                    <img
-                        src="/images/destaques/Sobre_IMG_01.png"
-                        alt="Imagem Sobre"
-                        className="hidden md:block w-full h-auto object-cover"
-                    />
+                    <div className="hidden md:block">
+                        <Image
+                            src="/images/destaques/Sobre_IMG_01.png"
+                            alt="Imagem Sobre"
+                            width={600}
+                            height={900}
+                            className="w-full h-auto object-cover"
+                        />
+                    </div>
 
                     {/* Imagem mobile */}
-                    <img
-                        src="/images/destaques/Mobile_Sobre_IMG_01.png"
-                        alt="Imagem Sobre Mobile"
-                        className="block md:hidden w-full h-auto object-cover"
-                    />
+                    <div className="block md:hidden">
+                        <Image
+                            src="/images/destaques/Mobile_Sobre_IMG_01.png"
+                            alt="Imagem Sobre Mobile"
+                            width={390}
+                            height={468}
+                            className="w-full h-auto object-cover"
+                        />
+                    </div>
                 </div>
 
                 <div className="flex-1">
@@ -103,9 +124,11 @@ export default function AboutSection() {
 
                         {["porQueExistimos1", "porQueExistimos2", "porQueExistimos3", "porQueExistimos4"].map((key, index) => (
                             <div key={index} className="flex items-start gap-2">
-                                <img
+                                <Image
                                     src="/images/icones/check.png"
                                     alt="Check"
+                                    width={20}
+                                    height={20}
                                     className="mt-1 w-5 h-5"
                                 />
                                 <p className="text-primary text-base font-normal">
@@ -170,13 +193,16 @@ export default function AboutSection() {
 
             {/* Banner secundario - MOBILE */}
             <section className="relative block md:hidden w-full mb-[-100px]">
-                <img
+
+                <Image
                     src="/images/destaques/Mobile_Sobre_Banner_01.png"
                     alt="Banner Mobile"
+                    width={768}
+                    height={400}
                     className="w-full h-auto"
                 />
 
-                <div className="absolute top-0 left-0 w-full h-full flex items-start px-4 pt-[60px]">
+                <div className="absolute top-0 left-0 w-full h-full flex items-start px-8 pt-[60px]">
                     <div className="text-white text-left w-[240px]">
                         <p className="text-base font-bold">
                             {t("bannerSecondTitle")}

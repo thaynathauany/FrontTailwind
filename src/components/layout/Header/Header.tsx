@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogPanel,
@@ -19,6 +19,17 @@ import Link from "next/link";
 export default function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const t = useTranslations("Header");
 
   const navigation = [
@@ -48,8 +59,8 @@ export default function Header() {
 
   return (
     <>
-      <header className="absolute inset-x-0 top-0 z-50 flex h-[110px] mx-auto max-w-[1440px]">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <header className={`fixed inset-x-0 top-0 z-50 w-full bg-white transition-all duration-300 ${isScrolled ? "h-[90px]" : "h-[110px]"}`}>
+        <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8 h-full">
           {/* Logo + nav */}
           <div className="flex items-center gap-x-6">
             <img

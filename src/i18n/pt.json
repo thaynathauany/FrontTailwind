@@ -163,27 +163,85 @@
     "button": "Enviar dinheiro"
   },
 
-  "Settings": {
-    "_comment": "Itens da navegação lateral da página de configurações",
-    "general": "Geral",
-    "security": "Segurança",
-    "notifications": "Notificações",
-    "plan": "Plano",
-    "billing": "Faturamento",
-    "teamMembers": "Membros da equipe"
+  "About": {
+    "bannerTitle1": "Conectando moedas e unindo pessoas de onde for, para onde quiser.",
+    "bannerTitle2": "Rápido, seguro e global.",
+    "title": "Sobre a Dinero Latam",
+    "successLabel": "Dinheiro enviado com sucesso",
+    "highlight": "A Dinero Latam",
+    "paragraph1": "Conectamos moedas. Unimos pessoas. Simplificamos o câmbio. Viajar, enviar dinheiro para quem você ama, pagar um serviço no exterior ou simplesmente tomar um café em outro país, tudo isso fica mais fácil com a gente.",
+    "paragraph2": "nasceu com um propósito simples: Descomplicar o câmbio internacional para pessoas reais, com segurança, transparência e rapidez.",
+    "paragraph3": "Somos uma empresa P2P com tecnologia brasileira, operação internacional e alma latina.",
+    "paragraph4": "Entendemos que cada transferência tem uma história:\nUma mudança de país.\nUm apoio financeiro para a família.\nUm sonho de estudar fora.\nOu aquele cafezinho no momento certo.",
+    "porQueExistimos": "Por que existimos",
+    "paragrafoPorQueExistimos": "Porque o sistema tradicional de câmbio é burocrático, caro e lento. E você merece o contrário: ",
+    "porQueExistimos1": "Atendimento simples",
+    "porQueExistimos2": "Plataforma intuitiva",
+    "porQueExistimos3": "Câmbio justo e transparente",
+    "porQueExistimos4": "Tudo 100% online",
+    "nossaMissao": "Nossa missão",
+    "missao1": "Ajudar pessoas a enviar e receber dinheiro entre países com menos barreiras e mais confiança.",
+    "missao2": "Começamos entre Brasil e México, e já estamos preparando novos destinos.",
+    "missao3": "Queremos ser ponte, não obstáculo.",
+    "missao4": "E aí, bora com a gente?",
+    "missao5": "Seja para mandar um valor pequeno ou uma quantia importante, conte com a ",
+    "missao6": "Afinal, onde tem afeto, tem valor.",
+    "missao7": "Envie dinheiro em minutos. Com a segurança que você precisa. E a simplicidade que você merece.",
+    "bannerSecondTitle": "Para uma nova aventura ou uma emergência.",
+    "bannerSecondDescription": "Transferências internacionais do seu jeito, para o que você precisar.",
+    "bannerSecondButton": "Faça sua transferência"
   },
 
-  "Login": {
-    "title": "Acesse sua conta",
-    "subtitle": "Ainda não tem conta?",
-    "startTrial": "Comece um teste gratuito de 14 dias",
-    "email": "Endereço de e-mail",
-    "password": "Senha",
-    "rememberMe": "Lembrar de mim",
-    "forgotPassword": "Esqueceu a senha?",
-    "signIn": "Entrar",
-    "orContinueWith": "Ou continue com",
-    "google": "Google",
-    "github": "GitHub"
+  "Contact": {
+    "title": "Contato",
+    "emailLabel": "E-MAIL",
+    "phoneLabel": "TELEFONE",
+    "whatsappButton": "Ir para o chat no WhatsApp",
+    "submitButton": "ENVIAR",
+    "placeholder": {
+      "name": "Seu nome",
+      "email": "Seu e-mail",
+      "subject": "Assunto",
+      "message": "Sua mensagem"
+    }
+  },
+
+  "SignUp": {
+    "signupBannerTitle": "Seja para um cafezinho ou uma emergência",
+    "signupBannerDescription": "Transferências internacionais do seu jeito, para o que você precisar.",
+
+    "step1": {
+      "title": "Crie sua conta",
+      "description": "Vamos começar. É bem rápido, basta preencher os campos abaixo:",
+      "placeholder": {
+        "name": "Seu nome completo",
+        "email": "E-mail",
+        "phone": "Celular"
+      },
+      "buttonNext": "Próximo",
+      "footerText": "Já é cliente?",
+      "footerLink": "Acessar conta"
+    },
+
+    "step2": {
+      "title": "Ei... estamos quase lá =)",
+      "description": "Para finalizar, precisamos que envie alguns documentos:",
+      "documentTitle": "Documento de identidade",
+      "documentDescription": "Envie uma foto do seu CPF, RG ou Passaporte.",
+      "addressTitle": "Comprovante de endereço",
+      "addressDescription": "Envie uma conta de consumo ou extrato bancário emitido nos últimos 90 dias.",
+      "selectFile": "Selecionar arquivo",
+      "termsText": "Aceito os Termos de Uso e a Política de Privacidade",
+      "back": "Voltar",
+      "finish": "Finalizar"
+    },
+
+    "step3": {
+      "title": "Parabéns! Tudo certo",
+      "description": "Agora é só fazer o login e aproveitar nossa plataforma.",
+      "button_login": "Fazer login",
+      "support_prefix": "Ainda com dúvidas?",
+      "support_link": "Fale com a gente"
+    }
   }
 }

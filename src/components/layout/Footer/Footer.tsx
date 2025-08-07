@@ -7,7 +7,7 @@ export default function Footer() {
     return (
         <>
             {/* Seção branca com imagem sobreposta */}
-            <section className="relative w-full bg-white z-10">
+            <section className="relative w-full z-10">
                 <div className="flex justify-center items-end h-[100px] sm:h-[140px] relative">
                     <img
                         src="/images/logos/logo-footer.png"

@@ -163,27 +163,84 @@
     "button": "Enviar dinero"
   },
 
-  "Settings": {
-    "_comment": "Itens da navegação lateral da página de configurações",
-    "general": "General",
-    "security": "Seguridad",
-    "notifications": "Notificaciones",
-    "plan": "Plan",
-    "billing": "Facturación",
-    "teamMembers": "Miembros del equipo"
+  "About": {
+    "bannerTitle1": "Conectando monedas y uniendo personas desde donde estén, hacia donde quieran.",
+    "bannerTitle2": "Rápido, seguro y global.",
+    "title": "Sobre Dinero Latam",
+    "successLabel": "Dinero enviado con éxito",
+    "highlight": "Dinero Latam",
+    "paragraph1": "Conectamos monedas. Unimos personas. Simplificamos el cambio. Viajar, enviar dinero a quien amas, pagar un servicio en el extranjero o simplemente tomar un café en otro país, todo esto es más fácil con nosotros.",
+    "paragraph2": "nació con un propósito simple: Descomplicar el cambio internacional para personas reales, con seguridad, transparencia y rapidez.",
+    "paragraph3": "Somos una empresa P2P con tecnología brasileña, operación internacional y alma latina.",
+    "paragraph4": "Entendemos que cada transferencia tiene una historia:\nUn cambio de país.\nUn apoyo financiero para la familia.\nUn sueño de estudiar en el extranjero.\nO ese cafecito en el momento justo.",
+    "porQueExistimos": "¿Por qué existimos?",
+    "paragrafoPorQueExistimos": "Porque el sistema tradicional de cambio es burocrático, costoso y lento. Y tú mereces lo contrario:",
+    "porQueExistimos1": "Atención simple",
+    "porQueExistimos2": "Plataforma intuitiva",
+    "porQueExistimos3": "Cambio justo y transparente",
+    "porQueExistimos4": "Todo 100% en línea",
+    "nossaMissao": "Nuestra misión",
+    "missao1": "Ayudar a las personas a enviar y recibir dinero entre países con menos barreras y más confianza.",
+    "missao2": "Comenzamos entre Brasil y México, y ya estamos preparando nuevos destinos.",
+    "missao3": "Queremos ser un puente, no un obstáculo.",
+    "missao4": "¿Y entonces, vienes con nosotros?",
+    "missao5": "Ya sea para enviar un monto pequeño o una cantidad importante, cuenta con ",
+    "missao6": "Al final, donde hay afecto, hay valor.",
+    "missao7": "Envía dinero en minutos. Con la seguridad que necesitas. Y la simplicidad que mereces.",
+    "bannerSecondTitle": "Para una nueva aventura o una emergencia.",
+    "bannerSecondDescription": "Transferencias internacionales a tu manera, para lo que necesites.",
+    "bannerSecondButton": "Haz tu transferencia"
   },
 
-  "Login": {
-    "title": "Accede a tu cuenta",
-    "subtitle": "¿Aún no tienes una cuenta?",
-    "startTrial": "Comienza una prueba gratuita de 14 días",
-    "email": "Dirección de correo electrónico",
-    "password": "Contraseña",
-    "rememberMe": "Recuérdame",
-    "forgotPassword": "¿Olvidaste tu contraseña?",
-    "signIn": "Iniciar sesión",
-    "orContinueWith": "O continúa con",
-    "google": "Google",
-    "github": "GitHub"
+  "Contact": {
+    "title": "Contacto",
+    "emailLabel": "CORREO",
+    "phoneLabel": "TELÉFONO",
+    "whatsappButton": "Ir al chat de WhatsApp",
+    "submitButton": "ENVIAR",
+    "placeholder": {
+      "name": "Tu nombre",
+      "email": "Tu correo electrónico",
+      "subject": "Asunto",
+      "message": "Tu mensaje"
+    }
+  },
+
+  "SignUp": {
+    "signupBannerTitle": "Ya sea para un cafecito o una emergencia",
+    "signupBannerDescription": "Transferencias internacionales a tu manera, para lo que necesites.",
+
+    "step1": {
+      "title": "Crea tu cuenta",
+      "description": "Vamos a comenzar. Es muy rápido, solo completa los campos abajo:",
+      "placeholder": {
+        "name": "Tu nombre completo",
+        "email": "Correo electrónico",
+        "phone": "Celular"
+      },
+      "buttonNext": "Siguiente",
+      "footerText": "¿Ya tienes cuenta?",
+      "footerLink": "Acceder a la cuenta"
+    },
+
+    "step2": {
+      "title": "Ya casi terminamos =)",
+      "description": "Para finalizar, necesitamos que envíes algunos documentos:",
+      "documentTitle": "Documento de identidad",
+      "documentDescription": "Envía una foto de tu CURP, INE o pasaporte.",
+      "addressTitle": "Comprobante de domicilio",
+      "addressDescription": "Envía un recibo de servicio o estado de cuenta emitido en los últimos 90 días.",
+      "selectFile": "Seleccionar archivo",
+      "termsText": "Acepto los Términos de uso y la Política de privacidad",
+      "back": "Volver",
+      "finish": "Finalizar"
+    },
+    "step3": {
+      "title": "¡Felicidades! Todo listo",
+      "description": "Ahora solo inicia sesión y aprovecha nuestra plataforma.",
+      "button_login": "Iniciar sesión",
+      "support_prefix": "¿Todavía tienes dudas?",
+      "support_link": "Contáctanos"
+    }
   }
 }

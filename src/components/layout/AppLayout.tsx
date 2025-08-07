@@ -10,9 +10,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <div>
-        {pathname !== "/login" && <Header />}
+        {pathname !== "/login" && pathname !== "/sign-up" && <Header />}
         <main>{children}</main>
-        {pathname !== "/login" && <Footer />}
+        {pathname !== "/login" && pathname !== "/sign-up" && <Footer />}
       </div>
     </>
   );

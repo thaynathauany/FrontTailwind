@@ -14,6 +14,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function Header() {
   const pathname = usePathname();
@@ -23,8 +24,8 @@ export default function Header() {
   const navigation = [
     { name: t("home"), href: "/" },
     { name: t("comoFunciona"), href: "/como-funciona" },
-    { name: t("contato"), href: "#" },
-    { name: t("sobre"), href: "#" },
+    { name: t("contato"), href: "/contato" },
+    { name: t("sobre"), href: "/sobre" },
   ];
 
   const profileItems = [
@@ -54,7 +55,7 @@ export default function Header() {
             <img
               src="/images/logos/logodinero.jpg"
               alt="Logotipo da Dinero"
-              className="w-[58px] h-[72px]"
+              className="w-[52px] h-[72px]"
             />
 
             <nav className="hidden md:flex gap-x-8 text-sm font-semibold text-gray-700">
@@ -75,12 +76,18 @@ export default function Header() {
           <div className="flex items-center gap-x-4">
             {/* Botões Entrar/Cadastrar - visíveis só no desktop */}
             <div className="hidden md:flex gap-x-2">
-              <button className="font-normal w-auto h-[36px] px-3  rounded-[120px] border border-secondary text-secondary">
+              <Link
+                href="/sign-up"
+                className="flex items-center justify-center font-normal w-auto h-[36px] px-3 rounded-[120px] border border-secondary text-secondary"
+              >
                 {t("btn_signIn")}
-              </button>
-              <button className="font-normal w-auto h-[36px] px-3  rounded-[120px] border border-secondary bg-secondary text-white">
+              </Link>
+              <Link
+                href="/sign-up"
+                className="flex items-center justify-center font-normal w-auto h-[36px] px-3 rounded-[120px] border border-secondary bg-secondary text-white"
+              >
                 {t("btn_signUp")}
-              </button>
+              </Link>
             </div>
 
             <LanguageSwitcher />
@@ -169,12 +176,19 @@ export default function Header() {
 
                 {/* Botões no mobile */}
                 <div className="flex w-full mt-4 gap-2">
-                  <button className="w-1/2 h-[48px] rounded-[120px] border border-secondary text-secondary font-normal">
-                    Entrar
-                  </button>
-                  <button className="w-1/2 h-[48px] rounded-[120px] border border-secondary bg-secondary text-white font-normal">
-                    Cadastrar
-                  </button>
+                  <Link
+                    href="/login"
+                    className="w-1/2 h-[48px] rounded-[120px] border border-secondary text-secondary font-normal flex items-center justify-center"
+                  >
+                    {t("btn_signIn")}
+                  </Link>
+
+                  <Link
+                    href="/sign-up"
+                    className="w-1/2 h-[48px] rounded-[120px] border border-secondary bg-secondary text-white font-normal flex items-center justify-center"
+                  >
+                    {t("btn_signUp")}
+                  </Link>
                 </div>
               </div>
             </div>

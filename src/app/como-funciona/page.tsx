@@ -44,12 +44,12 @@ export default function HowItWorksSection() {
     return (
         <section className="bg-white mt-[120px]">
             {/* MOBILE Banner */}
-            <div className="relative block md:hidden w-full">
-                <img
-                    src="/images/destaques/Mobile_Banner_Como_Funciona.png"
-                    alt="Banner Mobile"
-                    className="w-full h-auto"
-                />
+            <div
+                className="relative block md:hidden w-full h-[360px] bg-no-repeat bg-cover bg-center"
+                style={{
+                    backgroundImage: "url('/images/destaques/Mobile_Banner_Como_Funciona.png')",
+                }}
+            >
                 <div className="absolute top-0 left-0 w-full h-full flex items-center justify-start px-4 pt-[60px]">
                     <div className="text-black max-w-[200px] space-y-2 px-4">
                         <h2 className="text-[24px] font-bold">{t("title")}</h2>
@@ -59,20 +59,12 @@ export default function HowItWorksSection() {
             </div>
 
             {/* DESKTOP Banner */}
-            <div className="relative hidden md:block w-full">
-                <Image
-                    src="/images/destaques/Banner_Como_Funciona.png"
-                    alt="Banner Como Funciona"
-                    width={1440}
-                    height={483}
-                    className="w-full h-full object-cover"
-                    priority
-                />
-                {/* <img
-                    src="/images/destaques/Banner_Como_Funciona.png"
-                    alt="Banner Como Funciona"
-                    className="w-full h-full object-fill"
-                /> */}
+            <div
+                className="relative hidden md:block w-full aspect-[2.98] bg-no-repeat bg-cover bg-center"
+                style={{
+                    backgroundImage: "url('/images/destaques/Banner_Como_Funciona.png')",
+                }}
+            >
                 <div className="absolute bottom-0 left-0 w-full">
                     <Container>
                         <div className="w-[448px] pb-30 px-4">

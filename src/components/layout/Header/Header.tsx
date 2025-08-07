@@ -63,11 +63,13 @@ export default function Header() {
         <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8 h-full">
           {/* Logo + nav */}
           <div className="flex items-center gap-x-6">
-            <img
-              src="/images/logos/logodinero.jpg"
-              alt="Logotipo da Dinero"
-              className="w-[52px] h-[72px]"
-            />
+            <Link href="/">
+              <img
+                src="/images/logos/logodinero.jpg"
+                alt="Logotipo da Dinero"
+                className="w-[52px] h-[72px]"
+              />
+            </Link>
 
             <nav className="hidden md:flex gap-x-8 text-sm font-semibold text-gray-700">
               {navigation.map((item) => (

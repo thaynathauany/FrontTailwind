@@ -32,31 +32,21 @@ export default function AboutSection() {
                 </div>
 
                 {/* DESKTOP Banner */}
-                <div className="relative hidden md:block w-full aspect-[2.057] max-h-[790px] mt-[120px]">
-                    <Image
-                        src="/images/destaques/Banner_Sobre.png"
-                        alt="Banner Sobre"
-                        fill
-                        className="object-cover"
-                        sizes="100"
-                        priority
-                    />
-                    {/* <img
-                        src="/images/destaques/Banner_Sobre.png"
-                        alt="Banner Sobre"
-                        className="absolute inset-0 w-full h-full object-cover"
-                    /> */}
+                <section
+                    className="relative hidden md:block w-full h-[790px] mt-[120px] bg-cover bg-center bg-no-repeat"
+                    style={{ backgroundImage: "url('/images/destaques/Banner_Sobre.png')" }}
+                >
                     <div className="absolute bottom-0 left-0 w-full h-full flex items-end">
-                        <div className="w-[561px] px-4 text-left ml-[36%] mb-12">
-                            <p className="text-white text-2xl font-normal">
+                        <div className="w-[561px] px-4 text-left ml-[36%] mb-12 text-white">
+                            <p className="text-2xl font-normal">
                                 {t("bannerTitle1")}
                             </p>
-                            <p className="text-white text-2xl font-semibold">
+                            <p className="text-2xl font-semibold">
                                 {t("bannerTitle2")}
                             </p>
                         </div>
                     </div>
-                </div>
+                </section>
             </section>
 
             {/* content */}
@@ -79,7 +69,7 @@ export default function AboutSection() {
                             src="/images/destaques/Mobile_Sobre_IMG_01.png"
                             alt="Imagem Sobre Mobile"
                             width={390}
-                            height={468}
+                            height={248}
                             className="w-full h-auto object-cover"
                         />
                     </div>
@@ -192,16 +182,11 @@ export default function AboutSection() {
             </section>
 
             {/* Banner secundario - MOBILE */}
-            <section className="relative block md:hidden w-full mb-[-100px]">
-
-                <Image
-                    src="/images/destaques/Mobile_Sobre_Banner_01.png"
-                    alt="Banner Mobile"
-                    width={768}
-                    height={400}
-                    className="w-full h-auto"
-                />
-
+            <section className="relative block md:hidden w-full h-[300px] mb-[-100px] bg-no-repeat bg-cover bg-center"
+                style={{
+                    backgroundImage: "url('/images/destaques/Mobile_Sobre_Banner_01.png')",
+                }}
+            >
                 <div className="absolute top-0 left-0 w-full h-full flex items-start px-8 pt-[60px]">
                     <div className="text-white text-left w-[240px]">
                         <p className="text-base font-bold">

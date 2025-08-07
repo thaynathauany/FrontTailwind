@@ -33,7 +33,7 @@ export default function AboutSection() {
 
                 {/* DESKTOP Banner */}
                 <section
-                    className="relative hidden md:block w-full h-[790px] mt-[120px] bg-cover bg-center bg-no-repeat"
+                    className="relative hidden md:block w-full aspect-[2.03] max-h-[810px] mt-[120px] bg-cover bg-center bg-no-repeat"
                     style={{ backgroundImage: "url('/images/destaques/Banner_Sobre.png')" }}
                 >
                     <div className="absolute bottom-0 left-0 w-full h-full flex items-end">
@@ -54,12 +54,10 @@ export default function AboutSection() {
                 <div className="w-full md:w-[600px] flex-shrink-0">
                     {/* Imagem desktop */}
                     <div className="hidden md:block">
-                        <Image
+                        <img
                             src="/images/destaques/Sobre_IMG_01.png"
                             alt="Imagem Sobre"
-                            width={600}
-                            height={900}
-                            className="w-full h-auto object-cover"
+                            className="w-full h-auto object-contain flex-shrink-0"
                         />
                     </div>
 
@@ -172,7 +170,7 @@ export default function AboutSection() {
                             <p className="text-3xl font-bold">
                                 {t("bannerSecondTitle")}
                             </p>
-                            <p className="text-base">
+                            <p className="text-lg">
                                 {t("bannerSecondDescription")}
                             </p>
                             <CustomButton text={t("bannerSecondButton")} onClick={() => { }} />

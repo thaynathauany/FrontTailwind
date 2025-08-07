@@ -128,7 +128,7 @@ export default function Home() {
             <p className="text-3xl font-bold text-secondary">
               {t("bannerIntro.title")}
             </p>
-            <p className="text-base text-primary">
+            <p className="text-lg text-primary">
               {t("bannerIntro.description")}
             </p>
             <CustomButton text={t("bannerIntro.button")} onClick={() => { }} />
@@ -223,7 +223,7 @@ export default function Home() {
               <p className="text-3xl font-bold">
                 {t("bannerSecond.title")}
               </p>
-              <p className="text-base">
+              <p className="text-lg">
                 {t("bannerSecond.description")}
               </p>
               <CustomButton text={t("bannerSecond.button")} onClick={() => { }} />

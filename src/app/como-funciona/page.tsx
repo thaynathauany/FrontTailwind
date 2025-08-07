@@ -71,7 +71,7 @@ export default function HowItWorksSection() {
                             <h2 className="text-[30px] font-bold text-black mb-2">
                                 {t("title")}
                             </h2>
-                            <p className="text-primary font-normal">
+                            <p className="text-primary font-normal text-lg">
                                 {t("description")}
                             </p>
                         </div>

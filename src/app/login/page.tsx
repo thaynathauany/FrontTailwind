@@ -41,7 +41,7 @@ export default function SignUpPage() {
       <div className="flex flex-col w-full lg:w-1/2">
         <div className="flex flex-1 items-start justify-center px-4 pb-6 mt-8 sm:px-6 sm:pb-8 sm:mt-0">
           {step === 1 && <StepOne onNext={() => setStep(2)} />}
-          {step === 2 && <StepTwo onNext={() => setStep(3)} onBack={() => setStep(1)} />}
+          {step === 2 && <StepTwo onNext={() => setStep(3)} />}
           {step === 3 && <StepThree />}
         </div>
       </div>

@@ -34,11 +34,13 @@ export default function StepOne({ onNext }: StepOneProps) {
                     </div>
                 </div>
             </div>
-            <div className="flex sm:flex-1 items-start sm:items-center justify-center pt-2 sm:pt-12 mt-6 sm:mt-0"></div>
             <div className="pb-8 sm:pb-6">
-                <p className="text-center text-sm text-primary">
+                <p className="text-center text-sm text-primary mt-10 sm:mt-0">
                     {t("noAccount")}{" "}
-                    <a href="/login" className="text-secondary underline underline-offset-1 font-medium">
+                    <a
+                        href="/login"
+                        className="text-secondary underline underline-offset-1 font-medium"
+                    >
                         {t("createAccount")}
                     </a>
                 </p>

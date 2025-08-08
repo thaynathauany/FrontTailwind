@@ -3,30 +3,27 @@
 import CustomButton from "@/components/ui/CustomButton";
 import { useTranslations } from "next-intl";
 
-
-export default function StepOne() {
+export default function StepThree() {
     const t = useTranslations("SignIn.step3");
 
     return (
-        <div className="flex flex-col min-h-0 sm:min-h-[300px] w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto">
+        <div className="flex flex-col min-h-0 sm:min-h-[700px] w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto">
             <div className="hidden lg:block h-[72px]" />
 
-            <div className="flex sm:flex-1 items-start sm:items-center justify-center sm:pt-12 pt-2 sm:mt-0">
+            <div className="flex sm:flex-1 items-start sm:items-center justify-center pt-2 sm:pt-12">
                 <div className="flex flex-col items-start justify-start w-full">
                     <div className="w-full space-y-5">
-                        <div className="flex flex-col space-y-2 text-center sm:text-left">
-                            <div className="flex items-center space-x-2 mb-4">
-                                <img
-                                    src="/images/vetores/arrow-left.png"
-                                    alt="Voltar"
-                                    className="w-6 h-6"
-                                />
-                                <a href="/login" className="text-primary text-xs">
-                                    {t("back")}
-                                </a>
-                            </div>
-                            <h1 className="text-xl font-semibold text-black">{t("title")}</h1>
+                        <div className="flex items-center space-x-2 mb-4">
+                            <img
+                                src="/images/vetores/arrow-left.png"
+                                alt="Voltar"
+                                className="w-6 h-6"
+                            />
+                            <a href="/login" className="text-primary text-xs">
+                                {t("back")}
+                            </a>
                         </div>
+                        <h1 className="text-xl font-semibold text-black">{t("title")}</h1>
 
                         <form className="space-y-4">
                             <input

@@ -137,7 +137,7 @@ export default function Banner() {
                                 <a href="#" className="text-white text-xs">
                                     {t("details")}
                                 </a>
-                                <img src="/images/vetores/arrow-left.png" alt="seta" className="w-5 h-5" />
+                                <img src="/images/vetores/arrow-right.png" alt="seta" className="w-5 h-5" />
                             </div>
                         </div>
 

@@ -243,5 +243,34 @@
       "support_prefix": "Ainda com dúvidas?",
       "support_link": "Fale com a gente"
     }
+  },
+
+  "SignIn": {
+    "signinBannerTitle": "Seja para um cafezinho ou uma emergência",
+    "signinBannerDescription": "Transferências internacionais do seu jeito, para o que você precisar.",
+
+    "step1": {
+      "title": "Acesse sua conta",
+      "description": "Digite abaixo o seu e-mail ou celular para receber seu código de acesso.",
+      "emailOrPhone": "E-mail ou Celular",
+      "button_continue": "Continuar",
+      "noAccount": "Ainda não tem conta?",
+      "createAccount": "Criar conta grátis"
+    },
+    "step2": {
+      "title": "Acesse sua conta",
+      "description": "Digite abaixo o seu e-mail ou celular para receber seu código de acesso.",
+      "email": "exemplo@dominio.com",
+      "button_continue": "Continuar",
+      "noAccount": "Ainda não tem conta?",
+      "createAccount": "Criar conta grátis"
+    },
+    "step3": {
+      "title": "Digite o código enviado para o seu e-mail",
+      "acessCode": "Adicione seu código de acesso",
+      "button_confirm": "Confirmar",
+      "resentCode": "Reenviar código",
+      "back": "Voltar"
+    }
   }
 }

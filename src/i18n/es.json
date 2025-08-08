@@ -242,5 +242,31 @@
       "support_prefix": "¿Todavía tienes dudas?",
       "support_link": "Contáctanos"
     }
+  },
+
+  "SignIn": {
+    "step1": {
+      "title": "Accede a tu cuenta",
+      "description": "Introduce tu correo electrónico o teléfono para recibir tu código de acceso.",
+      "emailOrPhone": "Correo electrónico o Teléfono",
+      "button_continue": "Continuar",
+      "noAccount": "¿Aún no tienes cuenta?",
+      "createAccount": "Crear cuenta gratis"
+    },
+    "step2": {
+      "title": "Accede a tu cuenta",
+      "description": "Introduce tu correo electrónico o teléfono para recibir tu código de acceso.",
+      "email": "ejemplo@email.com",
+      "button_continue": "Continuar",
+      "noAccount": "¿Aún no tienes cuenta?",
+      "createAccount": "Crear cuenta gratis"
+    },
+    "step3": {
+      "title": " Ingresa el código enviado a tu correo electrónico",
+      "acessCode": "Agrega tu código de acceso",
+      "button_confirm": "Confirmar",
+      "resentCode": "Reenviar código",
+      "back": "Volver"
+    }
   }
 }

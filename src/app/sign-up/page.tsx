@@ -4,36 +4,34 @@ import { useState } from "react";
 import StepOne from "./steps/StepOne";
 import StepTwo from "./steps/StepTwo";
 import StepThree from "./steps/StepThree";
-import Container from "@/components/ui/Container";
 import AuthHeader from "@/components/layout/AuthHeader.tsx/page";
-import { useTranslations } from "next-intl";
+import SignInBannerCarousel from "@/components/ui/AutoStepperCarousel";
 
 
 export default function SignUpPage() {
     const [step, setStep] = useState(1);
-    const t = useTranslations("SignUp");
-
     return (
         <div className="flex flex-col lg:flex-row min-h-screen">
             {/* Lado esquerdo */}
             <div className="flex flex-col justify-start px-4 pb-6 sm:px-6 sm:pb-8 bg-secondary text-white w-full lg:w-1/2">
                 <AuthHeader />
                 <div className="flex items-center justify-center px-0 py-0 sm:px-6 lg:flex-1">
-                    <Container className="p-0">
-                        <img
-                            src="/images/destaques/Mobile_Banner_Cafe.png"
-                            alt="Cafezinho"
-                            className="w-full max-w-[300px] h-auto rounded-md mb-6 mx-auto lg:mx-0"
-                        />
-                        <div className="flex flex-col space-y-2 text-center lg:text-left w-full max-w-xs mx-auto lg:mx-0">
-                            <h2 className="text-xl font-bold">
-                                {t("signupBannerTitle")}
-                            </h2>
-                            <p className="text-base">
-                                {t("signupBannerDescription")}
-                            </p>
-                        </div>
-                    </Container>
+                    <SignInBannerCarousel
+                        slides={[
+                            {
+                                id: "cafe",
+                                image: "/images/destaques/Mobile_Banner_Cafe.png",
+                                alt: "Cafezinho",
+                            },
+                            {
+                                id: "emergency",
+                                image: "/images/destaques/Mobile_Sobre_Banner_01.png",
+                                alt: "Emergência",
+                            },
+                        ]}
+                        ns="Carousel"
+                        intervalMs={6000}
+                    />
                 </div>
             </div>
 

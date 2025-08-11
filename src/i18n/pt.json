@@ -206,10 +206,22 @@
     }
   },
 
-  "SignUp": {
-    "signupBannerTitle": "Seja para um cafezinho ou uma emergência",
-    "signupBannerDescription": "Transferências internacionais do seu jeito, para o que você precisar.",
+  "Carousel": {
+    "slides": {
+      "cafe": {
+        "title": "Conectando moedas e unindo pessoas de onde for, para onde quiser.",
+        "subtitle": "Rápido, seguro e global.",
+        "button": "Enviar dinheiro"
+      },
+      "emergency": {
+        "title": "Para emergências, sem burocracia.",
+        "subtitle": "Transferência em minutos.",
+        "button": "Enviar agora"
+      }
+    }
+  },
 
+  "SignUp": {
     "step1": {
       "title": "Crie sua conta",
       "description": "Vamos começar. É bem rápido, basta preencher os campos abaixo:",

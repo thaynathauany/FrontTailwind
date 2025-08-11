@@ -22,10 +22,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -40,21 +37,9 @@ export default function Header() {
   ];
 
   const profileItems = [
-    {
-      label: t("profile"),
-      href: "#",
-      img: "/images/icones/minha-area.png",
-    },
-    {
-      label: t("send_money"),
-      href: "/settings",
-      img: "/images/icones/transferencia.png",
-    },
-    {
-      label: t("signOut"),
-      href: "#",
-      img: "/images/icones/sair.png",
-    },
+    { label: t("profile"), href: "#", img: "/images/icones/minha-area.png" },
+    { label: t("send_money"), href: "/settings", img: "/images/icones/transferencia.png" },
+    { label: t("signOut"), href: "#", img: "/images/icones/sair.png" },
   ];
 
   return (
@@ -71,13 +56,13 @@ export default function Header() {
               />
             </Link>
 
-            <nav className="hidden md:flex gap-x-8 text-sm font-semibold text-gray-700">
+            {/* Desktop nav (apenas >= lg) */}
+            <nav className="hidden lg:flex gap-x-8 text-sm font-semibold text-gray-700">
               {navigation.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className={`text-base font-medium ${pathname === item.href ? "text-secondary" : "text-black"
-                    } hover:text-secondary`}
+                  className={`text-base font-medium ${pathname === item.href ? "text-secondary" : "text-black"} hover:text-secondary`}
                 >
                   {item.name}
                 </a>
@@ -87,8 +72,8 @@ export default function Header() {
 
           {/* Área da direita (botões + menu mobile + usuário) */}
           <div className="flex items-center gap-x-4">
-            {/* Botões Entrar/Cadastrar - visíveis só no desktop */}
-            <div className="hidden md:flex gap-x-2">
+            {/* Botões Entrar/Cadastrar - visíveis só no desktop (>= lg) */}
+            <div className="hidden lg:flex gap-x-2">
               <Link
                 href="/sign-up"
                 className="flex items-center justify-center font-normal w-auto h-[36px] px-3 rounded-[120px] border border-secondary text-secondary"
@@ -105,8 +90,8 @@ export default function Header() {
 
             <LanguageSwitcher />
 
-            {/* aguardando backend */}
-            <Menu as="div" className="relative hidden md:block">
+            {/* Menu do usuário - apenas desktop (>= lg) */}
+            <Menu as="div" className="relative hidden lg:block">
               <MenuButton className="-m-1.5 flex items-center p-1.5 gap-2">
                 <p className="text-small text-black">Renato</p>
                 <div
@@ -123,9 +108,7 @@ export default function Header() {
                     <li key={item.label}>
                       <a
                         href={item.href}
-                        className={`flex flex-row-reverse items-center justify-between gap-2 px-4 py-2 text-sm hover:bg-gray-100 rounded ${item.label === t("signOut")
-                          ? "text-orange"
-                          : "text-black"
+                        className={`flex flex-row-reverse items-center justify-between gap-2 px-4 py-2 text-sm hover:bg-gray-100 rounded ${item.label === t("signOut") ? "text-orange" : "text-black"
                           }`}
                       >
                         <img src={item.img} alt={item.label} className="w-5 h-5" />
@@ -137,11 +120,11 @@ export default function Header() {
               </MenuItems>
             </Menu>
 
-            {/* Botão de menu mobile (visível só no mobile) */}
+            {/* Botão de menu mobile/tablet (visível < lg) */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="md:hidden p-3"
+              className="lg:hidden p-3"
             >
               <span className="sr-only">Abrir menu</span>
               <Bars3Icon aria-hidden="true" className="size-5 text-gray-900" />
@@ -149,12 +132,8 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile menu */}
-        <Dialog
-          open={mobileMenuOpen}
-          onClose={setMobileMenuOpen}
-          className="lg:hidden"
-        >
+        {/* Mobile/Tablet menu (ativo < lg) */}
+        <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
           <div className="fixed inset-0 z-50" />
           <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-5 pb-6 sm:ring-1 sm:ring-gray-900/10">
             <div className="max-w-[375px] mx-auto w-full">
@@ -187,7 +166,7 @@ export default function Header() {
                   </a>
                 ))}
 
-                {/* Botões no mobile */}
+                {/* Botões no mobile/tablet */}
                 <div className="flex w-full mt-4 gap-2">
                   <Link
                     href="/login"

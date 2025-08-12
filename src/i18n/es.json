@@ -280,5 +280,37 @@
       "resentCode": "Reenviar código",
       "back": "Volver"
     }
+  },
+
+  "MyPanel": {
+    "transactions": {
+      "title": "Transferencias",
+      "edit": "Editar"
+    },
+    "personalData": {
+      "title": "Datos personales",
+      "name": "Renato Araujo da Silva",
+      "email": "renatolhp@gmail.com",
+      "phone": "+55 11 91302 4000",
+      "saveChanges": "Guardar cambios",
+      "documents": "Documentos",
+      "identityDocument": "Documento de identidad",
+      "updateDocument": "Actualizar documento",
+      "addressProof": "Comprobante de domicilio"
+    },
+    "account": {
+      "title": "Saldo",
+      "updatedAt": "Saldo al:",
+      "at": "a las",
+      "addFunds": "Añadir saldo",
+      "currency": {
+        "brl": "R$: {value}",
+        "mxn": "MEX$: {value}"
+      }
+    },
+    "history": {
+      "title": "Historial",
+      "edit": "Editar"
+    }
   }
 }

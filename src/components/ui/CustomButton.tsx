@@ -3,6 +3,7 @@ interface CustomButtonProps {
   onClick?: () => void;
   className?: string;
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 export default function CustomButton({
@@ -10,6 +11,7 @@ export default function CustomButton({
   onClick,
   className = "",
   type = "button",
+  disabled,
 }: CustomButtonProps) {
   return (
     <button

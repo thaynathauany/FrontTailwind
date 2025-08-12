@@ -258,9 +258,6 @@
   },
 
   "SignIn": {
-    "signinBannerTitle": "Seja para um cafezinho ou uma emergência",
-    "signinBannerDescription": "Transferências internacionais do seu jeito, para o que você precisar.",
-
     "step1": {
       "title": "Acesse sua conta",
       "description": "Digite abaixo o seu e-mail ou celular para receber seu código de acesso.",
@@ -283,6 +280,38 @@
       "button_confirm": "Confirmar",
       "resentCode": "Reenviar código",
       "back": "Voltar"
+    }
+  },
+
+  "MyPanel": {
+    "transactions": {
+      "title": "Transferências",
+      "edit": "Editar"
+    },
+    "personalData": {
+      "title": "Dados pessoais",
+      "name": "Renato Araujo da Silva",
+      "email": "renatolhp@gmail.com",
+      "phone": "+55 11 91302 4000",
+      "saveChanges": "Salvar alterações",
+      "documents": "Documentos",
+      "identityDocument": "Documento de identidade",
+      "updateDocument": "Atualizar documento",
+      "addressProof": "Comprovante de endereço"
+    },
+    "account": {
+      "title": "Saldo",
+      "updatedAt": "Saldo em:",
+      "at": "às",
+      "addFunds": "Adicionar saldo",
+      "currency": {
+        "brl": "R$: {value}",
+        "mxn": "MEX$: {value}"
+      }
+    },
+    "history": {
+      "title": "Histórico",
+      "edit": "Editar"
     }
   }
 }

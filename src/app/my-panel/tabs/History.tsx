@@ -1,78 +1,82 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import CustomButton from "@/components/ui/CustomButton";
+import { useState } from "react";
+import HistoryHeader from "@/components/history/HistoryHeader";
+import HistoryCard from "@/components/history/HistoryCard";
+import { HistoryItem } from "@/types/history";
 
-interface StepTwoProps {
-    onNext: () => void;
-    onBack: () => void;
+interface Props {
+    lastUpdated?: Date | string;
+    items?: HistoryItem[];
+    onOpenFilter?: () => void;
+    onNewTransfer?: () => void;
 }
 
-export default function History() {
-    const t = useTranslations("SignUp.step2");
+export default function History({
+    lastUpdated = new Date(),
+    items = [
+        {
+            id: "1",
+            createdAt: "2025-07-20T12:30:00Z",
+            name: "Renato Araujo da Silva",
+            amount: 535,
+            currencyCode: "BLR",
+            status: "completed",
+            code: "827 763 8190",
+            details: {
+                enviou: "535,00 BLR",
+                tarifas: "5,00 BLR",
+                convertemos: "530,00 BLR",
+                cambio: "1 MXN = 0,2924 BRL",
+                tipoBeneficiario: "Pessoa física",
+                codBanco: "001",
+                codAgencia: "1234",
+                numeroConta: "1234-5",
+                tipoConta: "Corrente",
+                titular: "Renato Araujo da Silva",
+                banco: "Banco do Brasil S.A.",
+            },
+        },
+    ],
+    onOpenFilter,
+    onNewTransfer,
+}: Props) {
+    const [openIds, setOpenIds] = useState<Set<string>>(new Set());
+    const [editId, setEditId] = useState<string | null>(null);
+
+    const toggle = (id: string) =>
+        setOpenIds(prev => {
+            const copy = new Set(prev);
+            copy.has(id) ? copy.delete(id) : copy.add(id);
+            return copy;
+        });
+
+    const startEdit = (id: string) => {
+        setOpenIds(new Set());
+        setEditId(id);
+    };
+
+    const cancelEdit = () => setEditId(null);
 
     return (
-        <div className="flex flex-col min-h-[450px] sm:min-h-[700px] w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto">
-            <div className="hidden lg:block h-[72px]" />
+        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6">
+            <HistoryHeader lastUpdated={lastUpdated} onOpenFilter={onOpenFilter} onNewTransfer={onNewTransfer} />
 
-            <div className="flex-1 flex items-start sm:items-center justify-center pt-2 sm:pt-12">
-                <div className="flex flex-col items-start justify-start w-full">
-                    <div className="w-full space-y-5">
-                        <div className="flex flex-col space-y-2 text-center sm:text-left">
-                            <h1 className="text-xl font-semibold text-black">{t("title")}</h1>
-                            <p className="text-base text-primary">{t("description")}</p>
-                        </div>
-
-                        <div className="w-[60px] px-4 py-2 border-t border-gray-300 " />
-
-                        <form className="space-y-4">
-                            <div className="space-y-2">
-                                <label className="block text-base font-medium text-black mb-1">
-                                    {t("documentTitle")}
-                                </label>
-                                <p className="text-base text-primary">{t("documentDescription")}</p>
-
-                                <label htmlFor="file-id" className="cursor-pointer text-secondary underline text-sm">
-                                    {t("selectFile")}
-                                </label>
-                                <input id="file-id" type="file" className="hidden" />
-                            </div>
-
-                            <div className="w-[60px] px-4 py-2 border-t border-gray-300 " />
-
-                            <div className="space-y-2">
-                                <label className="block text-base font-medium text-black mb-1">
-                                    {t("addressTitle")}
-                                </label>
-                                <p className="text-base text-primary">{t("addressDescription")}</p>
-
-                                <label htmlFor="file-id" className="cursor-pointer text-secondary underline text-sm">
-                                    {t("selectFile")}
-                                </label>
-                                <input id="file-id" type="file" className="hidden" />
-                            </div>
-
-                            <div className="w-[60px] px-4 py-2 border-t border-gray-300 " />
-
-                            <div className="flex items-center space-x-2">
-                                <input type="checkbox" id="terms" />
-                                <label htmlFor="terms" className="text-sm text-darkgray">
-                                    {t("termsText")}
-                                </label>
-                            </div>
-
-                            <div className="flex justify-between pt-2">
-                                <button
-                                    type="button"
-                                    className="text-sm text-secondary font-medium"
-                                >
-                                    {t("back")}
-                                </button>
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
+            <div className="mt-4 space-y-4">
+                {items.map(item => (
+                    <HistoryCard
+                        key={item.id}
+                        item={item}
+                        open={openIds.has(item.id)}
+                        onToggle={toggle}
+                        isEditing={editId === item.id}
+                        onStartEdit={startEdit}
+                        onCancelEdit={cancelEdit}
+                        // passa os dados do back p/ resumo:
+                        monthlyLimit={50000}
+                        monthlyUsed={19810}
+                    />
+                ))}
             </div>
         </div>
     );

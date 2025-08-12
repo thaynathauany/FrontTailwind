@@ -37,7 +37,7 @@ export default function PersonalData() {
                 <div className="flex flex-col items-start justify-start w-sm">
                     <div className="w-full space-y-5">
                         <div className="flex flex-col space-y-2 text-center sm:text-left">
-                            <h1 className="text-xl font-semibold text-black">{t("title")}</h1>
+                            <h1 className="text-2xl font-semibold text-black">{t("title")}</h1>
                         </div>
 
                         {/* Formulário de dados pessoais */}

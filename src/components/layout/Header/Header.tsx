@@ -37,7 +37,7 @@ export default function Header() {
   ];
 
   const profileItems = [
-    { label: t("profile"), href: "#", img: "/images/icones/minha-area.png" },
+    { label: t("profile"), href: "/my-panel", img: "/images/icones/minha-area.png" },
     { label: t("send_money"), href: "/settings", img: "/images/icones/transferencia.png" },
     { label: t("signOut"), href: "#", img: "/images/icones/sair.png" },
   ];

@@ -48,8 +48,8 @@ export default function Account({
 
     return (
         <div className="w-full max-w-5xl mx-auto px-4 sm:px-6">
-            <h1 className="text-3xl font-semibold text-black">{t("title")}</h1>
-            <p className="mt-2 text-base text-gray-500">
+            <h1 className="text-2xl font-semibold text-black">{t("title")}</h1>
+            <p className="mt-2 text-base text-primary">
                 {t("updatedAt")} {dateStr} {t("at")} {timeStr}
             </p>
 

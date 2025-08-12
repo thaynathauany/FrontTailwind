@@ -310,7 +310,18 @@
     },
     "history": {
       "title": "Historial",
-      "edit": "Editar"
+      "updatedAt": "En:",
+      "at": "a las",
+      "filter": "Filtro",
+      "newTransfer": "Nueva transferencia",
+      "code": "CÓD",
+      "showDetails": "Ver detalles",
+      "editResend": "Editar y reenviar",
+      "status": {
+        "completed": "Completado",
+        "pending": "Pendiente",
+        "failed": "Falló"
+      }
     }
   }
 }

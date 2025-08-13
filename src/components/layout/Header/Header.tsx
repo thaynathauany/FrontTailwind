@@ -38,10 +38,9 @@ export default function Header() {
 
   const profileItems = [
     { label: t("profile"), href: "/my-panel", img: "/images/icones/minha-area.png" },
-    { label: t("send_money"), href: "/settings", img: "/images/icones/transferencia.png" },
+    { label: t("send_money"), href: "/my-panel?tab=1", img: "/images/icones/transferencia.png" },
     { label: t("signOut"), href: "#", img: "/images/icones/sair.png" },
   ];
-
   return (
     <>
       <header className={`fixed inset-x-0 top-0 z-50 w-full bg-white transition-all duration-300 ${isScrolled ? "h-[90px]" : "h-[110px]"}`}>

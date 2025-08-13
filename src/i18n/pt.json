@@ -297,17 +297,12 @@
       "documents": "Documentos",
       "identityDocument": "Documento de identidade",
       "updateDocument": "Atualizar documento",
-      "addressProof": "Comprovante de endereço"
-    },
-    "account": {
-      "title": "Saldo",
-      "updatedAt": "Saldo em:",
-      "at": "às",
-      "addFunds": "Adicionar saldo",
-      "currency": {
-        "brl": "R$: {value}",
-        "mxn": "MEX$: {value}"
-      }
+      "addressProof": "Comprovante de endereço",
+
+      "sendFile": "Enviar arquivo",
+      "selectedFile": "Arquivo selecionado:",
+      "previewTitle": "Pré‑visualização / Atualização",
+      "uploadFormats": "PDF, JPG, JPEG, PNG, HEIC, HEIF, XLS, XLSX, CSV, DOC, DOCX, com menos de 10MB"
     },
     "history": {
       "title": "Histórico",

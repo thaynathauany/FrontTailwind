@@ -19,7 +19,6 @@ export default function AboutSection() {
                             alt="Banner Sobre Mobile"
                             fill
                             className="object-cover"
-                            sizes="100vw"
                             priority
                         />
                     </div>

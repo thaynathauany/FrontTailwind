@@ -4,109 +4,154 @@ import { useRef, useState, ChangeEvent } from "react";
 import CustomButton from "@/components/ui/CustomButton";
 import { useTranslations } from "next-intl";
 
+function UploadCard({
+    inputRef,
+    onPick,
+    onChange,
+    fileName,
+    buttonLabel,
+    helper,
+}: {
+    inputRef: React.RefObject<HTMLInputElement>;
+    onPick: () => void;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    fileName?: string;
+    buttonLabel?: string;
+    helper?: string;
+}) {
+    const t = useTranslations("MyPanel.personalData");
+    const btnText = buttonLabel ?? t("sendFile");
+    const helperText = helper ?? t("uploadFormats");
+
+    return (
+        <div className="mt-3 rounded-xl border border-gray-300/70 p-4 max-w-lg">
+            <div className="flex items-start gap-3">
+                <div className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-md">
+                    <img src="/images/icones/upload.png" alt="" className="h-5 w-5" />
+                </div>
+
+                <div className="flex-1">
+                    <button
+                        type="button"
+                        onClick={onPick}
+                        className="text-secondary underline underline-offset-2 cursor-pointer"
+                    >
+                        {btnText}
+                    </button>
+
+                    <p className="mt-1 text-xs text-primary leading-relaxed">{helperText}</p>
+
+                    {fileName && (
+                        <p className="mt-2 text-xs text-primary">
+                            {t("selectedFile")} <span className="font-medium">{fileName}</span>
+                        </p>
+                    )}
+
+                    <input
+                        ref={inputRef}
+                        type="file"
+                        accept="image/*,.pdf,.heic,.heif,.xls,.xlsx,.csv,.doc,.docx"
+                        className="hidden"
+                        onChange={onChange}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export default function PersonalData() {
     const t = useTranslations("MyPanel.personalData");
 
-    // refs para abrir o file picker
-    const idInputRef = useRef<HTMLInputElement | null>(null);
-    const addressInputRef = useRef<HTMLInputElement | null>(null);
+    const idNewRef = useRef<HTMLInputElement>(null!);
+    const addrNewRef = useRef<HTMLInputElement>(null!);
+    const idLegacyRef = useRef<HTMLInputElement>(null!);
+    const addrLegacyRef = useRef<HTMLInputElement>(null!);
 
-    const [idFileName, setIdFileName] = useState<string>("");
-    const [addressFileName, setAddressFileName] = useState<string>("");
+    const [idNewName, setIdNewName] = useState("");
+    const [addrNewName, setAddrNewName] = useState("");
+    const [idLegacyName, setIdLegacyName] = useState("");
+    const [addrLegacyName, setAddrLegacyName] = useState("");
 
-    const handlePickId = () => idInputRef.current?.click();
-    const handlePickAddress = () => addressInputRef.current?.click();
+    const pick = (ref: React.RefObject<HTMLInputElement>) => ref.current?.click();
 
-    const handleFileChange = (
-        e: ChangeEvent<HTMLInputElement>,
-        setName: (v: string) => void
-    ) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            setName(file.name);
-            // TODO: envie o arquivo para a API aqui
-            // ex: await Api.upload("/documents", file)
-            // depois zere o input se quiser permitir mesmo nome novamente:
-            // e.target.value = "";
-        }
-    };
+    const onChange =
+        (setName: (v: string) => void) =>
+            (e: ChangeEvent<HTMLInputElement>) => {
+                const f = e.target.files?.[0];
+                if (f) setName(f.name);
+            };
 
     return (
         <div className="flex flex-col w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto">
             <div className="flex-1 flex items-start sm:items-center justify-center">
-                <div className="flex flex-col items-start justify-start w-sm">
+                <div className="flex flex-col items-start justify-start w-full">
                     <div className="w-full space-y-5">
-                        <div className="flex flex-col space-y-2 text-center sm:text-left">
+                        <div className="flex flex-col space-y-2 text-left">
                             <h1 className="text-2xl font-semibold text-black">{t("title")}</h1>
                         </div>
 
-                        {/* Formulário de dados pessoais */}
+                        {/* Formulário */}
                         <form className="space-y-4">
-                            <input
-                                type="text"
-                                placeholder={t("name")}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                            />
-                            <input
-                                type="email"
-                                placeholder={t("email")}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                            />
-                            <input
-                                type="tel"
-                                placeholder={t("phone")}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                            />
+                            <input type="text" placeholder={t("name")} className="w-full px-4 py-2 border border-gray-300 rounded-md" />
+                            <input type="email" placeholder={t("email")} className="w-full px-4 py-2 border border-gray-300 rounded-md" />
+                            <input type="tel" placeholder={t("phone")} className="w-full px-4 py-2 border border-gray-300 rounded-md" />
                             <CustomButton text={t("saveChanges")} disabled onClick={() => { }} />
-
                         </form>
 
-                        {/* Seção: Documentos */}
-                        <section className="pt-6">
+                        {/* Nova UI */}
+                        <section className="pt-6 w-full">
                             <h2 className="text-2xl font-semibold text-black">{t("documents")}</h2>
 
-                            {/* Documento de identidade */}
-                            <div className="mt-4">
+                            <div className="mt-3">
                                 <p className="text-primary">{t("identityDocument")}</p>
-                                <button
-                                    type="button"
-                                    onClick={handlePickId}
-                                    className="text-secondary underline underline-offset-2 cursor-pointer"
-                                >
-                                    {t("updateDocument")}
-                                </button>
-                                {idFileName && (
-                                    <p className="text-xs text-primary mt-1">{t("addressProof")} {idFileName}</p>
-                                )}
-                                <input
-                                    ref={idInputRef}
-                                    type="file"
-                                    accept="image/*,.pdf"
-                                    className="hidden"
-                                    onChange={(e) => handleFileChange(e, setIdFileName)}
+                                <UploadCard
+                                    inputRef={idNewRef}
+                                    onPick={() => pick(idNewRef)}
+                                    onChange={onChange(setIdNewName)}
+                                    fileName={idNewName}
                                 />
                             </div>
 
-                            {/* Comprovante de endereço */}
                             <div className="mt-6">
                                 <p className="text-primary">{t("addressProof")}</p>
-                                <button
-                                    type="button"
-                                    onClick={handlePickAddress}
-                                    className="text-secondary underline underline-offset-2 cursor-pointer"
-                                >
+                                <UploadCard
+                                    inputRef={addrNewRef}
+                                    onPick={() => pick(addrNewRef)}
+                                    onChange={onChange(setAddrNewName)}
+                                    fileName={addrNewName}
+                                />
+                            </div>
+                        </section>
+
+                        {/* Antiga (provisória) */}
+                        <section className="pt-6 w-full">
+                            <h2 className="text-xl font-semibold text-black">{t("previewTitle")}</h2>
+
+                            <div className="mt-4">
+                                <p className="text-primary">{t("identityDocument")}</p>
+                                <button type="button" onClick={() => pick(idLegacyRef)} className="text-secondary underline underline-offset-2 cursor-pointer">
                                     {t("updateDocument")}
                                 </button>
-                                {addressFileName && (
-                                    <p className="text-xs text-primary mt-1">{t("updateDocument")} {addressFileName}</p>
+                                {idLegacyName && (
+                                    <p className="text-xs text-primary mt-1">
+                                        {t("selectedFile")} <span className="font-medium">{idLegacyName}</span>
+                                    </p>
                                 )}
-                                <input
-                                    ref={addressInputRef}
-                                    type="file"
-                                    accept="image/*,.pdf"
-                                    className="hidden"
-                                    onChange={(e) => handleFileChange(e, setAddressFileName)}
-                                />
+                                <input ref={idLegacyRef} type="file" accept="image/*,.pdf" className="hidden" onChange={onChange(setIdLegacyName)} />
+                            </div>
+
+                            <div className="mt-6">
+                                <p className="text-primary">{t("addressProof")}</p>
+                                <button type="button" onClick={() => pick(addrLegacyRef)} className="text-secondary underline underline-offset-2 cursor-pointer">
+                                    {t("updateDocument")}
+                                </button>
+                                {addrLegacyName && (
+                                    <p className="text-xs text-primary mt-1">
+                                        {t("selectedFile")} <span className="font-medium">{addrLegacyName}</span>
+                                    </p>
+                                )}
+                                <input ref={addrLegacyRef} type="file" accept="image/*,.pdf" className="hidden" onChange={onChange(setAddrLegacyName)} />
                             </div>
                         </section>
                     </div>

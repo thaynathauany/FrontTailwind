@@ -1,7 +1,10 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import CustomButton from "@/components/ui/CustomButton";
 import { fmtBRL } from "../../utils/format";
+
+type CurrencyCode = "BRL" | "MXN";
 
 interface Props {
     name: string;
@@ -24,6 +27,36 @@ export default function EditAndResendForm({
 }: Props) {
     const percent = Math.min((monthlyUsed / monthlyLimit) * 100, 100);
 
+    // moedas (dinâmico)
+    const [sendCurrency, setSendCurrency] = useState<CurrencyCode>("MXN");
+    const [receiveCurrency, setReceiveCurrency] = useState<CurrencyCode>("BRL");
+
+    const flags: Record<CurrencyCode, string> = {
+        BRL: "/images/flags/flagbrasilsaldo.png",
+        MXN: "/images/flags/flagmexicosaldo.png",
+    };
+
+    const currencies: { code: CurrencyCode; name: string }[] = [
+        { code: "BRL", name: "Real Brasileiro" },
+        { code: "MXN", name: "Peso Mexicano" },
+    ];
+
+    const handleSendChange = (selected: CurrencyCode) => {
+        setSendCurrency(selected);
+        if (selected === receiveCurrency) {
+            const alt = currencies.find(c => c.code !== selected)?.code ?? "BRL";
+            setReceiveCurrency(alt as CurrencyCode);
+        }
+    };
+
+    const handleReceiveChange = (selected: CurrencyCode) => {
+        setReceiveCurrency(selected);
+        if (selected === sendCurrency) {
+            const alt = currencies.find(c => c.code !== selected)?.code ?? "MXN";
+            setSendCurrency(alt as CurrencyCode);
+        }
+    };
+
     return (
         <div className="pt-2 flex justify-center">
             <div className="w-full max-w-sm">
@@ -33,36 +66,84 @@ export default function EditAndResendForm({
 
                 {/* Valor a enviar */}
                 <div className="mb-4">
-                    <label className="block text-primary mb-2 text-sm sm:text-base">Valor a enviar</label>
+                    <label className="block text-primary mb-2 text-sm sm:text-base">
+                        Valor a enviar
+                    </label>
+
                     <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                        <input
-                            defaultValue={initialSend}
-                            className="w-full sm:w-[230px] px-4 py-3 border border-gray-300 rounded-md text-primary"
-                        />
-                        <div className="flex items-center gap-2">
-                            <span className="inline-flex h-8 w-8 rounded-full ring-2 ring-gray-200 overflow-hidden">
-                                <img src="/images/flags/flagmexicosaldo.png" alt="MXN" />
+                        {/* input + sufixo */}
+                        <div className="relative w-full sm:w-[230px]">
+                            <input
+                                type="number"
+                                defaultValue={initialSend}
+                                placeholder="10000.00"
+                                className="w-full px-4 pr-16 py-3 border border-gray-300 rounded-md text-primary"
+                            />
+                            <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center font-bold text-gray-500">
+                                {sendCurrency}
                             </span>
-                            <span className="text-black font-medium text-base sm:text-xl">MXN</span>
-                            <img src="/images/vetores/arrow-down.png" alt="Abrir opções de moeda MXN" />
+                        </div>
+
+                        {/* bandeira + select */}
+                        <div className="flex items-center gap-2 ml-0 sm:ml-2 relative">
+                            <img
+                                src={flags[sendCurrency]}
+                                alt={sendCurrency}
+                                className="h-8 w-8 rounded-full ring-2 ring-gray-200"
+                            />
+                            <select
+                                value={sendCurrency}
+                                onChange={(e) => handleSendChange(e.target.value as CurrencyCode)}
+                                className="text-black font-semibold bg-transparent outline-none appearance-none pl-2 pr-6"
+                            >
+                                {currencies.map(c => (
+                                    <option key={c.code} value={c.code}>{c.code}</option>
+                                ))}
+                            </select>
+                            <svg className="w-4 h-4 absolute right-0 pointer-events-none text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
                         </div>
                     </div>
                 </div>
 
                 {/* Valor a receber */}
                 <div className="mb-6">
-                    <label className="block text-primary mb-2 text-sm sm:text-base">Valor a receber</label>
+                    <label className="block text-primary mb-2 text-sm sm:text-base">
+                        Valor a receber
+                    </label>
+
                     <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                        <input
-                            defaultValue={initialReceive}
-                            className="w-full sm:w-[230px] px-4 py-3 border border-gray-300 rounded-md text-primary"
-                        />
-                        <div className="flex items-center gap-2">
-                            <span className="inline-flex h-8 w-8 rounded-full ring-2 ring-gray-200 overflow-hidden">
-                                <img src="/images/flags/flagbrasilsaldo.png" alt="BRL" />
+                        <div className="relative w-full sm:w-[230px]">
+                            <input
+                                type="number"
+                                defaultValue={initialReceive}
+                                placeholder="2936.26"
+                                className="w-full px-4 pr-16 py-3 border border-gray-300 rounded-md text-primary"
+                            />
+                            <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center font-bold text-gray-500">
+                                {receiveCurrency}
                             </span>
-                            <span className="text-black font-medium text-base sm:text-xl">BRL</span>
-                            <img src="/images/vetores/arrow-down.png" alt="Abrir opções de moeda BRL" />
+                        </div>
+
+                        <div className="flex items-center gap-2 ml-0 sm:ml-2 relative">
+                            <img
+                                src={flags[receiveCurrency]}
+                                alt={receiveCurrency}
+                                className="h-8 w-8 rounded-full ring-2 ring-gray-200"
+                            />
+                            <select
+                                value={receiveCurrency}
+                                onChange={(e) => handleReceiveChange(e.target.value as CurrencyCode)}
+                                className="text-black font-semibold bg-transparent outline-none appearance-none pl-2 pr-6"
+                            >
+                                {currencies.map(c => (
+                                    <option key={c.code} value={c.code}>{c.code}</option>
+                                ))}
+                            </select>
+                            <svg className="w-4 h-4 absolute right-0 pointer-events-none text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -93,28 +174,26 @@ export default function EditAndResendForm({
                     <div className="w-full max-w-sm rounded-md border border-gray-300 p-4 sm:p-5">
                         <div className="text-primary text-sm sm:text-base">Valor convertido:</div>
                         <div className="text-black font-normal text-base sm:text-lg">
-                            10.000,00 <span className="text-primary font-normal text-xs sm:text-sm">MXN</span>
+                            10.000,00 <span className="text-primary font-normal text-xs sm:text-sm">{sendCurrency}</span>
                         </div>
 
                         <div className="mt-3 text-primary text-sm sm:text-base">Taxas aplicadas:</div>
                         <div className="text-black font-normal text-base sm:text-lg">
-                            122,50 <span className="text-primary font-normal text-xs sm:text-sm">MXN</span>
+                            122,50 <span className="text-primary font-normal text-xs sm:text-sm">{sendCurrency}</span>
                         </div>
 
                         <div className="mt-3 text-primary text-sm sm:text-base">Total:</div>
                         <div className="text-black font-normal text-base sm:text-lg">
-                            198,10 <span className="text-primary font-normal text-xs sm:text-sm">MXN</span>
+                            198,10 <span className="text-primary font-normal text-xs sm:text-sm">{sendCurrency}</span>
                         </div>
 
                         <hr className="my-4 border-gray-200" />
 
-                        {/* Cabeçalho do limite */}
                         <div className="flex items-center justify-between text-primary text-xs sm:text-sm">
                             <span>Máximo de transferência mês:</span>
                             <span>{fmtBRL(monthlyLimit)}</span>
                         </div>
 
-                        {/* Barra de progresso dinâmica */}
                         <div className="mt-2 h-2 w-full rounded-full bg-gray-200 overflow-hidden">
                             <div
                                 className="h-2 rounded-full bg-secondary transition-all duration-500"
@@ -126,10 +205,8 @@ export default function EditAndResendForm({
                             />
                         </div>
 
-                        {/* Linha informativa */}
                         <div className="mt-2 text-xs text-primary">
-                            Usado: {fmtBRL(monthlyUsed)} • Restante:{" "}
-                            {fmtBRL(Math.max(monthlyLimit - monthlyUsed, 0))} ({Math.round(percent)}%)
+                            Usado: {fmtBRL(monthlyUsed)} • Restante: {fmtBRL(Math.max(monthlyLimit - monthlyUsed, 0))} ({Math.round(percent)}%)
                         </div>
                     </div>
                 </div>
@@ -137,11 +214,7 @@ export default function EditAndResendForm({
                 {/* CTAs */}
                 <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
                     <CustomButton text="Fazer transferência" onClick={onSubmit} />
-                    <button
-                        type="button"
-                        className="text-primary underline underline-offset-2"
-                        onClick={onCancel}
-                    >
+                    <button type="button" className="text-primary underline underline-offset-2" onClick={onCancel}>
                         Cancelar
                     </button>
                 </div>

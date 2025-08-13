@@ -24,7 +24,7 @@ function UploadCard({
     const helperText = helper ?? t("uploadFormats");
 
     return (
-        <div className="mt-3 rounded-xl border border-gray-300/70 p-4 max-w-lg">
+        <div className="mt-3 rounded-xl border border-gray-300/70 p-4 max-w-sm">
             <div className="flex items-start gap-3">
                 <div className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-md">
                     <img src="/images/icones/upload.png" alt="" className="h-5 w-5" />
@@ -93,9 +93,9 @@ export default function PersonalData() {
 
                         {/* Formulário */}
                         <form className="space-y-4">
-                            <input type="text" placeholder={t("name")} className="w-full px-4 py-2 border border-gray-300 rounded-md" />
-                            <input type="email" placeholder={t("email")} className="w-full px-4 py-2 border border-gray-300 rounded-md" />
-                            <input type="tel" placeholder={t("phone")} className="w-full px-4 py-2 border border-gray-300 rounded-md" />
+                            <input type="text" placeholder={t("name")} className="w-full max-w-sm px-4 py-2 border border-gray-300 rounded-md" />
+                            <input type="email" placeholder={t("email")} className="w-full max-w-sm px-4 py-2 border border-gray-300 rounded-md" />
+                            <input type="tel" placeholder={t("phone")} className="w-full max-w-sm px-4 py-2 border border-gray-300 rounded-md" />
                             <CustomButton text={t("saveChanges")} disabled onClick={() => { }} />
                         </form>
 

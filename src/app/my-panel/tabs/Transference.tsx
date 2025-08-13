@@ -293,7 +293,7 @@ export default function Transference() {
             </div>
 
             {/* CTA */}
-            <div className="mt-6 flex items-center justify-center">
+            <div className="mt-6 flex items-center justify-center max-w-sm">
                 <CustomButton text="Confirmar transferência" onClick={handleConfirm} className="w-full" />
             </div>
         </div>

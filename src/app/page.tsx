@@ -137,12 +137,15 @@ export default function Home() {
       </section>
 
       {/* Banner intro - MOBILE */}
-      <section
-        className="relative block md:hidden w-full min-h-[500px] bg-no-repeat bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/images/destaques/Mobile_Banner_Dinero_Mobile.png')",
-        }}
-      >
+      <section className="relative block md:hidden w-full min-h-[500px]">
+        <Image
+          src="/images/destaques/Mobile_Teste_GGG.png"
+          alt="Banner mobile"
+          fill
+          className="object-scale-down"
+          priority
+        />
+
         <div className="absolute top-0 left-0 w-full h-full flex items-start justify-start px-4 mt-[75px]">
           <div className="space-y-2 text-white p-4">
             <p className="text-xl font-bold text-secondary max-w-[206px]">

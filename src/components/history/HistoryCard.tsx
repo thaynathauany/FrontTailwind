@@ -11,7 +11,7 @@ interface Props {
     item: HistoryItem;
     open: boolean;
     onToggle: (id: string) => void;
-    isEditing?: boolean;            // controlado pelo pai (opcional)
+    isEditing?: boolean;
     onStartEdit?: (id: string) => void;
     onCancelEdit?: () => void;
 

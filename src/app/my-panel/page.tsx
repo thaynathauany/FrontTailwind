@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Account from "./tabs/Account";
 import History from "./tabs/History";
 import PersonalData from "./tabs/PersonalData";
 
@@ -20,8 +19,7 @@ export default function MyPanelPage() {
     const tabs: { step: 1 | 2 | 3 | 4; label: string; icon: SvgComp }[] = [
         { step: 1, label: "Nova transferência", icon: Dinheiro },
         { step: 2, label: "Dados pessoais", icon: DadosPessoais },
-        { step: 3, label: "Saldo", icon: Saldo },
-        { step: 4, label: "Histórico", icon: Historico },
+        { step: 3, label: "Histórico", icon: Historico },
     ];
 
     return (
@@ -66,8 +64,7 @@ export default function MyPanelPage() {
             <main className="mx-auto max-w-3xl px-4 sm:px-6 py-10">
                 {step === 1 && <Transference />}
                 {step === 2 && <PersonalData />}
-                {step === 3 && <Account />}
-                {step === 4 && <History />}
+                {step === 3 && <History />}
             </main>
         </div>
     );

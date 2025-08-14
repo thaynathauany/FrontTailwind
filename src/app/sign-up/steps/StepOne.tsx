@@ -3,6 +3,8 @@
 import AuthHeader from "@/components/layout/AuthHeader.tsx/page";
 import CustomButton from "@/components/ui/CustomButton";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
+import { signUp } from "@/features/auth/signup/api/signUp.service";
 
 interface StepOneProps {
     onNext: () => void;
@@ -10,6 +12,31 @@ interface StepOneProps {
 
 export default function StepOne({ onNext }: StepOneProps) {
     const t = useTranslations("SignUp.step1");
+
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [err, setErr] = useState<string | null>(null);
+
+    async function handleSubmit(e?: React.FormEvent) {
+        e?.preventDefault?.();
+        setErr(null);
+        setLoading(true);
+        try {
+            await signUp({ name, email, phone });
+            onNext();
+        } catch (error: any) {
+            const msg =
+                error?.response?.data?.message ||
+                error?.message ||
+                "Erro ao enviar. Tente novamente.";
+            setErr(msg);
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    }
 
     return (
         <div className="flex flex-col min-h-[450px] sm:min-h-[700px] w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto">
@@ -23,29 +50,48 @@ export default function StepOne({ onNext }: StepOneProps) {
                             <p className="text-base text-primary">{t("description")}</p>
                         </div>
 
-                        <form className="space-y-4">
+                        <form className="space-y-4" onSubmit={handleSubmit}>
                             <input
                                 type="text"
                                 placeholder={t("placeholder.name")}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                autoComplete="name"
                             />
                             <input
                                 type="email"
                                 placeholder={t("placeholder.email")}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                autoComplete="email"
                             />
                             <input
                                 type="tel"
                                 placeholder={t("placeholder.phone")}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                autoComplete="tel"
                             />
-                            <CustomButton text={t("buttonNext")} className="mt-4" onClick={onNext} />
+
+                            {err && <p className="text-sm text-red-600">{err}</p>}
+
+                            <CustomButton
+                                text={loading ? "Enviando..." : t("buttonNext")}
+                                className="mt-4 w-full"
+                                type="submit"
+                                disabled={loading}
+                                onClick={() => {
+                                    handleSubmit();
+                                }}
+                            />
                         </form>
                     </div>
                 </div>
             </div>
 
-            {/* Rodapé */}
             <div className="pb-8 sm:pb-6">
                 <p className="text-center text-sm text-primary">
                     {t("footerText")}{" "}

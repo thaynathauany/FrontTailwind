@@ -1,6 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack(config) {
+  reactStrictMode: true,
+  images: {
+    // unoptimized: true,
+    remotePatterns: [
+      ...(process.env.NEXT_PUBLIC_API_URL
+        ? [{ hostname: process.env.NEXT_PUBLIC_API_URL.split("/").pop() }]
+        : []),
+      { hostname: "placehold.co" },
+    ],
+  },
+  experimental: {
+    esmExternals: "loose",
+  },
+  webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
       issuer: /\.[jt]sx?$/,
@@ -12,12 +25,10 @@ const nextConfig = {
             svgo: true,
             svgoConfig: {
               plugins: [
-                // remove cor fixa e estilos inline, mas mantém stroke!
                 { name: "removeAttrs", params: { attrs: "(fill|style)" } },
                 { name: "removeDimensions", active: true },
               ],
             },
-            // valores default; você pode ajustar por ícone depois
             svgProps: {
               stroke: "currentColor",
               fill: "none",
@@ -26,8 +37,11 @@ const nextConfig = {
         },
       ],
     });
+
+    config.externals = [...(config.externals || []), { canvas: "canvas" }];
+
     return config;
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;

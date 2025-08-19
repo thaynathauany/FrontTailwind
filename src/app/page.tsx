@@ -188,6 +188,7 @@ export default function Home() {
               <img
                 src="/images/destaques/Mulher_Seta.png"
                 alt="Banner Dinero Desktop"
+                className="w-[141px] h-[113px]"
               />
               <p className="text-black font-semibold text-4xl">{t("conexao.linha1parte2")}</p>
             </span>
@@ -195,8 +196,9 @@ export default function Home() {
             <span className="flex items-center gap-4 -mt-6">
               <p className="text-black font-semibold text-4xl">{t("conexao.linha2parte1")}</p>
               <img
-                src="/images/destaques/Piramede_Seta.png"
+                src="/images/destaques/Piramide_Seta.png"
                 alt="Banner Dinero Desktop"
+                className="w-[143px] h-[93px]"
               />
               <p className="text-black font-semibold text-4xl">{t("conexao.linha2parte2")}.</p>
             </span>
@@ -210,15 +212,15 @@ export default function Home() {
       </section>
 
       {/* Conexão - MOBILE */}
-      <section className="mt-20 mb-20 block md:hidden p-4 ">
+      <section className="mt-10 mb-20 block md:hidden p-4 ">
         <Container>
           <div className="flex flex-col gap-4 items-center justify-center">
             <span className="flex flex-col items-center gap-4">
               <img
-                src="/images/destaques/conexoes-mobile.png"
+                src="/images/destaques/Mobile_Conexoes.png"
                 alt="Banner Dinero Mobile"
               />
-              <p className="text-black font-semibold text-2xl text-center">
+              <p className="text-black font-semibold text-2xl text-center mt-4">
                 {t("conexao.fulltext")}
               </p>
             </span>

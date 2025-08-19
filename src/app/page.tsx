@@ -120,18 +120,32 @@ export default function Home() {
       </Container>
 
       {/* Banner intro - DESKTOP */}
-      <section
-        className="hidden md:block w-full bg-no-repeat bg-cover bg-[url('/images/destaques/Banner_Dinero_Home.png')] aspect-[2.057]"
-      >
-        <div className="mx-auto max-w-[1440px] px-4 md:px-12 lg:px-[80px] py-20 md:pt-32 lg:pt-48 lg:pb-12">
-          <div className="max-w-[500px] space-y-4 text-white">
-            <p className="text-3xl font-bold text-secondary">
-              {t("bannerIntro.title")}
-            </p>
-            <p className="text-lg text-primary">
-              {t("bannerIntro.description")}
-            </p>
-            <CustomButton text={t("bannerIntro.button")} onClick={() => { }} />
+      <section className="hidden md:block w-full">
+        <div className="grid w-full align-center justify-center">
+          {/* Imagem */}
+          <Image
+            src="/images/destaques/Banner_Dinero_Home.png"
+            alt="Banner Dinero Home"
+            width={1440}
+            height={709}
+            priority
+            quality={90}
+            className="m-w-[1440px] h-[100%] object-cover col-start-1 row-start-1"
+          />
+
+          {/* Texto alinhado à esquerda */}
+          <div className="col-start-1 row-start-1 flex items-start justify-start">
+            <div className="mx-auto max-w-[1440px] w-full px-4 md:px-12 lg:px-[80px]">
+              <div className="max-w-[500px] space-y-4 p-4 text-white pt-24 md:pt-32 lg:pt-40">
+                <p className="text-3xl font-bold text-secondary">
+                  {t("bannerIntro.title")}
+                </p>
+                <p className="text-lg text-primary">
+                  {t("bannerIntro.description")}
+                </p>
+                <CustomButton text={t("bannerIntro.button")} onClick={() => { }} />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -139,14 +153,15 @@ export default function Home() {
       {/* Banner intro - MOBILE */}
       <section className="relative block md:hidden w-full min-h-[500px] max-h-[700px]">
         <Image
-          src="/images/destaques/Mobile_Teste_GGG.png"
+          src="/images/destaques/Mobile_Banner_Dinero_Mobile.png"
           alt="Banner mobile"
           fill
+          quality={90}
           className="object-cover"
           priority
         />
 
-        <div className="absolute top-0 left-0 w-full h-full flex items-start justify-start px-4 mt-[55px]">
+        <div className="absolute top-0 left-0 w-full h-full flex items-start justify-start px-4 mt-[70px]">
           <div className="space-y-2 text-white p-4">
             <p className="text-xl font-bold text-secondary max-w-[206px]">
               {t("bannerIntro.title")}
@@ -216,19 +231,25 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* Banner secundario - DESKTOP */}
-      <section
-        className="hidden md:block w-full bg-no-repeat bg-cover bg-[url('/images/destaques/Banner_Cafe.png')] aspect-[2.057] relative mb-20"
-      >
-        <div className="mx-auto max-w-[1440px] px-4 md:px-12 lg:px-[80px] h-full">
-          <div className="flex h-full items-center">
-            <div className="ml-auto max-w-[500px] space-y-6 text-white text-left mt-20">
-              <p className="text-3xl font-bold">
-                {t("bannerSecond.title")}
-              </p>
-              <p className="text-lg">
-                {t("bannerSecond.description")}
-              </p>
+      {/* Banner secundário - DESKTOP */}
+      <section className="hidden md:block w-full relative mb-20">
+        {/* Wrapper com largura máxima */}
+        <div className="relative mx-auto max-w-[1440px] w-full h-[709px]">
+          {/* Imagem */}
+          <Image
+            src="/images/destaques/Banner_Cafe.png"
+            alt="Banner Café"
+            fill
+            priority
+            quality={90}
+            className="object-cover rounded"
+          />
+
+          {/* Texto centralizado verticalmente, alinhado à direita */}
+          <div className="absolute inset-0 flex items-center justify-end px-4 md:px-12 lg:px-[80px]">
+            <div className="max-w-[500px] space-y-6 text-white text-left mt-20">
+              <p className="text-3xl font-bold">{t("bannerSecond.title")}</p>
+              <p className="text-lg">{t("bannerSecond.description")}</p>
               <CustomButton text={t("bannerSecond.button")} onClick={() => { }} />
             </div>
           </div>

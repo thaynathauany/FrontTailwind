@@ -18,6 +18,7 @@ export default function AboutSection() {
                             src="/images/destaques/Banner_Sobre_Mobile.png"
                             alt="Banner Sobre Mobile"
                             fill
+                            quality={100}
                             className="object-cover"
                             priority
                         />
@@ -31,31 +32,37 @@ export default function AboutSection() {
                 </div>
 
                 {/* DESKTOP Banner */}
-                <section
-                    className="relative hidden md:block w-full aspect-[2.03] max-h-[810px] mt-[120px] bg-cover bg-center bg-no-repeat"
-                    style={{ backgroundImage: "url('/images/destaques/Banner_Sobre.png')" }}
-                >
+                <section className="relative hidden md:block w-full max-w-[1440px] mx-auto mt-[120px]">
+                    <Image
+                        src="/images/destaques/Banner_Sobre.png"
+                        alt="Banner Sobre"
+                        width={1440}
+                        height={710}
+                        quality={100}
+                        className="w-full h-auto object-cover"
+                        priority
+                    />
+
                     <div className="absolute bottom-0 left-0 w-full h-full flex items-end">
-                        <div className="w-[561px] px-4 text-left ml-[36%] mb-12 text-white">
-                            <p className="text-2xl font-normal">
-                                {t("bannerTitle1")}
-                            </p>
-                            <p className="text-2xl font-semibold">
-                                {t("bannerTitle2")}
-                            </p>
+                        <div className="w-[561px] px-4 text-left ml-[36%] mb-20 text-white">
+                            <p className="text-2xl font-normal">{t("bannerTitle1")}</p>
+                            <p className="text-2xl font-semibold">{t("bannerTitle2")}</p>
                         </div>
                     </div>
                 </section>
             </section>
 
             {/* content */}
-            <div className="flex flex-col md:flex-row w-full mt-10 gap-y-12 md:gap-y-0">
+            <div className="flex flex-col md:flex-row w-full mt-20 gap-y-12 md:gap-y-0">
                 <div className="w-full md:w-[600px] flex-shrink-0">
                     {/* Imagem desktop */}
                     <div className="hidden md:block">
-                        <img
+                        <Image
                             src="/images/destaques/Sobre_IMG_01.png"
                             alt="Imagem Sobre"
+                            width={1440}
+                            height={0}
+                            quality={100}
                             className="w-full h-auto object-contain flex-shrink-0"
                         />
                     </div>
@@ -88,9 +95,12 @@ export default function AboutSection() {
                 </div>
                 {/* Imagem mobile */}
                 <div className="block md:hidden">
-                    <img
+                    <Image
                         src="/images/destaques/Mobile_Sobre_IMG_01.png"
                         alt="Imagem Sobre Mobile"
+                        width={1440}
+                        height={0}
+                        quality={100}
                         className="w-full h-auto object-cover"
                     />
                 </div>
@@ -157,18 +167,24 @@ export default function AboutSection() {
             </Container>
 
             {/* Banner secundario - DESKTOP */}
-            <section
-                className="hidden md:block w-full bg-no-repeat bg-cover bg-[url('/images/destaques/Banner_Sobre_2.png')] aspect-[2.057] relative mb-[-150px]"
-            >
-                <div className="mx-auto max-w-[1440px] px-4 md:px-12 lg:px-[80px] h-full">
-                    <div className="flex h-full items-center">
-                        <div className="max-w-[500px] space-y-6 text-white text-left mt-20">
-                            <p className="text-3xl font-bold">
-                                {t("bannerSecondTitle")}
-                            </p>
-                            <p className="text-lg">
-                                {t("bannerSecondDescription")}
-                            </p>
+            <section className="relative hidden md:block w-full max-w-[1440px] mx-auto mb-[-150px]">
+                {/* Imagem */}
+                <Image
+                    src="/images/destaques/Banner_Sobre_2.png"
+                    alt="Banner Sobre"
+                    width={1440}
+                    height={700}
+                    priority
+                    quality={100}
+                    className="w-full h-auto object-cover"
+                />
+
+                {/* Texto sobre a imagem */}
+                <div className="absolute inset-0 flex items-center">
+                    <div className="px-4 md:px-12 lg:px-[80px] w-full">
+                        <div className="max-w-[500px] space-y-6 text-white text-left mt-20 px-4">
+                            <p className="text-3xl font-bold">{t("bannerSecondTitle")}</p>
+                            <p className="text-lg">{t("bannerSecondDescription")}</p>
                             <CustomButton text={t("bannerSecondButton")} onClick={() => { }} />
                         </div>
                     </div>
@@ -176,19 +192,23 @@ export default function AboutSection() {
             </section>
 
             {/* Banner secundario - MOBILE */}
-            <section className="relative block md:hidden w-full h-[300px] mb-[-100px] bg-no-repeat bg-cover bg-center"
-                style={{
-                    backgroundImage: "url('/images/destaques/Mobile_Sobre_Banner_02.png')",
-                }}
-            >
-                <div className="absolute top-0 left-0 w-full h-full flex items-start px-8 pt-[60px]">
+            <section className="relative block md:hidden w-full h-[300px] mb-[-100px]">
+                {/* Imagem otimizada */}
+                <Image
+                    src="/images/destaques/Mobile_Sobre_Banner_02.png"
+                    alt="Banner Mobile"
+                    fill
+                    priority
+                    quality={100}
+                    sizes="100vw"
+                    className="object-cover"
+                />
+
+                {/* Texto sobreposto */}
+                <div className="absolute inset-0 flex items-start px-8 pt-[60px]">
                     <div className="text-white text-left w-[240px]">
-                        <p className="text-base font-bold">
-                            {t("bannerSecondTitle")}
-                        </p>
-                        <p className="text-xs">
-                            {t("bannerSecondDescription")}
-                        </p>
+                        <p className="text-base font-bold">{t("bannerSecondTitle")}</p>
+                        <p className="text-xs">{t("bannerSecondDescription")}</p>
                         <CustomButton
                             text={t("bannerSecondButton")}
                             className="w-full mt-4"

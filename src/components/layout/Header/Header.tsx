@@ -6,7 +6,6 @@ import {
   DialogPanel,
   Menu,
   MenuButton,
-  MenuItem,
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, ChevronDownIcon } from "@heroicons/react/20/solid";
@@ -15,11 +14,16 @@ import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Dinheiro from "@/assets/icones/Money.svg";
+import DadosPessoais from "@/assets/icones/DadosPessoais.svg";
+import Historico from "@/assets/icones/Historico.svg";
+type SvgComp = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
 export default function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -38,8 +42,22 @@ export default function Header() {
 
   const profileItems = [
     { label: t("profile"), href: "/my-panel", img: "/images/icones/minha-area.png" },
-    { label: t("send_money"), href: "/my-panel?tab=1", img: "/images/icones/transferencia.png" },
+    { label: t("newTransfer"), href: "/my-panel?tab=1", img: "/images/icones/transferencia.png" },
     { label: t("signOut"), href: "#", img: "/images/icones/sair.png" },
+  ];
+
+  type ProfileItem = {
+    label: string;
+    href: string;
+    icon: SvgComp;
+  };
+
+  const profileItemsMobile: ProfileItem[] = [
+    { label: t("profile"), href: "/my-panel", icon: DadosPessoais },
+    { label: t("newTransfer"), href: "/my-panel?tab=1", icon: Dinheiro },
+    { label: t("personalData"), href: "/my-panel?tab=2", icon: DadosPessoais },
+    { label: t("history"), href: "/my-panel?tab=3", icon: Historico },
+    { label: t("signOut"), href: "#", icon: Dinheiro },
   ];
   return (
     <>
@@ -165,6 +183,21 @@ export default function Header() {
                   </a>
                 ))}
 
+                {/* Ações da conta (MOBILE) */}
+                <ul className="w-full border-t border-gray-200 pt-4 space-y-2">
+                  {profileItemsMobile.map(({ label, href, icon: Icon }) => (
+                    <li key={href}>
+                      <Link
+                        href={href}
+                        className="flex items-center justify-end gap-2 px-1 py-2 hover:bg-gray-50 rounded"
+                      >
+                        <span className="text-sm text-black">{label}</span>
+                        <Icon className="w-5 h-5 text-gray-700" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+
                 {/* Botões no mobile/tablet */}
                 <div className="flex w-full mt-4 gap-2">
                   <Link
@@ -183,6 +216,7 @@ export default function Header() {
                 </div>
               </div>
             </div>
+
           </DialogPanel>
         </Dialog>
       </header>

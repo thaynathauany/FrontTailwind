@@ -8,7 +8,9 @@
 
     "_comment_user": "Itens do menu de navegação do usuário",
     "profile": "Tu perfil",
-    "send_money": "Enviar dinero",
+    "newTransfer": "Nueva transferencia",
+    "personalData": "Datos personales",
+    "history": "Historial",
     "signOut": "Cerrar sesión",
 
     "_comment_language": "Opções de idioma exibidas no seletor",

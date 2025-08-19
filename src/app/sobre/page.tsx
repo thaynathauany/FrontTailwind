@@ -49,7 +49,7 @@ export default function AboutSection() {
             </section>
 
             {/* content */}
-            <div className="flex flex-col md:flex-row w-full mt-20 gap-y-12 md:gap-y-0">
+            <div className="flex flex-col md:flex-row w-full mt-10 gap-y-12 md:gap-y-0">
                 <div className="w-full md:w-[600px] flex-shrink-0">
                     {/* Imagem desktop */}
                     <div className="hidden md:block">
@@ -57,17 +57,6 @@ export default function AboutSection() {
                             src="/images/destaques/Sobre_IMG_01.png"
                             alt="Imagem Sobre"
                             className="w-full h-auto object-contain flex-shrink-0"
-                        />
-                    </div>
-
-                    {/* Imagem mobile */}
-                    <div className="block md:hidden">
-                        <Image
-                            src="/images/destaques/Mobile_Sobre_IMG_01.png"
-                            alt="Imagem Sobre Mobile"
-                            width={390}
-                            height={248}
-                            className="w-full h-auto object-cover"
                         />
                     </div>
                 </div>
@@ -96,6 +85,14 @@ export default function AboutSection() {
                             </p>
                         </div>
                     </div>
+                </div>
+                {/* Imagem mobile */}
+                <div className="block md:hidden">
+                    <img
+                        src="/images/destaques/Mobile_Sobre_IMG_01.png"
+                        alt="Imagem Sobre Mobile"
+                        className="w-full h-auto object-cover"
+                    />
                 </div>
             </div>
 
@@ -161,7 +158,7 @@ export default function AboutSection() {
 
             {/* Banner secundario - DESKTOP */}
             <section
-                className="hidden md:block w-full bg-no-repeat bg-cover bg-[url('/images/destaques/Sobre_Banner_01.png')] aspect-[2.057] relative mb-[-150px]"
+                className="hidden md:block w-full bg-no-repeat bg-cover bg-[url('/images/destaques/Banner_Sobre_2.png')] aspect-[2.057] relative mb-[-150px]"
             >
                 <div className="mx-auto max-w-[1440px] px-4 md:px-12 lg:px-[80px] h-full">
                     <div className="flex h-full items-center">
@@ -181,7 +178,7 @@ export default function AboutSection() {
             {/* Banner secundario - MOBILE */}
             <section className="relative block md:hidden w-full h-[300px] mb-[-100px] bg-no-repeat bg-cover bg-center"
                 style={{
-                    backgroundImage: "url('/images/destaques/Mobile_Sobre_Banner_01.png')",
+                    backgroundImage: "url('/images/destaques/Mobile_Sobre_Banner_02.png')",
                 }}
             >
                 <div className="absolute top-0 left-0 w-full h-full flex items-start px-8 pt-[60px]">

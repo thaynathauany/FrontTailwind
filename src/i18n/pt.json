@@ -8,7 +8,9 @@
 
     "_comment_user": "Itens do menu de navegação do usuário",
     "profile": "Minha área",
-    "send_money": "Nova transferência",
+    "newTransfer": "Nova transferência",
+    "personalData": "Dados pessoais",
+    "history": "Histórico",
     "signOut": "Sair",
 
     "_comment_language": "Opções de idioma exibidas no seletor",

@@ -11,7 +11,7 @@ export default function StepOne({ onNext }: StepOneProps) {
     const t = useTranslations("SignIn.step1");
 
     return (
-        <div className="flex flex-col min-h-0 sm:min-h-[700px] w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto">
+        <div className="flex flex-col min-h-screen sm:min-h-[700px] w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto">
             <div className="hidden lg:block h-[72px]" />
 
             {/* sem flex-1 no mobile */}

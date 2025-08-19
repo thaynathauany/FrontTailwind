@@ -21,6 +21,7 @@ export default function AboutSection() {
                             quality={100}
                             className="object-cover"
                             priority
+                            fetchPriority="high"
                         />
                     </div>
                     <div className="absolute top-0 left-0 w-full h-full flex items-end justify-center px-4 pb-12">
@@ -41,6 +42,7 @@ export default function AboutSection() {
                         quality={100}
                         className="w-full h-auto object-cover"
                         priority
+                        fetchPriority="high"
                     />
 
                     <div className="absolute bottom-0 left-0 w-full h-full flex items-end">

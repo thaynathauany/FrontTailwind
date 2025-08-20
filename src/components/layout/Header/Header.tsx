@@ -14,9 +14,11 @@ import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import MinhaArea from "@/assets/icones/MinhaArea.svg";
 import Dinheiro from "@/assets/icones/Money.svg";
 import DadosPessoais from "@/assets/icones/DadosPessoais.svg";
 import Historico from "@/assets/icones/Historico.svg";
+import Sair from "@/assets/icones/Sair.svg";
 type SvgComp = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
 export default function Header() {
@@ -47,18 +49,20 @@ export default function Header() {
   ];
 
   type ProfileItem = {
-    label: string;
+    label: React.ReactNode;
     href: string;
     icon: SvgComp;
   };
 
   const profileItemsMobile: ProfileItem[] = [
-    { label: t("profile"), href: "/my-panel", icon: DadosPessoais },
+    { label: t("profile"), href: "/my-panel", icon: MinhaArea },
     { label: t("newTransfer"), href: "/my-panel?tab=1", icon: Dinheiro },
     { label: t("personalData"), href: "/my-panel?tab=2", icon: DadosPessoais },
     { label: t("history"), href: "/my-panel?tab=3", icon: Historico },
-    { label: t("signOut"), href: "#", icon: Dinheiro },
+    { label: <span className="text-[#CB5608]">{t("signOut")}</span>, href: "#", icon: Sair },
+
   ];
+
   return (
     <>
       <header className={`fixed inset-x-0 top-0 z-50 w-full bg-white transition-all duration-300 ${isScrolled ? "h-[90px]" : "h-[110px]"}`}>
@@ -177,14 +181,14 @@ export default function Header() {
                   <a
                     key={item.name}
                     href={item.href}
-                    className={`text-base font-medium ${pathname === item.href ? "text-secondary" : "text-black"} hover:text-secondary`}
+                    className={`text-sm sm:text-base font-normal sm:font-medium ${pathname === item.href ? "text-secondary" : "text-black"} hover:text-secondary`}
                   >
                     {item.name}
                   </a>
                 ))}
 
                 {/* Ações da conta (MOBILE) */}
-                <ul className="w-full border-t border-gray-200 pt-4 space-y-2">
+                <ul className="w-full border-t border-black pt-4 space-y-2">
                   {profileItemsMobile.map(({ label, href, icon: Icon }) => (
                     <li key={href}>
                       <Link

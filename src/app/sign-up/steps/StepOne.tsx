@@ -39,15 +39,19 @@ export default function StepOne({ onNext }: StepOneProps) {
     }
 
     return (
-        <div className="flex flex-col min-h-[450px] sm:min-h-[700px] w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto">
+        <div className="flex flex-col justify-between h-[80svh] sm:min-h-[700px] w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto pt-4">
             <div className="hidden lg:block h-[72px]" />
 
             <div className="flex-1 flex items-start sm:items-center justify-center pt-2 sm:pt-12">
                 <div className="flex flex-col items-start justify-start w-full">
-                    <div className="w-full space-y-5">
-                        <div className="flex flex-col space-y-2 text-center sm:text-left">
-                            <h1 className="text-xl font-semibold text-black">{t("title")}</h1>
-                            <p className="text-base text-primary">{t("description")}</p>
+                    <div className="sm:w-sm w-full space-y-5">
+                        <div className="flex flex-col space-y-2 text-left">
+                            <h1 className="text-xl font-semibold text-black break-normal">
+                                {t("title")}
+                            </h1>
+                            <p className="text-base text-primary break-normal">
+                                {t("description")}
+                            </p>
                         </div>
 
                         <form className="space-y-4" onSubmit={handleSubmit}>
@@ -92,8 +96,8 @@ export default function StepOne({ onNext }: StepOneProps) {
                 </div>
             </div>
 
-            <div className="pb-8 sm:pb-6">
-                <p className="text-center text-sm text-primary">
+            <div className="pb-0 sm:pb-6">
+                <p className="text-center text-sm text-primary break-normal">
                     {t("footerText")}{" "}
                     <a href="/login" className="text-black font-medium">
                         {t("footerLink")}

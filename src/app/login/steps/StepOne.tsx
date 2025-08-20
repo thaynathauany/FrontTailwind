@@ -11,14 +11,14 @@ export default function StepOne({ onNext }: StepOneProps) {
     const t = useTranslations("SignIn.step1");
 
     return (
-        <div className="flex flex-col justify-between h-[100svh] sm:min-h-[700px] w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto pt-4">
+        <div className="flex flex-col justify-between h-[80svh] sm:min-h-[700px] w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto pt-4">
             {/* espaçamento só no desktop */}
             <div className="hidden lg:block h-[72px]" />
 
             {/* Conteúdo */}
             <div className="flex sm:flex-1 items-start sm:items-center justify-center pt-2 sm:pt-12">
                 <div className="flex flex-col items-start justify-start w-full">
-                    <div className="w-full space-y-5">
+                    <div className="sm:w-sm w-full space-y-5">
                         <div className="flex flex-col space-y-2 text-center text-left">
                             <h1 className="text-xl font-semibold text-black">{t("title")}</h1>
                             <p className="text-base text-primary">{t("description")}</p>

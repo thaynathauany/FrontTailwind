@@ -25,7 +25,7 @@ export default function SignUpPage() {
                             },
                             {
                                 id: "emergency",
-                                image: "/images/destaques/Mobile_Sobre_Banner_01.png",
+                                image: "/images/destaques/Mobile_Banner_Cafe.png",
                                 alt: "Emergência",
                             },
                         ]}

@@ -10,32 +10,32 @@ export default function HowItWorksSection() {
 
     const steps = [
         {
-            numberImage: "/images/icones/n1.png",
+            numberImage: "/images/icones/1.svg",
             title: t("step1.title"),
             desc: t("step1.desc"),
         },
         {
-            numberImage: "/images/icones/n2.png",
+            numberImage: "/images/icones/2.svg",
             title: t("step2.title"),
             desc: t("step2.desc"),
         },
         {
-            numberImage: "/images/icones/n3.png",
+            numberImage: "/images/icones/3.svg",
             title: t("step3.title"),
             desc: t("step3.desc"),
         },
         {
-            numberImage: "/images/icones/n4.png",
+            numberImage: "/images/icones/4.svg",
             title: t("step4.title"),
             desc: t("step4.desc"),
         },
         {
-            numberImage: "/images/icones/n5.png",
+            numberImage: "/images/icones/5.svg",
             title: t("step5.title"),
             desc: t("step5.desc"),
         },
         {
-            numberImage: "/images/icones/n6.png",
+            numberImage: "/images/icones/6.svg",
             title: t("step6.title"),
             desc: t("step6.desc"),
         },
@@ -60,7 +60,7 @@ export default function HowItWorksSection() {
                     {/* Texto alinhado à esquerda, centralizado verticalmente */}
                     <div className="absolute inset-0 flex items-center justify-start px-4 mt-10">
                         <div className="text-black max-w-[200px] space-y-2 px-4">
-                            <h2 className="text-[24px] font-bold">{t("title")}</h2>
+                            <h2 className="text-[24px] leading-[30px] font-bold">{t("title")}</h2>
                             <p className="text-primary">{t("description")}</p>
                         </div>
                     </div>

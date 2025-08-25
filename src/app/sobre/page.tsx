@@ -55,7 +55,7 @@ export default function AboutSection() {
             </section>
 
             {/* content */}
-            <div className="flex flex-col md:flex-row w-full mt-20 gap-y-12 md:gap-y-0">
+            <div className="flex flex-col md:flex-row w-full mt-0 sm:mt-20 gap-y-12 md:gap-y-0">
                 <div className="w-full md:w-[600px] flex-shrink-0">
                     {/* Imagem desktop */}
                     <div className="hidden md:block">
@@ -109,7 +109,7 @@ export default function AboutSection() {
             </div>
 
             <Container>
-                <div className="mt-20">
+                <div className="mt-10 md:mt-20">
                     <div className="px-4 space-y-4">
                         <h2 className="text-secondary text-2xl font-bold">
                             {t("porQueExistimos")}
@@ -137,7 +137,7 @@ export default function AboutSection() {
             </Container>
 
             <Container>
-                <div className="mt-20">
+                <div className="mt-10 md:mt-20">
                     <div className="px-4 space-y-4">
                         <h2 className="text-secondary text-2xl font-bold">
                             {t("nossaMissao")}
@@ -194,7 +194,7 @@ export default function AboutSection() {
             </section>
 
             {/* Banner secundario - MOBILE */}
-            <section className="relative block md:hidden w-full h-[300px] mb-[-100px]">
+            <section className="relative block md:hidden w-full h-[300px] mb-[-100px] mt-10">
                 {/* Imagem otimizada */}
                 <Image
                     src="/images/destaques/Mobile_Sobre_Banner_02.png"

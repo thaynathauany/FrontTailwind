@@ -37,7 +37,7 @@ export default function SignUpPage() {
 
             {/* Lado direito */}
             <div className="flex flex-col w-full lg:w-1/2 flex-1">
-                <div className="flex flex-1 items-start justify-center px-4 pb-6 sm:px-6 sm:pb-8">
+                <div className="flex flex-1 items-start justify-center px-4 pb-6 sm:px-6 sm:pb-8 mt-4 sm:mt-0">
                     {step === 1 && <StepOne onNext={() => setStep(2)} />}
                     {step === 2 && <StepTwo onNext={() => setStep(3)} onBack={() => setStep(1)} />}
                     {step === 3 && <StepThree />}

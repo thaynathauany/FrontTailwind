@@ -35,7 +35,7 @@ export default function HistoryHeader({
             </div>
 
             {/* Direita: Filtro + CTA */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 justify-between">
                 <button
                     type="button"
                     onClick={onOpenFilter ?? noop}

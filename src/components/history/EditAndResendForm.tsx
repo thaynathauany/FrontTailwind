@@ -70,9 +70,9 @@ export default function EditAndResendForm({
                         Valor a enviar
                     </label>
 
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                    <div className="flex flex-row sm:items-center gap-3 justify-start">
                         {/* input + sufixo */}
-                        <div className="relative w-full sm:w-[230px]">
+                        <div className="relative w-[160px] sm:w-[230px]">
                             <input
                                 type="number"
                                 defaultValue={initialSend}
@@ -85,7 +85,7 @@ export default function EditAndResendForm({
                         </div>
 
                         {/* bandeira + select */}
-                        <div className="flex items-center gap-2 ml-0 sm:ml-2 relative">
+                        <div className="flex items-center gap-2 ml-0 sm:ml-2 relative justify-end">
                             <img
                                 src={flags[sendCurrency]}
                                 alt={sendCurrency}
@@ -113,8 +113,8 @@ export default function EditAndResendForm({
                         Valor a receber
                     </label>
 
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                        <div className="relative w-full sm:w-[230px]">
+                    <div className="flex flex-row sm:items-center gap-3 justify-start">
+                        <div className="relative w-[160px] sm:w-[230px]">
                             <input
                                 type="number"
                                 defaultValue={initialReceive}
@@ -126,7 +126,7 @@ export default function EditAndResendForm({
                             </span>
                         </div>
 
-                        <div className="flex items-center gap-2 ml-0 sm:ml-2 relative">
+                        <div className="flex items-center gap-2 ml-0 sm:ml-2 relative justify-end">
                             <img
                                 src={flags[receiveCurrency]}
                                 alt={receiveCurrency}
@@ -212,8 +212,8 @@ export default function EditAndResendForm({
                 </div>
 
                 {/* CTAs */}
-                <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
-                    <CustomButton text="Fazer transferência" onClick={onSubmit} />
+                <div className="mt-6 flex flex-col items-center justify-center gap-3">
+                    <CustomButton text="Fazer transferência" onClick={onSubmit} className="w-full" />
                     <button type="button" className="text-primary underline underline-offset-2" onClick={onCancel}>
                         Cancelar
                     </button>

@@ -20,7 +20,11 @@ import DadosPessoais from "@/assets/icones/DadosPessoais.svg";
 import Historico from "@/assets/icones/Historico.svg";
 import Sair from "@/assets/icones/Sair.svg";
 type SvgComp = React.ComponentType<React.SVGProps<SVGSVGElement>>;
-
+type ProfileItem = {
+  label: React.ReactNode;
+  href: string;
+  icon: SvgComp;
+};
 export default function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,6 +36,10 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   const t = useTranslations("Header");
 
@@ -47,12 +55,6 @@ export default function Header() {
     { label: t("newTransfer"), href: "/my-panel?tab=1", img: "/images/icones/transferencia.png" },
     { label: t("signOut"), href: "#", img: "/images/icones/sair.png" },
   ];
-
-  type ProfileItem = {
-    label: React.ReactNode;
-    href: string;
-    icon: SvgComp;
-  };
 
   const profileItemsMobile: ProfileItem[] = [
     { label: t("profile"), href: "/my-panel", icon: MinhaArea },
@@ -96,7 +98,7 @@ export default function Header() {
             {/* Botões Entrar/Cadastrar - visíveis só no desktop (>= lg) */}
             <div className="hidden lg:flex gap-x-2">
               <Link
-                href="/sign-up"
+                href="/login"
                 className="flex items-center justify-center font-normal w-auto h-[36px] px-3 rounded-[120px] border border-secondary text-secondary"
               >
                 {t("btn_signIn")}
@@ -191,13 +193,27 @@ export default function Header() {
                 <ul className="w-full border-t border-black pt-4 space-y-2">
                   {profileItemsMobile.map(({ label, href, icon: Icon }) => (
                     <li key={href}>
-                      <Link
-                        href={href}
-                        className="flex items-center justify-end gap-2 px-1 py-2 hover:bg-gray-50 rounded"
-                      >
-                        <span className="text-sm text-black">{label}</span>
-                        <Icon className="w-5 h-5 text-gray-700" />
-                      </Link>
+                      {href === "#" ? (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                          }}
+                          className="w-full flex items-center justify-end gap-2 px-1 py-2 hover:bg-gray-50 rounded"
+                        >
+                          <span className="text-sm text-[#CB5608]">{label}</span>
+                          <Icon className="w-5 h-5 text-gray-700" />
+                        </button>
+                      ) : (
+                        <Link
+                          href={href}
+                          className="flex items-center justify-end gap-2 px-1 py-2 hover:bg-gray-50 rounded"
+                          onClick={() => setMobileMenuOpen(false)} // fecha ao clicar
+                        >
+                          <span className="text-sm text-black">{label}</span>
+                          <Icon className="w-5 h-5 text-gray-700" />
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>

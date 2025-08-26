@@ -59,7 +59,7 @@ export default function History({
     const cancelEdit = () => setEditId(null);
 
     return (
-        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="mx-auto max-w-3xl px-8 sm:px-6 py-0 sm:py-10">
             <HistoryHeader lastUpdated={lastUpdated} onOpenFilter={onOpenFilter} onNewTransfer={onNewTransfer} />
 
             <div className="mt-4 space-y-4">

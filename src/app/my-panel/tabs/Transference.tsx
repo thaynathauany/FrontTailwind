@@ -40,8 +40,8 @@ function CurrencyInput({
         <div className="mt-4">
             <label className="block text-primary mb-2 text-sm sm:text-base">{label}</label>
 
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                <div className="relative w-full sm:w-[230px]">
+            <div className="flex flex-row sm:items-center gap-3 justify-start w-full md:w-sm">
+                <div className="relative w-[190px] sm:w-[230px]">
                     <input
                         type="text"
                         inputMode="decimal"
@@ -175,7 +175,7 @@ export default function Transference() {
 
     // ---------- FORMULÁRIO ----------
     return (
-        <div className="flex flex-col w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto">
+        <div className="flex flex-col w-full max-w-sm sm:max-w-md px-8 sm:px-6 lg:px-0 mx-auto mt-0 sm:mt-8">
             <h1 className="text-2xl font-semibold text-black">Nova transferência</h1>
 
             <CurrencyInput
@@ -227,7 +227,7 @@ export default function Transference() {
             {mode === "recipient" && (
                 <>
                     <h2 className="mt-6 text-lg sm:text-xl font-semibold text-black">Dados do destinatário</h2>
-                    <div className="mt-3 space-y-3">
+                    <div className="mt-3 space-y-3 w-full md:w-sm">
                         <input
                             value={receiverName}
                             onChange={(e) => setReceiverName(e.target.value)}

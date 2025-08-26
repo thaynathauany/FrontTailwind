@@ -33,7 +33,7 @@ export default function MyPanelPage() {
 
     return (
         <div className="bg-white mt-[120px]">
-            <div className="w-full bg-[#f9f9f9] border-t border-gray-200">
+            <div className="hidden md:block w-full bg-[#f9f9f9] border-t border-gray-200">
                 <nav
                     className="mx-auto max-w-5xl flex overflow-x-auto px-4 sm:px-6 py-2 whitespace-nowrap gap-3 sm:gap-4 justify-start sm:justify-center scrollbar-none snap-x snap-mandatory"
                     style={{ scrollPaddingLeft: '1rem', scrollPaddingRight: '1rem' }}
@@ -62,7 +62,7 @@ export default function MyPanelPage() {
                 </nav>
             </div>
 
-            <main className="mx-auto max-w-3xl px-4 sm:px-6 py-10">
+            <main className="w-full">
                 {step === 1 && <Transference />}
                 {step === 2 && <PersonalData />}
                 {step === 3 && <History />}

@@ -45,7 +45,7 @@ export default function HistoryCard({
     const initialReceive = "2936.26";
 
     return (
-        <article className="rounded-[22px] border border-gray-300/70 px-5 sm:px-6 py-5">
+        <article className="rounded-[22px] border border-gray-300/70 px-5 sm:px-6 py-5 mt-10">
             {/* Linha 1: data + status */}
             <div className="flex items-start justify-between gap-3">
                 <div className="text-sm text-primary">
@@ -55,8 +55,8 @@ export default function HistoryCard({
             </div>
 
             {/* Linha 2: nome + valor */}
-            <div className="mt-1 flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-black">{item.name}</h2>
+            <div className="mt-1 flex items-center justify-between gap-3">
+                <h2 className="text-base md:text-xl font-semibold text-black">{item.name}</h2>
                 <div className="text-xl font-semibold text-black leading-none">
                     {amount}
                     <span className="ml-2 align-baseline text-sm text-primary font-normal">{item.currencyCode}</span>

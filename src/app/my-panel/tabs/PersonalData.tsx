@@ -86,7 +86,7 @@ export default function PersonalData() {
     return (
         <div className="w-full">
             <TopNotice />
-            <div className="flex flex-col w-full max-w-sm sm:max-w-md px-8 sm:px-6 lg:px-0 mx-auto">
+            <div className="flex flex-col w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto">
 
                 <div className="flex-1 flex items-start sm:items-center justify-center mt-8">
                     <div className="flex flex-col items-start justify-start w-full">

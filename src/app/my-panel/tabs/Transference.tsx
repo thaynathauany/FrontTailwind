@@ -175,7 +175,7 @@ export default function Transference() {
 
     // ---------- FORMULÁRIO ----------
     return (
-        <div className="flex flex-col w-full max-w-sm sm:max-w-md px-8 sm:px-6 lg:px-0 mx-auto mt-0 sm:mt-8">
+        <div className="flex flex-col w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto mt-0 sm:mt-8">
             <h1 className="text-2xl font-semibold text-black">Nova transferência</h1>
 
             <CurrencyInput

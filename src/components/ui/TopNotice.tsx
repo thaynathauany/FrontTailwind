@@ -10,7 +10,7 @@ export default function TopNotice() {
 
     return (
         <div className="bg-orange-light text-white">
-            <div className="mx-auto max-w-lg px-4 sm:px-6 py-2 relative">
+            <div className="mx-auto max-w-lg px-4 sm:px-6 py-2 relative mb-8">
                 {/* botão fechar */}
                 <button
                     aria-label="Fechar aviso"

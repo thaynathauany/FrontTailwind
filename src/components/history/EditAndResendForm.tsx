@@ -72,7 +72,7 @@ export default function EditAndResendForm({
 
                     <div className="flex flex-row sm:items-center gap-3 justify-start">
                         {/* input + sufixo */}
-                        <div className="relative w-[160px] sm:w-[230px]">
+                        <div className="relative w-[190px] sm:w-[230px]">
                             <input
                                 type="number"
                                 defaultValue={initialSend}
@@ -114,7 +114,7 @@ export default function EditAndResendForm({
                     </label>
 
                     <div className="flex flex-row sm:items-center gap-3 justify-start">
-                        <div className="relative w-[160px] sm:w-[230px]">
+                        <div className="relative w-[190px] sm:w-[230px]">
                             <input
                                 type="number"
                                 defaultValue={initialReceive}

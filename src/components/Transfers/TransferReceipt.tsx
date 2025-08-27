@@ -54,13 +54,13 @@ Beneficiário: ${d.beneficiary.name}`;
     };
 
     return (
-        <div className="flex flex-col items-center w-full max-w-lg mx-auto text-center px-4 sm:px-0">
+        <div className="flex flex-col w-full sm:max-w-md px-8 sm:px-6 lg:px-0 mx-auto">
             <div className="mx-auto mb-4 mt-2 flex h-12 w-12 items-center justify-center rounded-full ring-2 ring-secondary">
                 <svg viewBox="0 0 24 24" className="h-6 w-6 text-secondary" fill="none" stroke="currentColor" strokeWidth={2}>
                     <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
             </div>
-            <h1 className="text-xl font-semibold text-secondary mb-4">
+            <h1 className="text-xl font-semibold text-secondary mb-4 text-center">
                 Transferência realizada com sucesso!
             </h1>
 

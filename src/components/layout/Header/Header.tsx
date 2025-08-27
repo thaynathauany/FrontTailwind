@@ -85,7 +85,7 @@ export default function Header() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className={`text-base font-medium lg:font-normal mb:font-normal  ${pathname === item.href ? "text-secondary" : "text-black"} hover:text-secondary`}
+                  className={`text-base mb:font-normal ${pathname === item.href ? "text-secondary font-bold" : "text-primary font-medium"} hover:text-secondary`}
                 >
                   {item.name}
                 </a>

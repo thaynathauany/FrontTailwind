@@ -41,7 +41,7 @@ export default function Banner() {
                 <div className="flex flex-col lg:flex-row 
                 items-start md:items-start lg:items-center 
                 justify-start md:justify-start lg:justify-between 
-                gap-10 md:mt-6 lg:mt-0">
+                gap-10 md:mt-0 lg:mt-10">
                     {/* Texto */}
                     <div className="flex flex-col gap-4 lg:text-left">
                         <div className="text-2xl sm:text-3xl font-semibold">

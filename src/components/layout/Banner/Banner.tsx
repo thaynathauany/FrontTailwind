@@ -38,7 +38,10 @@ export default function Banner() {
         <section className=" bg-secondary text-white py-12 px-4 sm:px-6 mt-[110px] min-h-[476px]"
             style={{ backgroundImage: "url(/images/banner/background_header.png)" }}>
             <Container>
-                <div className="flex flex-col lg:flex-row items-center lg:items-center justify-center lg:justify-between gap-10 lg:mt-[50px] lg:mt-0">
+                <div className="flex flex-col lg:flex-row 
+                items-start md:items-start lg:items-center 
+                justify-start md:justify-start lg:justify-between 
+                gap-10 md:mt-6 lg:mt-0">
                     {/* Texto */}
                     <div className="flex flex-col gap-4 lg:text-left">
                         <div className="text-2xl sm:text-3xl font-semibold">
@@ -55,7 +58,7 @@ export default function Banner() {
 
                     {/* Simulação */}
                     <div className="w-full max-w-lg space-y-4">
-                        <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-center text-white">
+                        <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-center md:text-left text-white">
                             {t("simulateTitle")}
                         </h3>
 

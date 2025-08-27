@@ -46,8 +46,8 @@ export default function AboutSection() {
                     />
 
                     <div className="absolute bottom-0 left-0 w-full h-full flex items-end">
-                        <div className="w-[561px] px-4 text-left ml-[36%] mb-20 text-white">
-                            <p className="text-2xl font-normal">{t("bannerTitle1")}</p>
+                        <div className="w-[561px] lg:w-[561px] md:w-[440px] px-4 text-left ml-[36%] mb-20 lg:mb-20 md:mb-5 text-white">
+                            <p className="text-2xl lg:text-2xl md:text-lg font-normal">{t("bannerTitle1")}</p>
                             <p className="text-2xl font-semibold">{t("bannerTitle2")}</p>
                         </div>
                     </div>
@@ -55,23 +55,22 @@ export default function AboutSection() {
             </section>
 
             {/* content */}
-            <div className="flex flex-col md:flex-row w-full mt-0 sm:mt-20 gap-y-12 md:gap-y-0">
-                <div className="w-full md:w-[600px] flex-shrink-0">
-                    {/* Imagem desktop */}
-                    <div className="hidden md:block">
-                        <Image
-                            src="/images/destaques/Sobre_IMG_01.png"
-                            alt="Imagem Sobre"
-                            width={1440}
-                            height={0}
-                            quality={100}
-                            className="w-full h-auto object-contain flex-shrink-0"
-                        />
-                    </div>
+            <div className="flex flex-col lg:flex-row w-full mt-0 sm:mt-20 gap-y-12 lg:gap-y-0">
+                {/* Imagem DESKTOP (só no ≥1024px) */}
+                <div className="hidden lg:block w-full lg:w-[600px] flex-shrink-0">
+                    <Image
+                        src="/images/destaques/Sobre_IMG_01.png"
+                        alt="Imagem Sobre"
+                        width={1440}
+                        height={0}
+                        quality={100}
+                        className="w-full h-auto object-contain flex-shrink-0"
+                    />
                 </div>
 
+                {/* Texto */}
                 <div className="flex-1">
-                    <div className="w-full max-w-[600px] mx-auto px-4 md:px-0">
+                    <div className="w-full max-w-full lg:max-w-[600px] mx-auto px-4 lg:px-12 md:px-12 mb-10 pt-10 lg:pt-0 md:pt-0">
                         <div className="space-y-6 px-4">
                             <h2 className="text-secondary text-2xl font-bold">
                                 {t("title")}
@@ -95,8 +94,9 @@ export default function AboutSection() {
                         </div>
                     </div>
                 </div>
-                {/* Imagem mobile */}
-                <div className="block md:hidden">
+
+                {/* Imagem MOBILE + TABLET (some no desktop) */}
+                <div className="block lg:hidden">
                     <Image
                         src="/images/destaques/Mobile_Sobre_IMG_01.png"
                         alt="Imagem Sobre Mobile"
@@ -184,8 +184,8 @@ export default function AboutSection() {
                 {/* Texto sobre a imagem */}
                 <div className="absolute inset-0 flex items-center">
                     <div className="px-4 md:px-12 lg:px-[80px] w-full">
-                        <div className="max-w-[500px] space-y-6 text-white text-left mt-20 px-4">
-                            <p className="text-3xl font-bold">{t("bannerSecondTitle")}</p>
+                        <div className="max-w-[500px] md:max-w-[350px] lg:max-w-[500px] space-y-4 text-white text-left mt-20 px-4">
+                            <p className="text-3xl lg:text-3xl md:text-2xl font-bold">{t("bannerSecondTitle")}</p>
                             <p className="text-lg">{t("bannerSecondDescription")}</p>
                             <CustomButton text={t("bannerSecondButton")} onClick={() => { }} />
                         </div>

@@ -80,12 +80,12 @@ export default function Header() {
             </Link>
 
             {/* Desktop nav (apenas >= lg) */}
-            <nav className="hidden lg:flex gap-x-8 text-sm font-semibold text-gray-700">
+            <nav className="hidden lg:flex gap-x-8 text-sm font-semibold text-primary">
               {navigation.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className={`text-base font-medium ${pathname === item.href ? "text-secondary" : "text-black"} hover:text-secondary`}
+                  className={`text-base font-medium lg:font-normal mb:font-normal  ${pathname === item.href ? "text-secondary" : "text-black"} hover:text-secondary`}
                 >
                   {item.name}
                 </a>
@@ -123,7 +123,7 @@ export default function Header() {
                 >
                   <p className="text-white text-sm font-medium">R</p>
                 </div>
-                <ChevronDownIcon className="w-4 h-4 text-gray-500" />
+                <ChevronDownIcon className="w-4 h-4 text-primary" />
               </MenuButton>
               <MenuItems className="absolute right-0 z-10 mt-2 w-52 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none border border-[#CBCBCB]">
                 <ul className="flex flex-col gap-2">
@@ -150,7 +150,7 @@ export default function Header() {
               className="lg:hidden p-3"
             >
               <span className="sr-only">Abrir menu</span>
-              <Bars3Icon aria-hidden="true" className="size-5 text-gray-900" />
+              <Bars3Icon aria-hidden="true" className="size-5 text-primary" />
             </button>
           </div>
         </div>
@@ -158,8 +158,8 @@ export default function Header() {
         {/* Mobile/Tablet menu (ativo < lg) */}
         <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
           <div className="fixed inset-0 z-50" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-5 pb-6 sm:ring-1 sm:ring-gray-900/10">
-            <div className="max-w-[375px] mx-auto w-full">
+          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-8 pb-6 sm:ring-1 sm:ring-gray-900/10">
+            <div className="mx-auto w-full">
               {/* Topo mobile: logo e botão de fechar */}
               <div className="flex h-16 items-center justify-between mt-4">
                 <img
@@ -170,7 +170,7 @@ export default function Header() {
                 <button
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-2.5 text-gray-700"
+                  className="p-2.5 text-primary"
                 >
                   <span className="sr-only">Fechar menu</span>
                   <XMarkIcon aria-hidden="true" className="size-6" />
@@ -202,7 +202,7 @@ export default function Header() {
                           className="w-full flex items-center justify-end gap-2 px-1 py-2 hover:bg-gray-50 rounded"
                         >
                           <span className="text-sm text-[#CB5608]">{label}</span>
-                          <Icon className="w-5 h-5 text-gray-700" />
+                          <Icon className="w-5 h-5 text-primary" />
                         </button>
                       ) : (
                         <Link
@@ -211,7 +211,7 @@ export default function Header() {
                           onClick={() => setMobileMenuOpen(false)} // fecha ao clicar
                         >
                           <span className="text-sm text-black">{label}</span>
-                          <Icon className="w-5 h-5 text-gray-700" />
+                          <Icon className="w-5 h-5 text-primary" />
                         </Link>
                       )}
                     </li>

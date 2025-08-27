@@ -13,9 +13,9 @@ export default function SignUpPage() {
     return (
         <div className="flex flex-col lg:flex-row min-h-[100svh]">
             {/* Lado esquerdo */}
-            <div className="flex flex-col justify-start px-4 pb-2 pt-2 sm:px-6 sm:pb-8 bg-secondary text-white w-full lg:w-1/2">
+            <div className="flex flex-col justify-start px-4 bg-secondary text-white w-full lg:w-1/2">
                 <AuthHeader />
-                <div className="hidden sm:flex items-center justify-center px-0 py-0 sm:px-6 lg:flex-1">
+                <div className="hidden lg:flex items-center justify-center px-0 py-0 lg:px-6 lg:flex-1">
                     <SignInBannerCarousel
                         slides={[
                             {

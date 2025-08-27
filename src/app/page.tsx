@@ -136,11 +136,11 @@ export default function Home() {
           {/* Texto alinhado à esquerda */}
           <div className="col-start-1 row-start-1 flex items-start justify-start">
             <div className="mx-auto max-w-[1440px] w-full px-4 md:px-12 lg:px-[80px]">
-              <div className="max-w-[500px] space-y-4 p-4 text-white pt-24 md:pt-32 lg:pt-40">
-                <p className="text-3xl font-bold text-secondary">
+              <div className="max-w-[500px] md:max-w-[390px] xl:max-w-[450px] space-y-4 p-4 text-white pt-24 md:pt-18 lg:pt-40">
+                <p className="text-3xl lg:text-3xl md:text-2xl font-bold text-secondary">
                   {t("bannerIntro.title")}
                 </p>
-                <p className="text-lg text-primary">
+                <p className="text-lg md:text-base text-primary">
                   {t("bannerIntro.description")}
                 </p>
                 <CustomButton text={t("bannerIntro.button")} onClick={() => { }} />
@@ -178,9 +178,8 @@ export default function Home() {
         </div>
       </section>
 
-
       {/* Conexão - DESKTOP */}
-      <section className="mt-30 mb-30 hidden md:block">
+      <section className="mt-30 mb-30 hidden lg:block">
         <Container>
           <div className="flex flex-col gap-4 items-center justify-center">
             <span className="flex items-center gap-4">
@@ -212,13 +211,14 @@ export default function Home() {
       </section>
 
       {/* Conexão - MOBILE */}
-      <section className="mt-10 mb-20 block md:hidden p-4 ">
+      <section className="mt-10 mb-20 block lg:hidden p-4">
         <Container>
           <div className="flex flex-col gap-4 items-center justify-center">
-            <span className="flex flex-col items-center gap-4">
+            <span className="flex flex-col items-center gap-4 w-full md:w-[70%]">
               <img
                 src="/images/destaques/Mobile_Conexoes.png"
                 alt="Banner Dinero Mobile"
+                className="md:max-w-[500px] w-full h-auto"
               />
               <p className="text-black font-semibold text-2xl text-center mt-4">
                 {t("conexao.fulltext")}
@@ -227,8 +227,8 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col gap-10 items-center justify-center mt-10">
-            <p className="text-primary text-base max-w-xs text-center">{t("conexao.descricao")}</p>
-            <CustomButton text={t("conexao.botao")} onClick={() => { }} className="w-full" />
+            <p className="text-primary text-base max-w-xs md:max-w-md text-center">{t("conexao.descricao")}</p>
+            <CustomButton text={t("conexao.botao")} onClick={() => { }} className="w-full md:w-auto" />
           </div>
         </Container>
       </section>
@@ -249,7 +249,7 @@ export default function Home() {
 
           {/* Texto centralizado verticalmente, alinhado à direita */}
           <div className="absolute inset-0 flex items-center justify-end px-4 md:px-12 lg:px-[80px]">
-            <div className="max-w-[500px] space-y-6 text-white text-left mt-20">
+            <div className="max-w-[400px] lg:max-w-[400px] md:max-w-[390px] space-y-6 text-white text-left mt-20">
               <p className="text-3xl font-bold">{t("bannerSecond.title")}</p>
               <p className="text-lg">{t("bannerSecond.description")}</p>
               <CustomButton text={t("bannerSecond.button")} onClick={() => { }} />
@@ -288,7 +288,7 @@ export default function Home() {
       {/* FAQ */}
       <section className="mt-20">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 md:gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-10 lg:gap-6">
             <div className="w-full flex flex-col gap-4 max-w-[500px] p-4">
               <p className="text-3xl font-bold">Perguntas Frequentes</p>
               <p className="text-base mt-4 text-primary">

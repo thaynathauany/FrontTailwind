@@ -85,7 +85,7 @@ export default function HowItWorksSection() {
                     {/* Texto fixo embaixo à esquerda */}
                     <div className="absolute inset-0 flex items-end justify-start">
                         <div className="w-full max-w-[1440px] mx-auto px-4 md:px-12 lg:px-[80px]">
-                            <div className="w-[448px] pb-20 px-4">
+                            <div className="w-[448px] md:w-[230px] lg:w-[448px] pb-20 md:pb-5 lg:pb-20 px-4 ">
                                 <h2 className="text-[30px] font-bold text-black mb-2">
                                     {t("title")}
                                 </h2>
@@ -100,7 +100,7 @@ export default function HowItWorksSection() {
 
             {/* Etapas */}
             <Container>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4 mt-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 mt-10">
                     {steps.map((step, index) => (
                         <div
                             key={index}
@@ -111,8 +111,12 @@ export default function HowItWorksSection() {
                                 alt={`Etapa ${index + 1}`}
                                 className="absolute -top-4 left-1/2 -translate-x-1/2 w-12 h-12"
                             />
-                            <h3 className="text-secondary font-semibold text-xl text-center mb-2">{step.title}</h3>
-                            <p className="text-center sm:text-left font-normal text-primary whitespace-pre-line">{step.desc}</p>
+                            <h3 className="text-secondary font-semibold text-xl text-center mb-2">
+                                {step.title}
+                            </h3>
+                            <p className="text-center sm:text-left font-normal text-primary whitespace-pre-line">
+                                {step.desc}
+                            </p>
                         </div>
                     ))}
                 </div>

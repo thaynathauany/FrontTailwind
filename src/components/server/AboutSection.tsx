@@ -1,12 +1,10 @@
-"use client";
-
 import Image from "next/image";
 import Container from "@/components/ui/Container";
-import { useTranslations } from "next-intl";
-import CustomButton from "@/components/ui/CustomButton";
+import { getTranslations } from "next-intl/server";
+import AboutCTA from "../client/AboutCTA";
 
-export default function AboutSection() {
-    const t = useTranslations("About");
+export default async function AboutSection() {
+    const t = await getTranslations("About");
 
     return (
         <>
@@ -170,7 +168,6 @@ export default function AboutSection() {
 
             {/* Banner secundario - DESKTOP */}
             <section className="relative hidden md:block w-full max-w-[1440px] mx-auto mb-[-150px]">
-                {/* Imagem */}
                 <Image
                     src="/images/destaques/Banner_Sobre_2.png"
                     alt="Banner Sobre"
@@ -181,13 +178,12 @@ export default function AboutSection() {
                     className="w-full h-auto object-cover"
                 />
 
-                {/* Texto sobre a imagem */}
                 <div className="absolute inset-0 flex items-center">
                     <div className="px-4 md:px-12 lg:px-[80px] w-full">
                         <div className="max-w-[500px] md:max-w-[350px] lg:max-w-[500px] space-y-4 text-white text-left mt-20 px-4">
-                            <p className="text-3xl lg:text-3xl md:text-2xl font-bold">{t("bannerSecondTitle")}</p>
+                            <p className="text-3xl md:text-2xl font-bold">{t("bannerSecondTitle")}</p>
                             <p className="text-lg">{t("bannerSecondDescription")}</p>
-                            <CustomButton text={t("bannerSecondButton")} onClick={() => { }} />
+                            <AboutCTA label={t("bannerSecondButton")} />
                         </div>
                     </div>
                 </div>
@@ -195,7 +191,6 @@ export default function AboutSection() {
 
             {/* Banner secundario - MOBILE */}
             <section className="relative block md:hidden w-full h-[300px] mb-[-100px] mt-10">
-                {/* Imagem otimizada */}
                 <Image
                     src="/images/destaques/Mobile_Sobre_Banner_02.png"
                     alt="Banner Mobile"
@@ -206,16 +201,11 @@ export default function AboutSection() {
                     className="object-cover"
                 />
 
-                {/* Texto sobreposto */}
                 <div className="absolute inset-0 flex items-start px-8 pt-[60px]">
                     <div className="text-white text-left w-[240px]">
                         <p className="text-base font-bold">{t("bannerSecondTitle")}</p>
                         <p className="text-xs">{t("bannerSecondDescription")}</p>
-                        <CustomButton
-                            text={t("bannerSecondButton")}
-                            className="w-full mt-4"
-                            onClick={() => { }}
-                        />
+                        <AboutCTA label={t("bannerSecondButton")} fullWidth />
                     </div>
                 </div>
             </section>

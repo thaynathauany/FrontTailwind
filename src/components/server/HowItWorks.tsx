@@ -1,44 +1,18 @@
-"use client";
-
-import CustomButton from "@/components/ui/CustomButton";
 import Container from "@/components/ui/Container";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
+import HowItWorksCTA from "../client/HowItWorksCTA";
+import { getTranslations } from "next-intl/server";
 
-export default function HowItWorksSection() {
-    const t = useTranslations("HowItWorks");
+export default async function HowItWorks() {
+    const t = await getTranslations("HowItWorks");
 
     const steps = [
-        {
-            numberImage: "/images/icones/1.svg",
-            title: t("step1.title"),
-            desc: t("step1.desc"),
-        },
-        {
-            numberImage: "/images/icones/2.svg",
-            title: t("step2.title"),
-            desc: t("step2.desc"),
-        },
-        {
-            numberImage: "/images/icones/3.svg",
-            title: t("step3.title"),
-            desc: t("step3.desc"),
-        },
-        {
-            numberImage: "/images/icones/4.svg",
-            title: t("step4.title"),
-            desc: t("step4.desc"),
-        },
-        {
-            numberImage: "/images/icones/5.svg",
-            title: t("step5.title"),
-            desc: t("step5.desc"),
-        },
-        {
-            numberImage: "/images/icones/6.svg",
-            title: t("step6.title"),
-            desc: t("step6.desc"),
-        },
+        { numberImage: "/images/icones/1.svg", title: t("step1.title"), desc: t("step1.desc") },
+        { numberImage: "/images/icones/2.svg", title: t("step2.title"), desc: t("step2.desc") },
+        { numberImage: "/images/icones/3.svg", title: t("step3.title"), desc: t("step3.desc") },
+        { numberImage: "/images/icones/4.svg", title: t("step4.title"), desc: t("step4.desc") },
+        { numberImage: "/images/icones/5.svg", title: t("step5.title"), desc: t("step5.desc") },
+        { numberImage: "/images/icones/6.svg", title: t("step6.title"), desc: t("step6.desc") },
     ];
 
     return (
@@ -46,7 +20,6 @@ export default function HowItWorksSection() {
             {/* MOBILE Banner */}
             <section className="relative block md:hidden w-full">
                 <div className="relative mx-auto max-w-[430px] w-full h-[360px]">
-                    {/* Imagem */}
                     <Image
                         src="/images/destaques/Mobile_Banner_Como_Funciona.png"
                         alt="Banner Como Funciona"
@@ -56,8 +29,6 @@ export default function HowItWorksSection() {
                         quality={90}
                         className="object-cover"
                     />
-
-                    {/* Texto alinhado à esquerda, centralizado verticalmente */}
                     <div className="absolute inset-0 flex items-center justify-start px-4 mt-10">
                         <div className="text-black max-w-[200px] space-y-2 px-4">
                             <h2 className="text-[24px] leading-[30px] font-bold">{t("title")}</h2>
@@ -69,9 +40,7 @@ export default function HowItWorksSection() {
 
             {/* DESKTOP Banner */}
             <section className="relative hidden md:block w-full h-[480px]">
-                {/* Wrapper com largura máxima */}
                 <div className="relative mx-auto max-w-[1440px] w-full h-full">
-                    {/* Imagem */}
                     <Image
                         src="/images/destaques/Banner_Como_Funciona.png"
                         alt="Banner Como Funciona"
@@ -81,17 +50,11 @@ export default function HowItWorksSection() {
                         quality={90}
                         className="object-cover"
                     />
-
-                    {/* Texto fixo embaixo à esquerda */}
                     <div className="absolute inset-0 flex items-end justify-start">
                         <div className="w-full max-w-[1440px] mx-auto px-4 md:px-12 lg:px-[80px]">
-                            <div className="w-[448px] md:w-[230px] lg:w-[448px] pb-20 md:pb-5 lg:pb-20 px-4 ">
-                                <h2 className="text-[30px] font-bold text-black mb-2">
-                                    {t("title")}
-                                </h2>
-                                <p className="text-primary font-normal text-lg">
-                                    {t("description")}
-                                </p>
+                            <div className="w-[448px] md:w-[230px] lg:w-[448px] pb-20 md:pb-5 lg:pb-20 px-4">
+                                <h2 className="text-[30px] font-bold text-black mb-2">{t("title")}</h2>
+                                <p className="text-primary font-normal text-lg">{t("description")}</p>
                             </div>
                         </div>
                     </div>
@@ -106,10 +69,12 @@ export default function HowItWorksSection() {
                             key={index}
                             className="relative rounded-lg border border-[#CBCBCB] p-6 pt-10 text-sm bg-white min-h-[300px] flex flex-col items-center gap-4"
                         >
-                            <img
+                            <Image
                                 src={step.numberImage}
                                 alt={`Etapa ${index + 1}`}
-                                className="absolute -top-4 left-1/2 -translate-x-1/2 w-12 h-12"
+                                width={48}
+                                height={48}
+                                className="absolute -top-4 left-1/2 -translate-x-1/2"
                             />
                             <h3 className="text-secondary font-semibold text-xl text-center mb-2">
                                 {step.title}
@@ -122,13 +87,13 @@ export default function HowItWorksSection() {
                 </div>
             </Container>
 
-            {/* Call-to-action final */}
+            {/* CTA client*/}
             <Container>
-                <div className="text-center bg-white p-4 py-12">
-                    <h3 className="text-2xl sm:text-4xl font-bold text-secondary mb-6">{t("footerTitle")}</h3>
-                    <p className="text-primary font-normal mb-6 mt-2 ">{t("footerDesc")}</p>
-                    <CustomButton text={t("button")} onClick={() => { }} />
-                </div>
+                <HowItWorksCTA
+                    title={t("footerTitle")}
+                    desc={t("footerDesc")}
+                    buttonLabel={t("button")}
+                />
             </Container>
         </section>
     );

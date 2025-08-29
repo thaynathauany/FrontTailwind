@@ -36,7 +36,7 @@ Api.interceptors.response.use(
       if (ok) return Api.request(originalConfig);
       if (typeof window !== "undefined") {
         localStorage.removeItem("access_token");
-        window.location.href = "/login";
+        window.location.href = "/sign-in";
       }
     }
 

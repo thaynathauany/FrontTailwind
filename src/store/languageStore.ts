@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-type Locale = 'pt' | 'es'
+export type Locale = 'pt' | 'es'
 
 interface LanguageState {
   locale: Locale
@@ -16,6 +16,7 @@ export const useLanguageStore = create<LanguageState>((set) => ({
   locale: getInitialLocale(),
   setLocale: (locale) => {
     localStorage.setItem('locale', locale)
+    document.cookie = `locale=${locale}; Path=/; Max-Age=${60*60*24*365}`
     set({ locale })
   },
 }))

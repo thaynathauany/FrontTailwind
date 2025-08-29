@@ -26,7 +26,7 @@ export default function StepThree() {
 
                         <CustomButton
                             text={t("button_login")}
-                            onClick={() => window.location.href = "/login"}
+                            onClick={() => window.location.href = "/sign-in"}
                         />
                     </div>
                 </div>

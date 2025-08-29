@@ -200,6 +200,8 @@
     "phoneLabel": "TELEFONE",
     "whatsappButton": "Ir para o chat no WhatsApp",
     "submitButton": "ENVIAR",
+    "success": "Mensagem enviada com sucesso",
+    "error": "Ocorreu um erro ao enviar a mensagem",
     "placeholder": {
       "name": "Seu nome",
       "email": "Seu e-mail",

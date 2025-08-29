@@ -1,6 +1,5 @@
 "use client";
 
-import AuthHeader from "@/components/layout/AuthHeader.tsx/page";
 import CustomButton from "@/components/ui/CustomButton";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -99,7 +98,7 @@ export default function StepOne({ onNext }: StepOneProps) {
             <div className="pb-0 sm:pb-6">
                 <p className="text-center text-sm text-primary break-normal">
                     {t("footerText")}{" "}
-                    <a href="/login" className="text-black font-medium">
+                    <a href="/sign-in" className="text-black font-medium">
                         {t("footerLink")}
                     </a>
                 </p>

@@ -1,4 +1,3 @@
-// components/ui/CustomButton.tsx
 "use client";
 
 interface CustomButtonProps {
@@ -7,8 +6,8 @@ interface CustomButtonProps {
   className?: string;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
-  variant?: "primary" | "outline"; // novo
-  fullWidth?: boolean;             // novo
+  variant?: "primary" | "outline";
+  fullWidth?: boolean;
 }
 
 export default function CustomButton({

@@ -1,17 +1,19 @@
-"use client";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 
-export default function Footer() {
-    const t = useTranslations("Footer");
+export default async function Footer() {
+    const t = await getTranslations("Footer");
 
     return (
         <>
             {/* Seção branca com imagem sobreposta */}
             <section className="relative w-full z-10">
                 <div className="flex justify-center items-end h-[100px] sm:h-[140px] relative">
-                    <img
+                    <Image
                         src="/images/logos/logo-footer.png"
                         alt="Imagem Centralizada"
+                        width={90}
+                        height={20}
                         className="h-auto object-contain absolute bottom-0 z-20 translate-y-1/2"
                     />
                 </div>
@@ -51,15 +53,15 @@ export default function Footer() {
                             <h3 className="text-sm font-semibold">{t("follow_us")}</h3>
                             <ul className="space-y-4 text-sm">
                                 <li className="flex items-center gap-2">
-                                    <img src="/images/logos/instagram-logo.png" alt="Instagram" className="w-6 h-6" />
+                                    <Image src="/images/logos/instagram-logo.png" alt="Instagram" width={24} height={24} />
                                     <a href="#">{t("social_instagram")}</a>
                                 </li>
                                 <li className="flex items-center gap-2">
-                                    <img src="/images/logos/facebook-logo.png" alt="Facebook" className="w-6 h-6" />
+                                    <Image src="/images/logos/facebook-logo.png" alt="Facebook" width={24} height={24} />
                                     <a href="#">{t("social_facebook")}</a>
                                 </li>
                                 <li className="flex items-center gap-2">
-                                    <img src="/images/logos/youtube-logo.png" alt="YouTube" className="w-6 h-6" />
+                                    <Image src="/images/logos/youtube-logo.png" alt="YouTube" width={24} height={24} />
                                     <a href="#">{t("social_youtube")}</a>
                                 </li>
                             </ul>
@@ -68,13 +70,13 @@ export default function Footer() {
                         {/* Coluna 4 */}
                         <div className="w-[220px] space-y-4 flex flex-col items-end">
                             <div className="flex items-center gap-2 text-sm font-medium">
-                                <img src="/images/logos/telefone-logo.png" alt="WhatsApp" className="w-6 h-6" />
+                                <Image src="/images/logos/telefone-logo.png" alt="WhatsApp" width={24} height={24} />
                                 <span>{t("phone_number")}</span>
                             </div>
                             <div className="flex items-center gap-4 text-sm">
                                 <p className="text-sm text-end w-[170px]">{t("phone_text")}</p>
                                 <a href="#">
-                                    <img src="/images/vetores/arrow-footer.png" alt="Arrow" className="w-[32px]" />
+                                    <Image src="/images/vetores/arrow-footer.png" alt="Arrow" width={32} height={32} />
                                 </a>
                             </div>
                         </div>
@@ -84,10 +86,12 @@ export default function Footer() {
                 {/* Marca d’água */}
                 <div className="absolute bottom-0 left-0 right-0 z-[-1] pointer-events-none">
                     <div className="mx-auto max-w-[1440px] px-4 md:px-12 lg:px-[80px]">
-                        <img
+                        <Image
                             src="/images/logos/dinerolatam-footer.png"
                             alt="Marca d’água"
-                            className="w-[1333px] max-w-full"
+                            width={1333}
+                            height={300}
+                            className="max-w-full"
                         />
                     </div>
                 </div>
@@ -106,21 +110,21 @@ export default function Footer() {
                     <div className="space-y-2">
                         <h4 className="text-base font-semibold">{t("follow_us")}</h4>
                         <div className="flex gap-4 justify-center">
-                            <img src="/images/logos/instagram-logo.png" alt="Instagram" className="w-6 h-6" />
-                            <img src="/images/logos/facebook-logo.png" alt="Facebook" className="w-6 h-6" />
-                            <img src="/images/logos/youtube-logo.png" alt="YouTube" className="w-6 h-6" />
+                            <Image src="/images/logos/instagram-logo.png" alt="Instagram" width={24} height={24} />
+                            <Image src="/images/logos/facebook-logo.png" alt="Facebook" width={24} height={24} />
+                            <Image src="/images/logos/youtube-logo.png" alt="YouTube" width={24} height={24} />
                         </div>
                     </div>
 
                     <div className="flex items-center gap-2 text-base font-medium">
-                        <img src="/images/logos/telefone-logo.png" alt="WhatsApp" className="w-6 h-6" />
+                        <Image src="/images/logos/telefone-logo.png" alt="WhatsApp" width={24} height={24} />
                         <span>{t("phone_number")}</span>
                     </div>
 
                     <div className="flex items-center gap-4">
                         <p className="text-sm text-center max-w-[180px]">{t("phone_text")}</p>
                         <a href="#">
-                            <img src="/images/vetores/arrow-footer.png" alt="Arrow" className="w-8 h-8" />
+                            <Image src="/images/vetores/arrow-footer.png" alt="Arrow" width={32} height={32} />
                         </a>
                     </div>
 
@@ -131,7 +135,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Marca d’água corrigida */}
+                {/* Marca d’água mobile */}
                 <div className="absolute inset-0 flex items-end justify-center pointer-events-none z-[-1]">
                     <span className="text-5xl font-extrabold opacity-50 text-btnsecondary text-center leading-none tracking-tight mb-[-10px]">
                         DINERO LATAM

@@ -1,245 +1,80 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import {
-  Dialog,
-  DialogPanel,
-  Menu,
-  MenuButton,
-  MenuItems,
-} from "@headlessui/react";
-import { Bars3Icon, ChevronDownIcon } from "@heroicons/react/20/solid";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import { useTranslations } from "next-intl";
-import LanguageSwitcher from "./LanguageSwitcher";
-import { usePathname } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
-import MinhaArea from "@/assets/icones/MinhaArea.svg";
-import Dinheiro from "@/assets/icones/Money.svg";
-import DadosPessoais from "@/assets/icones/DadosPessoais.svg";
-import Historico from "@/assets/icones/Historico.svg";
-import Sair from "@/assets/icones/Sair.svg";
-type SvgComp = React.ComponentType<React.SVGProps<SVGSVGElement>>;
-type ProfileItem = {
-  label: React.ReactNode;
-  href: string;
-  icon: SvgComp;
-};
-export default function Header() {
-  const pathname = usePathname();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+import LanguageSwitcher from "./LanguageSwitcher";
 
+import { getTranslations } from "next-intl/server";
+import ShrinkOnScrollClient from "./ShrinkOnScrollClient";
+import NavLinksClient from "./NavLinksClient";
+import UserMenuClient from "./UserMenuClient";
+import MobileMenuClient from "./MobileMenuClient";
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+export default async function Header() {
+  const t = await getTranslations("Header");
 
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
-
-  const t = useTranslations("Header");
-
-  const navigation = [
-    { name: t("home"), href: "/" },
-    { name: t("comoFunciona"), href: "/como-funciona" },
-    { name: t("contato"), href: "/contato" },
-    { name: t("sobre"), href: "/sobre" },
+  const nav = [
+    { label: t("home"), href: "/" },
+    { label: t("comoFunciona"), href: "/como-funciona" },
+    { label: t("contato"), href: "/contato" },
+    { label: t("sobre"), href: "/sobre" },
   ];
 
-  const profileItems = [
-    { label: t("profile"), href: "/my-panel", img: "/images/icones/minha-area.png" },
-    { label: t("newTransfer"), href: "/my-panel?tab=1", img: "/images/icones/transferencia.png" },
-    { label: t("signOut"), href: "#", img: "/images/icones/sair.png" },
-  ];
-
-  const profileItemsMobile: ProfileItem[] = [
-    { label: t("profile"), href: "/my-panel", icon: MinhaArea },
-    { label: t("newTransfer"), href: "/my-panel?tab=1", icon: Dinheiro },
-    { label: t("personalData"), href: "/my-panel?tab=2", icon: DadosPessoais },
-    { label: t("history"), href: "/my-panel?tab=3", icon: Historico },
-    { label: <span className="text-[#CB5608]">{t("signOut")}</span>, href: "#", icon: Sair },
-
-  ];
+  const labels = {
+    signIn: t("btn_signIn"),
+    signUp: t("btn_signUp"),
+    profile: t("profile"),
+    newTransfer: t("newTransfer"),
+    personalData: t("personalData"),
+    history: t("history"),
+    signOut: t("signOut"),
+  };
 
   return (
-    <>
-      <header className={`fixed inset-x-0 top-0 z-50 w-full bg-white transition-all duration-300 ${isScrolled ? "h-[90px]" : "h-[110px]"}`}>
-        <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8 h-full">
-          {/* Logo + nav */}
-          <div className="flex items-center gap-x-6">
-            <Link href="/">
-              <img
-                src="/images/logos/logodinero.jpg"
-                alt="Logotipo da Dinero"
-                className="w-[52px] h-[72px]"
-              />
-            </Link>
+    <header
+      id="site-header"
+      className="fixed inset-x-0 top-0 z-50 w-full bg-white transition-all duration-300 h-[110px]"
+    >
+      <ShrinkOnScrollClient targetId="site-header" tallClass="h-[110px]" shortClass="h-[90px]" />
 
-            {/* Desktop nav (apenas >= lg) */}
-            <nav className="hidden lg:flex gap-x-8 text-sm font-semibold text-primary">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={`text-base mb:font-normal ${pathname === item.href ? "text-secondary font-bold" : "text-primary font-medium"} hover:text-secondary`}
-                >
-                  {item.name}
-                </a>
-              ))}
-            </nav>
-          </div>
+      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8 h-full">
+        <div className="flex items-center gap-x-6">
+          <Link href="/" aria-label="Dinero Latam - Home" className="block">
+            <Image
+              src="/images/logos/logodinero.jpg"
+              alt="Dinero Latam"
+              width={52}
+              height={72}
+              priority
+            />
+          </Link>
 
-          {/* Área da direita (botões + menu mobile + usuário) */}
-          <div className="flex items-center gap-x-4">
-            {/* Botões Entrar/Cadastrar - visíveis só no desktop (>= lg) */}
-            <div className="hidden lg:flex gap-x-2">
-              <Link
-                href="/login"
-                className="flex items-center justify-center font-normal w-auto h-[36px] px-3 rounded-[120px] border border-secondary text-secondary"
-              >
-                {t("btn_signIn")}
-              </Link>
-              <Link
-                href="/sign-up"
-                className="flex items-center justify-center font-normal w-auto h-[36px] px-3 rounded-[120px] border border-secondary bg-secondary text-white"
-              >
-                {t("btn_signUp")}
-              </Link>
-            </div>
-
-            <LanguageSwitcher />
-
-            {/* Menu do usuário - apenas desktop (>= lg) */}
-            <Menu as="div" className="relative hidden lg:block">
-              <MenuButton className="-m-1.5 flex items-center p-1.5 gap-2">
-                <p className="text-small text-black">Renato</p>
-                <div
-                  className="flex items-center justify-center w-8 h-8 rounded-full"
-                  style={{ background: "#B3B3B3", border: "3px solid #E0E0E0" }}
-                >
-                  <p className="text-white text-sm font-medium">R</p>
-                </div>
-                <ChevronDownIcon className="w-4 h-4 text-primary" />
-              </MenuButton>
-              <MenuItems className="absolute right-0 z-10 mt-2 w-52 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none border border-[#CBCBCB]">
-                <ul className="flex flex-col gap-2">
-                  {profileItems.map((item) => (
-                    <li key={item.label}>
-                      <a
-                        href={item.href}
-                        className={`flex flex-row-reverse items-center justify-between gap-2 px-4 py-2 text-sm hover:bg-gray-100 rounded ${item.label === t("signOut") ? "text-orange" : "text-black"
-                          }`}
-                      >
-                        <img src={item.img} alt={item.label} className="w-5 h-5" />
-                        <span className="text-right w-full">{item.label}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </MenuItems>
-            </Menu>
-
-            {/* Botão de menu mobile/tablet (visível < lg) */}
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-              className="lg:hidden p-3"
-            >
-              <span className="sr-only">Abrir menu</span>
-              <Bars3Icon aria-hidden="true" className="size-5 text-primary" />
-            </button>
-          </div>
+          <nav className="hidden lg:flex gap-x-8 text-sm font-semibold text-primary">
+            <NavLinksClient items={nav} />
+          </nav>
         </div>
 
-        {/* Mobile/Tablet menu (ativo < lg) */}
-        <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
-          <div className="fixed inset-0 z-50" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-8 pb-6 sm:ring-1 sm:ring-gray-900/10">
-            <div className="mx-auto w-full">
-              {/* Topo mobile: logo e botão de fechar */}
-              <div className="flex h-16 items-center justify-between mt-4">
-                <img
-                  src="/images/logos/logodinero.jpg"
-                  alt="Dinero logo"
-                  className="w-[58px] h-[72px]"
-                />
-                <button
-                  type="button"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-2.5 text-primary"
-                >
-                  <span className="sr-only">Fechar menu</span>
-                  <XMarkIcon aria-hidden="true" className="size-6" />
-                </button>
-              </div>
+        <div className="flex items-center gap-x-4">
+          <div className="hidden lg:flex gap-x-2">
+            <Link
+              href="/sign-in"
+              className="flex items-center justify-center font-normal h-[36px] px-3 rounded-[120px] border border-secondary text-secondary"
+            >
+              {labels.signIn}
+            </Link>
+            <Link
+              href="/sign-up"
+              className="flex items-center justify-center font-normal h-[36px] px-3 rounded-[120px] border border-secondary bg-secondary text-white"
+            >
+              {labels.signUp}
+            </Link>
+          </div>
 
-              {/* Itens do menu */}
-              <div className="mt-4 flex flex-col items-end space-y-4 text-right">
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={`text-sm sm:text-base font-normal sm:font-medium ${pathname === item.href ? "text-secondary" : "text-black"} hover:text-secondary`}
-                  >
-                    {item.name}
-                  </a>
-                ))}
+          <LanguageSwitcher />
 
-                {/* Ações da conta (MOBILE) */}
-                <ul className="w-full border-t border-black pt-4 space-y-2">
-                  {profileItemsMobile.map(({ label, href, icon: Icon }) => (
-                    <li key={href}>
-                      {href === "#" ? (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setMobileMenuOpen(false);
-                          }}
-                          className="w-full flex items-center justify-end gap-2 px-1 py-2 hover:bg-gray-50 rounded"
-                        >
-                          <span className="text-sm text-[#CB5608]">{label}</span>
-                          <Icon className="w-5 h-5 text-primary" />
-                        </button>
-                      ) : (
-                        <Link
-                          href={href}
-                          className="flex items-center justify-end gap-2 px-1 py-2 hover:bg-gray-50 rounded"
-                          onClick={() => setMobileMenuOpen(false)} // fecha ao clicar
-                        >
-                          <span className="text-sm text-black">{label}</span>
-                          <Icon className="w-5 h-5 text-primary" />
-                        </Link>
-                      )}
-                    </li>
-                  ))}
-                </ul>
+          <UserMenuClient labels={labels} />
 
-                {/* Botões no mobile/tablet */}
-                <div className="flex w-full mt-4 gap-2">
-                  <Link
-                    href="/login"
-                    className="w-1/2 h-[48px] rounded-[120px] border border-secondary text-secondary font-normal flex items-center justify-center"
-                  >
-                    {t("btn_signIn")}
-                  </Link>
-
-                  <Link
-                    href="/sign-up"
-                    className="w-1/2 h-[48px] rounded-[120px] border border-secondary bg-secondary text-white font-normal flex items-center justify-center"
-                  >
-                    {t("btn_signUp")}
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-          </DialogPanel>
-        </Dialog>
-      </header>
-    </>
+          <MobileMenuClient navItems={nav} labels={labels} />
+        </div>
+      </div>
+    </header>
   );
 }

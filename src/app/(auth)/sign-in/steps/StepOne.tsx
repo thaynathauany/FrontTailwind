@@ -12,7 +12,6 @@ export default function StepOne({ onNext }: StepOneProps) {
 
     return (
         <div className="flex flex-col justify-between h-[80svh] sm:min-h-[700px] w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto pt-4">
-            {/* espaçamento só no desktop */}
             <div className="hidden lg:block h-[72px]" />
 
             {/* Conteúdo */}
@@ -31,7 +30,6 @@ export default function StepOne({ onNext }: StepOneProps) {
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md"
                             />
 
-                            {/* Botão desktop */}
                             <div className="hidden sm:block">
                                 <CustomButton text={t("button_continue")} className="mt-4" onClick={onNext} />
                             </div>
@@ -40,22 +38,20 @@ export default function StepOne({ onNext }: StepOneProps) {
                 </div>
             </div>
 
-            {/* Rodapé desktop */}
             <div className="hidden sm:block pb-8 sm:pb-6">
                 <p className="text-center text-sm text-primary mt-10 sm:mt-0">
                     {t("noAccount")}{" "}
-                    <a href="/login" className="text-secondary underline underline-offset-1 font-medium">
+                    <a href="/sign-in" className="text-secondary underline underline-offset-1 font-medium">
                         {t("createAccount")}
                     </a>
                 </p>
             </div>
 
-            {/* Bloco mobile (botão + link) */}
             <div className="block sm:hidden w-full">
                 <CustomButton text={t("button_continue")} className="mt-4 w-full" onClick={onNext} />
                 <p className="text-center text-sm text-primary mt-4">
                     {t("noAccount")}{" "}
-                    <a href="/login" className="text-secondary underline underline-offset-1 font-medium">
+                    <a href="/sign-in" className="text-secondary underline underline-offset-1 font-medium">
                         {t("createAccount")}
                     </a>
                 </p>

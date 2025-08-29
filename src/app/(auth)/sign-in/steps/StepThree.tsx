@@ -22,7 +22,7 @@ export default function StepThree() {
                                 alt={t("back")}
                                 className="w-6 h-6"
                             />
-                            <a href="/login" className="text-primary text-xs">
+                            <a href="/sign-in" className="text-primary text-xs">
                                 {t("back")}
                             </a>
                         </div>

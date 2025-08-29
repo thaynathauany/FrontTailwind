@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import { Poppins } from "next/font/google";
-import IntlProvider from "@/components/i18n/IntlProvider";
-import AppLayout from "@/components/layout/AppLayout";
+import { NextIntlClientProvider } from "next-intl";
+import LocaleBridge from "@/components/i18n/LocaleBridge";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -15,17 +15,13 @@ export const metadata = {
   description: "Dinero Latam",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={poppins.variable}>
       <body className="font-sans">
-        <IntlProvider>
-          <AppLayout>{children}</AppLayout>
-        </IntlProvider>
+        <NextIntlClientProvider>
+          <LocaleBridge>{children}</LocaleBridge>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

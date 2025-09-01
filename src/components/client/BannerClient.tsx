@@ -25,10 +25,18 @@ export default function BannerClient() {
     const [sendInput, setSendInput] = useState<string>("100,00");
     const [sendAmountNum, setSendAmountNum] = useState<number>(100);
 
+    const [committedAmount, setCommittedAmount] = useState<number>(100);
+    const typingTimeoutRef = useRef<number | null>(null);
+
     const [quote, setQuote] = useState<Quote | null>(null);
     const [loading, setLoading] = useState(false);
     const abortRef = useRef<AbortController | null>(null);
     const [showDetails, setShowDetails] = useState(false);
+
+    const isTooLow = !!quote && quote.breakdown.baseAfterFees <= 0;
+    const minRequired = isTooLow
+        ? +(quote!.fees.fixed / (1 - quote!.fees.percent)).toFixed(2)
+        : null;
 
     useEffect(() => {
         setSendInput((prev) => {
@@ -51,10 +59,8 @@ export default function BannerClient() {
         if (selected === sendCurrency) setSendCurrency(selected === "BRL" ? "MXN" : "BRL");
     };
 
-    const debouncedAmount = useDebounce(sendAmountNum, 300);
-
     useEffect(() => {
-        const amount = debouncedAmount;
+        const amount = committedAmount;
         if (!amount || amount <= 0 || sendCurrency === receiveCurrency) {
             setQuote(null);
             return;
@@ -83,7 +89,15 @@ export default function BannerClient() {
         })();
 
         return () => ac.abort();
-    }, [debouncedAmount, sendCurrency, receiveCurrency]);
+    }, [committedAmount, sendCurrency, receiveCurrency]);
+
+    useEffect(() => {
+        return () => {
+            if (typingTimeoutRef.current) {
+                window.clearTimeout(typingTimeoutRef.current);
+            }
+        };
+    }, []);
 
     return (
         <section
@@ -122,11 +136,23 @@ export default function BannerClient() {
                                         onChange={(e) => {
                                             const raw = e.target.value;
                                             setSendInput(raw);
-                                            setSendAmountNum(parseMoneyInput(raw, sendCurrency));
+                                            const parsed = parseMoneyInput(raw, sendCurrency);
+                                            setSendAmountNum(parsed);
+                                            if (typingTimeoutRef.current) {
+                                                window.clearTimeout(typingTimeoutRef.current);
+                                            }
+                                            typingTimeoutRef.current = window.setTimeout(() => {
+                                                setCommittedAmount(parsed);
+                                            }, 800);
                                         }}
                                         onBlur={() => {
                                             const n = parseMoneyInput(sendInput, sendCurrency);
                                             setSendInput(fmtMoneyNoSymbol(n, sendCurrency));
+                                            if (typingTimeoutRef.current) {
+                                                window.clearTimeout(typingTimeoutRef.current);
+                                                typingTimeoutRef.current = null;
+                                            }
+                                            setCommittedAmount(n);
                                         }}
                                         className="bg-transparent text-black placeholder-black outline-none w-24 sm:w-32"
                                     />
@@ -160,7 +186,7 @@ export default function BannerClient() {
                                         placeholder="0.00"
                                         value={
                                             quote
-                                                ? fmtCurrency(quote.breakdown.receiveAmount, receiveCurrency)
+                                                ? fmtCurrency(Math.max(0, quote.breakdown.receiveAmount), receiveCurrency)
                                                 : ""
                                         }
                                         readOnly
@@ -186,6 +212,11 @@ export default function BannerClient() {
                                 </div>
                             </div>
                         </div>
+                        {isTooLow && minRequired !== null && (
+                            <p className="text-red-500 text-xs px-1 mt-1">
+                                Valor muito baixo para cobrir as taxas. Mínimo aproximado: {fmtMoneyNoSymbol(minRequired, sendCurrency)} {sendCurrency}
+                            </p>
+                        )}
 
                         {/* Info de câmbio */}
                         <div className="flex flex-col gap-2 text-sm px-6">
@@ -244,7 +275,7 @@ export default function BannerClient() {
 
                         <button
                             className="w-full bg-btnsecondary hover:bg-teal-900 text-white rounded-full py-2 font-medium transition-colors disabled:opacity-60"
-                            disabled={!quote || loading}
+                            disabled={!quote || loading || isTooLow}
                             onClick={() => {
                             }}
                         >

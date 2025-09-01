@@ -75,7 +75,11 @@ export default function SignBannerCarousel({
                     onMouseEnter={() => setPlaying(false)}
                     onMouseLeave={() => setPlaying(true)}
                 >
-                    <img src={s.image} alt={s.alt ?? ""} className="w-full h-auto block" />
+                    <img
+                        src={s.image}
+                        alt={s.alt ?? ""}
+                        className="w-[357px] h-[225px]"
+                    />
 
                     <div className="absolute left-4 right-4 bottom-3 flex items-center gap-3 max-w-[320px] mx-7">
                         {slides.map((_, i) => {
@@ -107,7 +111,7 @@ export default function SignBannerCarousel({
                         })}
                     </div>
                 </div>
-                <div className="flex flex-col space-y-2 text-center lg:text-left w-full max-w-sm mx-auto lg:mx-0 px-7">
+                <div className="flex flex-col space-y-2 text-center lg:text-left w-full max-w-sm mx-auto lg:mx-0 px-6.5">
                     <h2 className="w-[270px]text-xl font-bold">{t(`slides.${s.id}.title`)}</h2>
                     <p className="text-base">{t(`slides.${s.id}.subtitle`)}</p>
                 </div>

@@ -1,6 +1,4 @@
-// src/components/server/SecondaryHero.tsx
 import Image from "next/image";
-import Container from "@/components/ui/Container";
 
 export default function SecondaryHero({ t }: { t: (key: string) => string }) {
     return (

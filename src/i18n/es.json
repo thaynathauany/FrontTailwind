@@ -52,7 +52,16 @@
       "beneficiaryReceives": "Beneficiario recibe",
       "exchangeRate": "Tipo de cambio",
       "details": "Detalles",
-      "sendMoney": "Enviar dinero"
+      "sendMoney": "Enviar dinero",
+      "loading": "Cargando...",
+      "fees": {
+        "fixed": "Tarifa fija",
+        "percent": "Tarifa porcentual",
+        "percentValue": "Valor porcentual",
+        "total": "Total de tarifas",
+        "afterFees": "Valor después de tarifas",
+        "totalAfterFees": "Total luego de tarifas"
+      }
     },
     "benefits": {
       "tarifasBaixasTitulo": "Bajas tarifas",

@@ -1,4 +1,3 @@
-// src/components/server/HeroIntro.tsx
 import Image from "next/image";
 
 export default function HeroIntro({ t }: { t: (key: string) => string }) {

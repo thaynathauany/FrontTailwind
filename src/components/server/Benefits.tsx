@@ -1,4 +1,3 @@
-// src/components/server/Benefits.tsx
 import Container from "@/components/ui/Container";
 import Image from "next/image";
 

@@ -1,4 +1,4 @@
-import SignInBannerCarousel from "@/components/ui/AutoStepperCarousel";
+import SignInBannerCarousel from "@/components/server/AutoStepperCarousel";
 import SignUpWizard from "./SignUpWizard";
 import AuthHeader from "@/components/layout/AuthHeader.tsx/page";
 

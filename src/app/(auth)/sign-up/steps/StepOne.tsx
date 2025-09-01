@@ -1,9 +1,9 @@
 "use client";
 
 import CustomButton from "@/components/ui/CustomButton";
+import { signUp } from "@/features/auth/signup/services";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { signUp } from "@/features/auth/signup/api/signUp.service";
 
 interface StepOneProps {
     onNext: () => void;

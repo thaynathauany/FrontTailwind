@@ -2,39 +2,88 @@
 
 import Container from "@/components/ui/Container";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { fmtCurrency, fmtMoneyNoSymbol, parseMoneyInput } from "@/utils/format";
+import { Currency, Quote } from "@/features/exchange/types";
+import { fetchQuote } from "@/features/exchange/services/client";
 
-export default function BannerClient(/* { initialRate }: { initialRate?: any } */) {
+function useDebounce<T>(value: T, delay = 300) {
+    const [v, setV] = useState(value);
+    useEffect(() => {
+        const id = setTimeout(() => setV(value), delay);
+        return () => clearTimeout(id);
+    }, [value, delay]);
+    return v;
+}
+
+export default function BannerClient() {
     const t = useTranslations("Home.banner");
-    const [sendCurrency, setSendCurrency] = useState("BRL");
-    const [receiveCurrency, setReceiveCurrency] = useState("MXN");
 
-    const flags: Record<string, string> = {
+    const [sendCurrency, setSendCurrency] = useState<Currency>("BRL");
+    const [receiveCurrency, setReceiveCurrency] = useState<Currency>("MXN");
+    const [sendInput, setSendInput] = useState<string>("100,00");
+    const [sendAmountNum, setSendAmountNum] = useState<number>(100);
+
+    const [quote, setQuote] = useState<Quote | null>(null);
+    const [loading, setLoading] = useState(false);
+    const abortRef = useRef<AbortController | null>(null);
+    const [showDetails, setShowDetails] = useState(false);
+
+    useEffect(() => {
+        setSendInput((prev) => {
+            const num = parseMoneyInput(prev, sendCurrency);
+            return fmtMoneyNoSymbol(num, sendCurrency);
+        });
+    }, [sendCurrency]);
+
+    const flags: Record<Currency, string> = {
         BRL: "/images/flags/flagbrazilbanner.png",
         MXN: "/images/flags/flagmexicobanner.png",
     };
 
-    const currencies = [
-        { code: "BRL", name: "Real Brasileiro" },
-        { code: "MXN", name: "Peso Mexicano" },
-    ];
-
-    const handleSendChange = (selected: string) => {
+    const handleSendChange = (selected: Currency) => {
         setSendCurrency(selected);
-        if (selected === receiveCurrency) {
-            const alt = currencies.find(c => c.code !== selected);
-            setReceiveCurrency(alt?.code || "");
-        }
+        if (selected === receiveCurrency) setReceiveCurrency(selected === "BRL" ? "MXN" : "BRL");
+    };
+    const handleReceiveChange = (selected: Currency) => {
+        setReceiveCurrency(selected);
+        if (selected === sendCurrency) setSendCurrency(selected === "BRL" ? "MXN" : "BRL");
     };
 
-    const handleReceiveChange = (selected: string) => {
-        setReceiveCurrency(selected);
-        if (selected === sendCurrency) {
-            const alt = currencies.find(c => c.code !== selected);
-            setSendCurrency(alt?.code || "");
+    const debouncedAmount = useDebounce(sendAmountNum, 300);
+
+    useEffect(() => {
+        const amount = debouncedAmount;
+        if (!amount || amount <= 0 || sendCurrency === receiveCurrency) {
+            setQuote(null);
+            return;
         }
-    };
+
+        if (abortRef.current) abortRef.current.abort();
+        const ac = new AbortController();
+        abortRef.current = ac;
+
+        (async () => {
+            try {
+                setLoading(true);
+                const q = await fetchQuote(
+                    { sendAmount: amount, from: sendCurrency, to: receiveCurrency },
+                    ac.signal
+                );
+                setQuote(q);
+            } catch (err: any) {
+                if (err.name !== "AbortError") {
+                    console.error(err);
+                    setQuote(null);
+                }
+            } finally {
+                setLoading(false);
+            }
+        })();
+
+        return () => ac.abort();
+    }, [debouncedAmount, sendCurrency, receiveCurrency]);
 
     return (
         <section
@@ -66,7 +115,19 @@ export default function BannerClient(/* { initialRate }: { initialRate?: any } *
                                 <div className="flex flex-col">
                                     <p className="font-medium text-sm text-primary">{t("youSend")}</p>
                                     <input
-                                        placeholder="0.00"
+                                        inputMode="decimal"
+                                        pattern="[0-9.,]*"
+                                        placeholder={sendCurrency === "BRL" ? "0,00" : "0.00"}
+                                        value={sendInput}
+                                        onChange={(e) => {
+                                            const raw = e.target.value;
+                                            setSendInput(raw);
+                                            setSendAmountNum(parseMoneyInput(raw, sendCurrency));
+                                        }}
+                                        onBlur={() => {
+                                            const n = parseMoneyInput(sendInput, sendCurrency);
+                                            setSendInput(fmtMoneyNoSymbol(n, sendCurrency));
+                                        }}
                                         className="bg-transparent text-black placeholder-black outline-none w-24 sm:w-32"
                                     />
                                 </div>
@@ -75,12 +136,11 @@ export default function BannerClient(/* { initialRate }: { initialRate?: any } *
                                     <Image src={flags[sendCurrency]} alt={sendCurrency} width={32} height={32} />
                                     <select
                                         value={sendCurrency}
-                                        onChange={(e) => handleSendChange(e.target.value)}
+                                        onChange={(e) => handleSendChange(e.target.value as Currency)}
                                         className="text-black font-semibold bg-transparent outline-none appearance-none pl-2 pr-6 w-20"
                                     >
-                                        {currencies.map((c) => (
-                                            <option key={c.code} value={c.code}>{c.code}</option>
-                                        ))}
+                                        <option value="BRL">BRL</option>
+                                        <option value="MXN">MXN</option>
                                     </select>
                                     <div className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2">
                                         <svg className="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -98,6 +158,12 @@ export default function BannerClient(/* { initialRate }: { initialRate?: any } *
                                     <p className="font-medium text-sm text-primary">{t("beneficiaryReceives")}</p>
                                     <input
                                         placeholder="0.00"
+                                        value={
+                                            quote
+                                                ? fmtCurrency(quote.breakdown.receiveAmount, receiveCurrency)
+                                                : ""
+                                        }
+                                        readOnly
                                         className="bg-transparent text-black placeholder-black outline-none w-24 sm:w-32"
                                     />
                                 </div>
@@ -106,12 +172,11 @@ export default function BannerClient(/* { initialRate }: { initialRate?: any } *
                                     <Image src={flags[receiveCurrency]} alt={receiveCurrency} width={32} height={32} />
                                     <select
                                         value={receiveCurrency}
-                                        onChange={(e) => handleReceiveChange(e.target.value)}
+                                        onChange={(e) => handleReceiveChange(e.target.value as Currency)}
                                         className="text-black font-semibold bg-transparent outline-none appearance-none pl-2 pr-6 w-20"
                                     >
-                                        {currencies.map((c) => (
-                                            <option key={c.code} value={c.code}>{c.code}</option>
-                                        ))}
+                                        <option value="BRL">BRL</option>
+                                        <option value="MXN">MXN</option>
                                     </select>
                                     <div className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2">
                                         <svg className="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,21 +187,67 @@ export default function BannerClient(/* { initialRate }: { initialRate?: any } *
                             </div>
                         </div>
 
-                        {/* Info de câmbio*/}
-                        <div className="flex sm:flex-row justify-between items-center gap-2 text-sm px-6">
-                            <span className="flex items-center gap-1">
-                                <Image src="/images/vetores/money.png" alt="dinheiro" width={20} height={20} />
-                                <p className="text-white text-xs">
-                                    {t("exchangeRate")} <strong>R$ 5,67</strong>
-                                </p>
-                            </span>
-                            <div className="flex items-center gap-1">
-                                <a href="#" className="text-white text-xs">{t("details")}</a>
-                                <Image src="/images/vetores/arrow-right.png" alt="seta" width={20} height={20} />
+                        {/* Info de câmbio */}
+                        <div className="flex flex-col gap-2 text-sm px-6">
+                            <div className="flex items-center justify-between">
+                                <span className="flex items-center gap-1">
+                                    <Image src="/images/vetores/money.png" alt="dinheiro" width={20} height={20} />
+                                    <p className="text-white text-xs">
+                                        {t("exchangeRate")}{" "}
+                                        <strong>
+                                            {quote
+                                                ? `1 ${sendCurrency} = ${quote.rate} ${receiveCurrency}`
+                                                : loading ? t("loading") : "—"}
+                                        </strong>
+                                    </p>
+                                </span>
+
+                                <button
+                                    type="button"
+                                    onClick={() => setShowDetails(!showDetails)}
+                                    className="flex items-center gap-1 text-white text-xs"
+                                >
+                                    {t("details")}
+                                    <Image
+                                        src="/images/vetores/arrow-right.png"
+                                        alt="seta"
+                                        width={20}
+                                        height={20}
+                                        className={`transform transition-transform ${showDetails ? "rotate-90" : ""}`}
+                                    />
+                                </button>
                             </div>
+
+                            {/* Acordeão */}
+                            {showDetails && quote && (
+                                <div className="bg-white/10 rounded-md p-3 text-xs text-white space-y-1">
+                                    <div className="flex justify-between">
+                                        <span>{t("fees.fixed")}</span>
+                                        <span>{quote.fees.fixed.toFixed(2)} {sendCurrency}</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <span>{t("fees.percent")}</span>
+                                        <span>{(quote.fees.percent * 100).toFixed(2)}%</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <span>{t("fees.total")}</span>
+                                        <span>{quote.fees.total.toFixed(2)} {sendCurrency}</span>
+                                    </div>
+                                    <hr className="border-white/20" />
+                                    <div className="flex justify-between font-medium">
+                                        <span>{t("fees.totalAfterFees")}</span>
+                                        <span>{quote.breakdown.baseAfterFees.toFixed(2)} {sendCurrency}</span>
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
-                        <button className="w-full bg-btnsecondary hover:bg-teal-900 text-white rounded-full py-2 font-medium transition-colors">
+                        <button
+                            className="w-full bg-btnsecondary hover:bg-teal-900 text-white rounded-full py-2 font-medium transition-colors disabled:opacity-60"
+                            disabled={!quote || loading}
+                            onClick={() => {
+                            }}
+                        >
                             {t("sendMoney")}
                         </button>
                     </div>

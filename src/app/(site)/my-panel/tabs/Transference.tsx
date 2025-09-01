@@ -1,21 +1,22 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import CustomButton from "@/components/ui/CustomButton";
-import { fmtBRL } from "@/utils/format";
+import { fmtBRL, fmtCurrency, fmtMoneyNoSymbol, parseMoneyInput } from "@/utils/format";
 import TransferReceipt from "@/components/Transfers/TransferReceipt";
 import { ReceiptData } from "@/types/receipt";
+import { Currency, Quote } from "@/features/exchange/types";
+import { fetchQuote } from "@/features/exchange/services/client";
 
 type DepositMode = "wallet" | "recipient";
-type CurrencyCode = "BRL" | "MXN";
 type Stage = "form" | "receipt";
 
-const FLAGS: Record<CurrencyCode, string> = {
+const FLAGS: Record<Currency, string> = {
     BRL: "/images/flags/flagbrasilsaldo.png",
     MXN: "/images/flags/flagmexicosaldo.png",
 };
 
-const CURRENCIES: CurrencyCode[] = ["BRL", "MXN"];
+const CURRENCIES: Currency[] = ["BRL", "MXN"];
 
 function CurrencyInput({
     label,
@@ -26,15 +27,19 @@ function CurrencyInput({
     otherSelected,
     placeholder,
     flagAlt,
+    onBlur,
+    readOnly = false,
 }: {
     label: string;
     value: string;
     onChange: (v: string) => void;
-    currency: CurrencyCode;
-    setCurrency: (c: CurrencyCode) => void;
-    otherSelected: CurrencyCode;
+    currency: Currency;
+    setCurrency: (c: Currency) => void;
+    otherSelected: Currency;
     placeholder: string;
     flagAlt?: string;
+    onBlur?: () => void;
+    readOnly?: boolean;
 }) {
     return (
         <div className="mt-4">
@@ -48,8 +53,10 @@ function CurrencyInput({
                         pattern="[0-9]*[.,]?[0-9]*"
                         value={value}
                         onChange={(e) => onChange(e.target.value)}
+                        onBlur={onBlur}
                         placeholder={placeholder}
                         className="w-full px-4 pr-16 py-3 border border-gray-300 rounded-md text-primary"
+                        readOnly={readOnly}
                     />
                     <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center font-bold text-gray-500">
                         {currency}
@@ -65,7 +72,7 @@ function CurrencyInput({
                     <select
                         value={currency}
                         onChange={(e) => {
-                            const next = e.target.value as CurrencyCode;
+                            const next = e.target.value as Currency;
                             if (next === otherSelected) {
                                 setCurrency(next);
                             } else {
@@ -96,19 +103,19 @@ function CurrencyInput({
 
 export default function Transference() {
     const [stage, setStage] = useState<Stage>("form");
-    const [sendValue, setSendValue] = useState("10000.00");
-    const [receiveValue, setReceiveValue] = useState("2936.26");
-    const [sendCurrency, setSendCurrency] = useState<CurrencyCode>("MXN");
-    const [receiveCurrency, setReceiveCurrency] = useState<CurrencyCode>("BRL");
 
-    const handleSendCurrency = (next: CurrencyCode) => {
-        setSendCurrency(next);
-        if (next === receiveCurrency) setReceiveCurrency(next === "BRL" ? "MXN" : "BRL");
-    };
-    const handleReceiveCurrency = (next: CurrencyCode) => {
-        setReceiveCurrency(next);
-        if (next === sendCurrency) setSendCurrency(next === "BRL" ? "MXN" : "BRL");
-    };
+    const [sendCurrency, setSendCurrency] = useState<Currency>("BRL");
+    const [receiveCurrency, setReceiveCurrency] = useState<Currency>("MXN");
+
+    const [sendInput, setSendInput] = useState<string>("");
+    const [sendAmountNum, setSendAmountNum] = useState<number>(0);
+
+    const [committedAmount, setCommittedAmount] = useState<number>(0);
+    const typingTimeoutRef = useRef<number | null>(null);
+
+    const [quote, setQuote] = useState<Quote | null>(null);
+    const [loading, setLoading] = useState(false);
+    const abortRef = useRef<AbortController | null>(null);
 
     const [mode, setMode] = useState<DepositMode>("wallet");
     const [receiverName, setReceiverName] = useState("");
@@ -122,21 +129,74 @@ export default function Transference() {
         [monthlyLimit, monthlyUsed]
     );
 
-    const withCur = (cur: CurrencyCode, v: string) =>
-        (cur === "BRL" ? "R$ " : "MXN$ ") + v.replace(".", ",");
+    useEffect(() => {
+        setSendInput((prev) => {
+            if (!prev) return "";
+            const num = parseMoneyInput(prev, sendCurrency);
+            return fmtMoneyNoSymbol(num, sendCurrency);
+        });
+    }, [sendCurrency]);
 
-    // confirmar -> vai para comprovante
+    const handleSendCurrency = (next: Currency) => {
+        setSendCurrency(next);
+        if (next === receiveCurrency) setReceiveCurrency(next === "BRL" ? "MXN" : "BRL");
+    };
+    const handleReceiveCurrency = (next: Currency) => {
+        setReceiveCurrency(next);
+        if (next === sendCurrency) setSendCurrency(next === "BRL" ? "MXN" : "BRL");
+    };
+
+    useEffect(() => {
+        const amount = committedAmount;
+        if (!amount || amount <= 0 || sendCurrency === receiveCurrency) {
+            setQuote(null);
+            return;
+        }
+
+        if (abortRef.current) abortRef.current.abort();
+        const ac = new AbortController();
+        abortRef.current = ac;
+
+        (async () => {
+            try {
+                setLoading(true);
+                const q = await fetchQuote(
+                    { sendAmount: amount, from: sendCurrency, to: receiveCurrency },
+                    ac.signal
+                );
+                setQuote(q);
+            } catch (err: any) {
+                if (err.name !== "AbortError") {
+                    console.error(err);
+                    setQuote(null);
+                }
+            } finally {
+                setLoading(false);
+            }
+        })();
+
+        return () => ac.abort();
+    }, [committedAmount, sendCurrency, receiveCurrency]);
+
+    const isTooLow = !!quote && quote.breakdown.baseAfterFees <= 0;
+    const minRequired = isTooLow
+        ? +(quote!.fees.fixed / (1 - quote!.fees.percent)).toFixed(2)
+        : null;
+
+    const [receiptData, setReceiptData] = useState<ReceiptData | undefined>(undefined);
     const handleConfirm = () => {
+        if (!quote) return;
+
         const now = new Date();
         const dateStr = now.toLocaleDateString("pt-BR");
         const timeStr = now.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
 
         const receipt: ReceiptData = {
-            txNumber: "#712879813", // mock; virá do back
+            txNumber: "#" + quote.quoteId.slice(0, 9),
             datetime: `${dateStr} – ${timeStr}`,
-            sentLabel: withCur(sendCurrency, sendValue),
-            feeLabel: withCur(sendCurrency, "65,00"),
-            convertedLabel: withCur(sendCurrency, "10.500,00"),
+            sentLabel: fmtCurrency(quote.breakdown.sendAmount, quote.from),
+            feeLabel: fmtCurrency(quote.fees.total, quote.from),
+            convertedLabel: fmtCurrency(quote.breakdown.receiveAmount, quote.to),
             beneficiary:
                 mode === "recipient"
                     ? {
@@ -162,8 +222,6 @@ export default function Transference() {
         setStage("receipt");
     };
 
-    const [receiptData, setReceiptData] = useState<ReceiptData | undefined>(undefined);
-
     const resetToNew = () => {
         setStage("form");
         setReceiptData(undefined);
@@ -173,32 +231,65 @@ export default function Transference() {
         return <TransferReceipt data={receiptData} onNewTransfer={resetToNew} />;
     }
 
-    // ---------- FORMULÁRIO ----------
     return (
         <div className="flex flex-col w-full sm:max-w-md px-8 sm:px-6 lg:px-0 mx-auto mt-10">
             <h1 className="text-2xl font-semibold text-black">Nova transferência</h1>
 
+            {/* Campo 1: Valor a enviar (formata por moeda, sem símbolo) */}
             <CurrencyInput
                 label="Valor a enviar"
-                value={sendValue}
-                onChange={setSendValue}
+                value={sendInput}
+                onChange={(raw) => {
+                    setSendInput(raw);
+                    const parsed = parseMoneyInput(raw, sendCurrency);
+                    setSendAmountNum(parsed);
+                    if (typingTimeoutRef.current) {
+                        window.clearTimeout(typingTimeoutRef.current);
+                    }
+                    typingTimeoutRef.current = window.setTimeout(() => {
+                        setCommittedAmount(parsed);
+                    }, 800);
+                }}
+                onBlur={() => {
+                    const n = parseMoneyInput(sendInput, sendCurrency);
+                    setSendInput(fmtMoneyNoSymbol(n, sendCurrency));
+                    if (typingTimeoutRef.current) {
+                        window.clearTimeout(typingTimeoutRef.current);
+                        typingTimeoutRef.current = null;
+                    }
+                    setCommittedAmount(n);
+                }}
                 currency={sendCurrency}
                 setCurrency={handleSendCurrency}
                 otherSelected={receiveCurrency}
-                placeholder="10000.00"
+                placeholder={sendCurrency === "BRL" ? "0,00" : "0.00"}
                 flagAlt="Moeda de envio"
             />
 
+            {/* Campo 2: Valor a receber (somente leitura, já com taxas) */}
             <CurrencyInput
                 label="Valor a receber"
-                value={receiveValue}
-                onChange={setReceiveValue}
+                value={
+                    quote
+                        ? fmtMoneyNoSymbol(Math.max(0, quote.breakdown.receiveAmount), receiveCurrency)
+                        : ""
+                }
+                onChange={() => { }}
                 currency={receiveCurrency}
                 setCurrency={handleReceiveCurrency}
                 otherSelected={sendCurrency}
-                placeholder="2936.26"
+                placeholder={receiveCurrency === "BRL" ? "0,00" : "0.00"}
                 flagAlt="Moeda de recebimento"
+                readOnly
             />
+
+            {/* alerta de valor insuficiente */}
+            {isTooLow && minRequired !== null && (
+                <p className="text-red-500 text-xs mt-1">
+                    Valor muito baixo para cobrir as taxas. Mínimo aproximado:{" "}
+                    {fmtMoneyNoSymbol(minRequired, sendCurrency)} {sendCurrency}
+                </p>
+            )}
 
             {/* Opções */}
             <fieldset className="mt-4 space-y-2">
@@ -253,19 +344,22 @@ export default function Transference() {
             {/* Resumo */}
             <h2 className="mt-6 text-lg sm:text-xl font-semibold text-black">Resumo</h2>
             <div className="mt-2 rounded-md border border-gray-300 p-4 sm:p-5 max-w-sm">
-                <div className="text-primary text-sm sm:text-base">Valor convertido:</div>
+                <div className="text-primary text-sm sm:text-base">Valor convertido (recebido):</div>
                 <div className="text-black font-normal text-base sm:text-lg">
-                    10.000,00 <span className="text-primary font-normal text-xs sm:text-sm">{sendCurrency}</span>
+                    {quote ? fmtMoneyNoSymbol(Math.max(0, quote.breakdown.receiveAmount), receiveCurrency) : "—"}{" "}
+                    <span className="text-primary font-normal text-xs sm:text-sm">{receiveCurrency}</span>
                 </div>
 
                 <div className="mt-3 text-primary text-sm sm:text-base">Taxas aplicadas:</div>
                 <div className="text-black font-normal text-base sm:text-lg">
-                    122,50 <span className="text-primary font-normal text-xs sm:text-sm">{sendCurrency}</span>
+                    {quote ? fmtMoneyNoSymbol(quote.fees.total, sendCurrency) : "—"}{" "}
+                    <span className="text-primary font-normal text-xs sm:text-sm">{sendCurrency}</span>
                 </div>
 
-                <div className="mt-3 text-primary text-sm sm:text-base">Total:</div>
+                <div className="mt-3 text-primary text-sm sm:text-base">Total após taxas (base):</div>
                 <div className="text-black font-normal text-base sm:text-lg">
-                    198,10 <span className="text-primary font-normal text-xs sm:text-sm">{sendCurrency}</span>
+                    {quote ? fmtMoneyNoSymbol(Math.max(0, quote.breakdown.baseAfterFees), sendCurrency) : "—"}{" "}
+                    <span className="text-primary font-normal text-xs sm:text-sm">{sendCurrency}</span>
                 </div>
 
                 <hr className="my-4 border-gray-200" />
@@ -294,7 +388,12 @@ export default function Transference() {
 
             {/* CTA */}
             <div className="mt-6 flex items-center justify-center max-w-sm">
-                <CustomButton text="Confirmar transferência" onClick={handleConfirm} className="w-full" />
+                <CustomButton
+                    text="Confirmar transferência"
+                    onClick={handleConfirm}
+                    className="w-full"
+                    disabled={!quote || loading || isTooLow}
+                />
             </div>
         </div>
     );

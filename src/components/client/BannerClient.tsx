@@ -8,15 +8,6 @@ import { fmtCurrency, fmtMoneyNoSymbol, parseMoneyInput } from "@/utils/format";
 import { Currency, Quote } from "@/features/exchange/types";
 import { fetchQuote } from "@/features/exchange/services/client";
 
-function useDebounce<T>(value: T, delay = 300) {
-    const [v, setV] = useState(value);
-    useEffect(() => {
-        const id = setTimeout(() => setV(value), delay);
-        return () => clearTimeout(id);
-    }, [value, delay]);
-    return v;
-}
-
 export default function BannerClient() {
     const t = useTranslations("Home.banner");
 
@@ -213,9 +204,12 @@ export default function BannerClient() {
                             </div>
                         </div>
                         {isTooLow && minRequired !== null && (
-                            <p className="text-red-500 text-xs px-1 mt-1">
-                                Valor muito baixo para cobrir as taxas. Mínimo aproximado: {fmtMoneyNoSymbol(minRequired, sendCurrency)} {sendCurrency}
-                            </p>
+                            <div className="flex flex-col items-center">
+                                <p className="text-red-500 text-xs px-2 py-1 mt-1 bg-white rounded w-fit">
+                                    Valor muito baixo para cobrir as taxas. Mínimo aproximado: {fmtMoneyNoSymbol(minRequired, sendCurrency)} {sendCurrency}
+                                </p>
+                            </div>
+
                         )}
 
                         {/* Info de câmbio */}

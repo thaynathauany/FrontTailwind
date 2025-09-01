@@ -9,7 +9,7 @@ type Slide = {
     alt?: string;
 };
 
-export default function SignInBannerCarousel({
+export default function SignBannerCarousel({
     slides,
     ns,
     intervalMs = 5000,
@@ -20,7 +20,7 @@ export default function SignInBannerCarousel({
 }) {
     const t = useTranslations(ns);
     const [index, setIndex] = useState(0);
-    const [progress, setProgress] = useState(0); // 0..1
+    const [progress, setProgress] = useState(0);
     const [playing, setPlaying] = useState(true);
     const raf = useRef<number | null>(null);
 
@@ -77,7 +77,7 @@ export default function SignInBannerCarousel({
                 >
                     <img src={s.image} alt={s.alt ?? ""} className="w-full h-auto block" />
 
-                    <div className="absolute left-4 right-4 bottom-3 flex items-center gap-3">
+                    <div className="absolute left-4 right-4 bottom-3 flex items-center gap-3 max-w-[320px] mx-7">
                         {slides.map((_, i) => {
                             const isPast = i < index;
                             const isActive = i === index;
@@ -107,8 +107,8 @@ export default function SignInBannerCarousel({
                         })}
                     </div>
                 </div>
-                <div className="flex flex-col space-y-2 text-center lg:text-left w-full max-w-sm mx-auto lg:mx-0">
-                    <h2 className="text-xl font-bold">{t(`slides.${s.id}.title`)}</h2>
+                <div className="flex flex-col space-y-2 text-center lg:text-left w-full max-w-sm mx-auto lg:mx-0 px-7">
+                    <h2 className="w-[270px]text-xl font-bold">{t(`slides.${s.id}.title`)}</h2>
                     <p className="text-base">{t(`slides.${s.id}.subtitle`)}</p>
                 </div>
             </Container>

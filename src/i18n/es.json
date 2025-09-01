@@ -222,14 +222,16 @@
   "Carousel": {
     "slides": {
       "cafe": {
-        "title": "Conectando monedas y uniendo personas desde donde estés, hacia donde quieras.",
-        "subtitle": "Rápido, seguro y global.",
-        "button": "Enviar dinero"
+        "title": "Ya sea para un cafecito o una emergencia",
+        "subtitle": "Transferencias internacionales a tu manera, para lo que necesites."
       },
-      "emergency": {
-        "title": "Para emergencias, sin burocracia.",
-        "subtitle": "Transferencia en minutos.",
-        "button": "Enviar ahora"
+      "estudos": {
+        "title": "Ya sea para los estudios o una emergencia",
+        "subtitle": "Transferencias internacionales a tu manera, para lo que necesites."
+      },
+      "destino": {
+        "title": "Ya sea para un nuevo destino o una emergencia",
+        "subtitle": "Transferencias internacionales a tu manera, para lo que necesites."
       }
     }
   },

@@ -206,7 +206,7 @@ export default function BannerClient() {
                         {isTooLow && minRequired !== null && (
                             <div className="flex flex-col items-center">
                                 <p className="text-red-500 text-xs px-2 py-1 mt-1 bg-white rounded w-fit">
-                                    Valor muito baixo para cobrir as taxas. Mínimo aproximado: {fmtMoneyNoSymbol(minRequired, sendCurrency)} {sendCurrency}
+                                    {t("message")} {fmtMoneyNoSymbol(minRequired, sendCurrency)} {sendCurrency}
                                 </p>
                             </div>
 

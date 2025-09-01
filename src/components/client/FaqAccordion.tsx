@@ -1,4 +1,3 @@
-// src/components/client/FaqAccordion.tsx
 "use client";
 
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
@@ -10,10 +9,12 @@ type FAQ = { question: string; answer: string };
 export default function FaqAccordion({
     faqs,
     heading,
+    description,
     ctaLabel,
 }: {
     faqs: FAQ[];
     heading: string;
+    description: string;
     ctaLabel: string;
 }) {
     return (
@@ -23,9 +24,9 @@ export default function FaqAccordion({
                     <div className="w-full flex flex-col gap-4 max-w-[500px] p-4">
                         <p className="text-3xl font-bold">{heading}</p>
                         <p className="text-base mt-4 text-primary">
-                            {/* coloque a descrição traduzida se houver */}
+                            {description}
                         </p>
-                        <button className="mt-4 inline-block self-start bg-secondary text-white px-4 py-2 rounded-full">
+                        <button className="mt-2 inline-block self-start bg-secondary text-white px-4 py-2 rounded-full">
                             {ctaLabel}
                         </button>
                     </div>

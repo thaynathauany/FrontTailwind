@@ -17,7 +17,7 @@ export default function HeroIntro({ t }: { t: (key: string) => string }) {
                     />
                     <div className="col-start-1 row-start-1 flex items-start justify-start">
                         <div className="mx-auto max-w-[1440px] w-full px-4 md:px-12 lg:px-[80px]">
-                            <div className="max-w-[500px] md:max-w-[390px] xl:max-w-[450px] space-y-4 p-4 text-white pt-24 md:pt-18 lg:pt-40">
+                            <div className="max-w-[500px] md:max-w-[390px] xl:max-w-[500px] ml-0 md:ml-0 lg:ml-6 space-y-4 p-4 text-white pt-24 md:pt-18 lg:pt-45">
                                 <p className="text-3xl lg:text-3xl md:text-2xl font-bold text-secondary">
                                     {t("bannerIntro.title")}
                                 </p>

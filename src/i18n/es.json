@@ -54,6 +54,7 @@
       "details": "Detalles",
       "sendMoney": "Enviar dinero",
       "loading": "Cargando...",
+      "message": "Valor demasiado bajo para cubrir las comisiones. Mínimo aproximado: ",
       "fees": {
         "fixed": "Tarifa fija",
         "percent": "Tarifa porcentual",
@@ -73,7 +74,7 @@
     },
     "bannerIntro": {
       "title": "Cambio sin complicaciones para tu viaje.",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+      "description": "Transferencias internacionales de tu manera, para lo que necesites.",
       "button": "Ver más"
     },
     "bannerSecond": {
@@ -91,6 +92,9 @@
       "botao": "Enviar dinero"
     },
     "faq": {
+      "title": "Preguntas frecuentes",
+      "description": "Consulta las respuestas a las preguntas más frecuentes sobre nuestros servicios.",
+      "button": "Centro de ayuda",
       "q1": {
         "question": "¿Cómo funciona Dinero Latam?",
         "answer": "Dinero Latam facilita las transferencias internacionales de forma simple, rápida y segura. Envías un monto en reales (vía PIX) o en pesos mexicanos (clave CoDi) y nosotros nos encargamos de todo el proceso de cambio y envío al destinatario en otro país. Todo 100% digital. Dinero Latam opera bajo el modelo “P2P”, donde se realizan transferencias instantáneas entre personas a través de una plataforma digital."

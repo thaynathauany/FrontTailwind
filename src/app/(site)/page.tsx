@@ -18,10 +18,8 @@ export default async function Home() {
     <>
       <BannerClient />
 
-      {/* Server-only (estático) */}
       <Benefits t={t} />
 
-      {/* Server-only (imagens + texto) */}
       <HeroIntro t={t} />
 
       <Connections t={t} />
@@ -30,8 +28,9 @@ export default async function Home() {
 
       <FaqAccordion
         faqs={faqs}
-        heading="Perguntas Frequentes"
-        ctaLabel={t("bannerSecond.button")}
+        heading={t("faq.title")}
+        description={t("faq.description")}
+        ctaLabel={t("faq.button")}
       />
     </>
   );

@@ -53,8 +53,7 @@ export default async function AboutSection() {
             </section>
 
             {/* content */}
-            <div className="flex flex-col lg:flex-row w-full mt-0 sm:mt-20 gap-y-12 lg:gap-y-0">
-                {/* Imagem DESKTOP (só no ≥1024px) */}
+            <div className="flex flex-col lg:flex-row w-full max-w-[1440px] mx-auto mt-0 sm:mt-20 gap-y-12 lg:gap-y-0">
                 <div className="hidden lg:block w-full lg:w-[600px] flex-shrink-0">
                     <Image
                         src="/images/destaques/Sobre_IMG_01.png"

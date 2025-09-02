@@ -35,12 +35,12 @@ export default function StepOne({ onNext }: StepOneProps) {
     };
 
     return (
-        <div className="flex flex-col justify-between h-[80svh] sm:min-h-[700px] w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto pt-4">
+        <div className="flex flex-col min-h-[450px] sm:min-h-[700px] max-w-sm w-full px-4 sm:px-6 lg:px-0 mx-auto">
             <div className="hidden lg:block h-[72px]" />
 
             <div className="flex-1 flex items-start sm:items-center justify-center pt-2 sm:pt-12">
                 <div className="flex flex-col items-start justify-start w-full">
-                    <div className="sm:w-sm w-full space-y-5">
+                    <div className="w-full space-y-5">
                         <div className="flex flex-col space-y-2 text-left">
                             <h1 className="text-xl font-semibold text-black break-normal">
                                 {t("title")}

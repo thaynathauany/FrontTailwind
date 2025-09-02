@@ -49,7 +49,7 @@ export default function StepThree({ onBack, onVerify }: StepThreeProps) {
     };
 
     return (
-        <div className="flex flex-col min-h-[450px] sm:min-h-[700px] w-full max-w-sm px-4 sm:px-6 lg:px-0 mx-auto">
+        <div className="flex flex-col min-h-[450px] sm:min-h-[700px] max-w-sm w-full px-4 sm:px-6 lg:px-0 mx-auto">
             <div className="hidden lg:block h-[72px]" />
 
             <div className="flex-1 flex items-start sm:items-center justify-center pt-2 sm:pt-12">

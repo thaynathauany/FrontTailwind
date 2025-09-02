@@ -1,15 +1,42 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 import CustomButton from "@/components/ui/CustomButton";
 
 interface StepTwoProps {
-    onNext: () => void;
+    onNext: (email: string) => void;
     onBack: () => void;
 }
 
 export default function StepTwo({ onNext, onBack }: StepTwoProps) {
     const t = useTranslations("SignUp.step2");
+
+    const [email, setEmail] = useState("");
+    const [error, setError] = useState<string | null>(null);
+
+    const validateEmail = (email: string) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    };
+
+    const trimmedEmail = email.trim();
+    const isValidEmail = validateEmail(trimmedEmail);
+
+    const handleSubmit = (e?: React.FormEvent) => {
+        e?.preventDefault?.();
+        if (!trimmedEmail) {
+            setError("Por favor, preencha seu email.");
+            return;
+        }
+        if (!isValidEmail) {
+            setError("Formato de email inválido.");
+            return;
+        }
+
+        setError(null);
+        onNext(trimmedEmail);
+    };
 
     return (
         <div className="flex flex-col min-h-[450px] sm:min-h-[700px] w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto">
@@ -23,59 +50,42 @@ export default function StepTwo({ onNext, onBack }: StepTwoProps) {
                             <p className="text-base text-primary">{t("description")}</p>
                         </div>
 
-                        <div className="w-[60px] px-4 py-2 border-t border-gray-300 " />
-
-                        <form className="space-y-4">
+                        <form className="space-y-4" onSubmit={handleSubmit}>
                             <div className="space-y-2">
-                                <label className="block text-base font-medium text-black mb-1">
-                                    {t("documentTitle")}
+                                <label htmlFor="email" className="block text-base font-medium text-black mb-1">
+                                    {t("label")}
                                 </label>
-                                <p className="text-base text-primary">{t("documentDescription")}</p>
-
-                                <label htmlFor="file-id" className="cursor-pointer text-secondary underline text-sm">
-                                    {t("selectFile")}
-                                </label>
-                                <input id="file-id" type="file" className="hidden" />
+                                <input
+                                    id="email"
+                                    type="email"
+                                    placeholder={t("placeholder.email")}
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    autoComplete="email"
+                                />
+                                {error && (
+                                    <p className="text-sm text-red-600">{error}</p>
+                                )}
                             </div>
 
-                            <div className="w-[60px] px-4 py-2 border-t border-gray-300 " />
-
-                            <div className="space-y-2">
-                                <label className="block text-base font-medium text-black mb-1">
-                                    {t("addressTitle")}
-                                </label>
-                                <p className="text-base text-primary">{t("addressDescription")}</p>
-
-                                <label htmlFor="file-id" className="cursor-pointer text-secondary underline text-sm">
-                                    {t("selectFile")}
-                                </label>
-                                <input id="file-id" type="file" className="hidden" />
-                            </div>
-
-                            <div className="w-[60px] px-4 py-2 border-t border-gray-300 " />
-
-                            <div className="flex items-center space-x-2">
-                                <input type="checkbox" id="terms" />
-                                <label htmlFor="terms" className="text-sm text-darkgray">
-                                    {t("termsText")}
-                                </label>
-                            </div>
-
-                            <div className="flex justify-between pt-2">
-                                <button
-                                    type="button"
+                            <div className="flex justify-start pt-2 gap-4">
+                                <CustomButton
+                                    text={t("back")}
                                     onClick={onBack}
-                                    className="text-sm text-secondary font-medium"
-                                >
-                                    {t("back")}
-                                </button>
-
-                                <CustomButton text={t("finish")} onClick={onNext} />
+                                    variant="outline"
+                                />
+                                <CustomButton
+                                    text={t("buttonNext")}
+                                    onClick={handleSubmit}
+                                    disabled={!isValidEmail}
+                                    className={`${!isValidEmail ? "bg-[#E2DFE7] text-white" : ""}`}
+                                />
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }

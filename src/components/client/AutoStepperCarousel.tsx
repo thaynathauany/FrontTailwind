@@ -68,7 +68,7 @@ export default function SignBannerCarousel({
     const s = slides[index];
 
     return (
-        <div className="flex items-center justify-center px-0 py-0 sm:px-6 lg:flex-1">
+        <div className="flex items-center justify-center px-0 py-0 sm:px-6 lg:flex-1 mt-[-50px]">
             <Container className="p-0">
                 <div
                     className="relative w-full mx-auto lg:mx-0 rounded-md overflow-hidden mb-6"

@@ -242,12 +242,11 @@
 
   "SignUp": {
     "step1": {
-      "title": "Crea tu cuenta",
-      "description": "Vamos a comenzar. Es muy rápido, solo completa los campos abajo:",
+      "title": "Datos personales",
+      "description": "Para comenzar, por favor ingrese su nombre completo.",
+      "label": "Nombre completo",
       "placeholder": {
-        "name": "Tu nombre completo",
-        "email": "Correo electrónico",
-        "phone": "Celular"
+        "name": "Tu nombre"
       },
       "buttonNext": "Siguiente",
       "footerText": "¿Ya tienes cuenta?",
@@ -255,21 +254,54 @@
     },
 
     "step2": {
-      "title": "Ya casi terminamos =)",
-      "description": "Para finalizar, necesitamos que envíes algunos documentos:",
-      "documentTitle": "Documento de identidad",
-      "documentDescription": "Envía una foto de tu CURP, INE o pasaporte.",
-      "addressTitle": "Comprobante de domicilio",
-      "addressDescription": "Envía un recibo de servicio o estado de cuenta emitido en los últimos 90 días.",
-      "selectFile": "Seleccionar archivo",
-      "termsText": "Acepto los Términos de uso y la Política de privacidad",
+      "title": "Tu correo electrónico",
+      "description": "¿Cuál es su mejor dirección de correo electrónico para contactarnos?",
+      "label": "Correo electrónico",
+      "placeholder": {
+        "email": "exemplo@dominio.com"
+      },
       "back": "Volver",
+      "buttonNext": "Siguiente",
       "finish": "Finalizar"
     },
+
     "step3": {
-      "title": "¡Felicidades! Todo listo",
-      "description": "Ahora solo inicia sesión y aprovecha nuestra plataforma.",
+      "title": "Verificación de correo electrónico",
+      "description": "Te hemos enviado un código de validación a tu correo electrónico. Introdúcelo a continuación.",
+      "button_resend": "Reenviar código",
       "button_login": "Iniciar sesión",
+      "support_prefix": "¿Todavía tienes dudas?",
+      "support_link": "Contáctanos"
+    },
+
+    "step4": {
+      "title": "Tu teléfono",
+      "description": "Agora, informe o seu número de telefone celular.",
+      "label": "Teléfono",
+      "placeholder": {
+        "phone": "Tu número"
+      },
+      "back": "Volver",
+      "buttonNext": "Confirmar"
+    },
+
+    "step5": {
+      "title": "Verificación de teléfono",
+      "description": "Se envió un código por SMS a tu número. Por favor, introdúcelo a continuación.",
+      "button_resend": "Reenviar código",
+      "buttonNext": "Confirmar"
+    },
+
+    "step6": {
+      "back": "Volver",
+      "buttonNext": "Confirmar",
+      "loading": "Cargando"
+    },
+
+    "step7": {
+      "title": "Tu registro está completo",
+      "description": "Haz clic abajo para empezar a usarlo.",
+      "loginButton": "Iniciar sesión",
       "support_prefix": "¿Todavía tienes dudas?",
       "support_link": "Contáctanos"
     }

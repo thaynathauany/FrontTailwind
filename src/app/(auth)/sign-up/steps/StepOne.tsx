@@ -1,41 +1,38 @@
 "use client";
 
-import CustomButton from "@/components/ui/CustomButton";
-import { signUp } from "@/features/auth/signup/services";
-import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
+import CustomButton from "@/components/ui/CustomButton";
 
 interface StepOneProps {
-    onNext: () => void;
+    onNext: (name: string) => void;
 }
 
 export default function StepOne({ onNext }: StepOneProps) {
     const t = useTranslations("SignUp.step1");
 
     const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [err, setErr] = useState<string | null>(null);
+    const [error, setError] = useState<string | null>(null);
 
-    async function handleSubmit(e?: React.FormEvent) {
-        e?.preventDefault?.();
-        setErr(null);
-        setLoading(true);
-        try {
-            await signUp({ name, email, phone });
-            onNext();
-        } catch (error: any) {
-            const msg =
-                error?.response?.data?.message ||
-                error?.message ||
-                "Erro ao enviar. Tente novamente.";
-            setErr(msg);
-            console.error(error);
-        } finally {
-            setLoading(false);
+    const trimmedName = name.trim();
+    const words = trimmedName.split(/\s+/);
+    const isValidName = trimmedName.length >= 6 && words.length >= 2;
+
+    const handleNext = () => {
+        if (!isValidName) {
+            if (!trimmedName) {
+                setError("Por favor, preencha seu nome completo.");
+            } else if (trimmedName.length < 6) {
+                setError("O nome deve ter no mínimo 6 caracteres.");
+            } else {
+                setError("Por favor, informe nome e sobrenome.");
+            }
+            return;
         }
-    }
+
+        setError(null);
+        onNext(trimmedName);
+    };
 
     return (
         <div className="flex flex-col justify-between h-[80svh] sm:min-h-[700px] w-full max-w-sm sm:max-w-md px-4 sm:px-6 lg:px-0 mx-auto pt-4">
@@ -53,7 +50,10 @@ export default function StepOne({ onNext }: StepOneProps) {
                             </p>
                         </div>
 
-                        <form className="space-y-4" onSubmit={handleSubmit}>
+                        <div className="space-y-4">
+                            <label htmlFor="name" className="block text-base font-medium text-black mb-1">
+                                {t("label")}
+                            </label>
                             <input
                                 type="text"
                                 placeholder={t("placeholder.name")}
@@ -62,35 +62,17 @@ export default function StepOne({ onNext }: StepOneProps) {
                                 onChange={(e) => setName(e.target.value)}
                                 autoComplete="name"
                             />
-                            <input
-                                type="email"
-                                placeholder={t("placeholder.email")}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                autoComplete="email"
-                            />
-                            <input
-                                type="tel"
-                                placeholder={t("placeholder.phone")}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                                value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
-                                autoComplete="tel"
-                            />
-
-                            {err && <p className="text-sm text-red-600">{err}</p>}
+                            {error && (
+                                <p className="text-sm text-red-600">{error}</p>
+                            )}
 
                             <CustomButton
-                                text={loading ? "Enviando..." : t("buttonNext")}
-                                className="mt-4 w-full"
-                                type="submit"
-                                disabled={loading}
-                                onClick={() => {
-                                    handleSubmit();
-                                }}
+                                text={t("buttonNext")}
+                                className={`mt-4 ${!isValidName ? "bg-[#E2DFE7] text-white" : ""}`}
+                                onClick={handleNext}
+                                disabled={!isValidName}
                             />
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

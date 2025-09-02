@@ -242,35 +242,64 @@
 
   "SignUp": {
     "step1": {
-      "title": "Crie sua conta",
-      "description": "Vamos começar. É bem rápido, basta preencher os campos abaixo:",
+      "title": "Dados pessoais",
+      "description": "Para começarmos, preencha seu nome completo.",
+      "label": "Nome completo",
       "placeholder": {
-        "name": "Seu nome completo",
-        "email": "E-mail",
-        "phone": "Celular"
+        "name": "Seu nome"
       },
-      "buttonNext": "Próximo",
+      "buttonNext": "Confirmar",
       "footerText": "Já é cliente?",
       "footerLink": "Acessar conta"
     },
 
     "step2": {
-      "title": "Ei... estamos quase lá =)",
-      "description": "Para finalizar, precisamos que envie alguns documentos:",
-      "documentTitle": "Documento de identidade",
-      "documentDescription": "Envie uma foto do seu CPF, RG ou Passaporte.",
-      "addressTitle": "Comprovante de endereço",
-      "addressDescription": "Envie uma conta de consumo ou extrato bancário emitido nos últimos 90 dias.",
-      "selectFile": "Selecionar arquivo",
-      "termsText": "Aceito os Termos de Uso e a Política de Privacidade",
+      "title": "Seu e-mail",
+      "description": "Qual o seu melhor e-mail para contato?",
+      "label": "E-mail",
+      "placeholder": {
+        "email": "exemplo@dominio.com"
+      },
       "back": "Voltar",
+      "buttonNext": "Confirmar",
       "finish": "Finalizar"
     },
 
     "step3": {
-      "title": "Parabéns! Tudo certo",
-      "description": "Agora é só fazer o login e aproveitar nossa plataforma.",
-      "button_login": "Fazer login",
+      "title": "Verificação de e-mail",
+      "description": "Enviamos um código de validação para o seu e-mail. Por favor, insira-o abaixo.",
+      "button_resend": "Reenviar código",
+      "buttonNext": "Confirmar"
+    },
+
+    "step4": {
+      "title": "Seu telefone",
+      "description": "Agora, informe o seu número de telefone celular.",
+      "label": "Telefone",
+      "placeholder": {
+        "phone": "Seu número"
+      },
+      "back": "Voltar",
+      "buttonNext": "Confirmar"
+    },
+
+    "step5": {
+      "title": "Verificação de telefone",
+      "description": "Um código foi enviado via SMS para o seu número. Por favor, insira-o abaixo.",
+      "button_resend": "Reenviar código",
+      "buttonNext": "Confirmar"
+    },
+
+    "step6": {
+      "back": "Voltar",
+      "buttonNext": "Confirmar",
+      "loading": "Carregando"
+    },
+
+    "step7": {
+      "title": "Seu cadastro está completo",
+      "description": "Clique abaixo para começar a usar.",
+      "loginButton": "Fazer login",
       "support_prefix": "Ainda com dúvidas?",
       "support_link": "Fale com a gente"
     }

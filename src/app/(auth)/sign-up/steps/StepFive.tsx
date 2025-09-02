@@ -4,13 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import CustomButton from "@/components/ui/CustomButton";
 import { useTranslations } from "next-intl";
 
-interface StepThreeProps {
+interface StepFiveProps {
     onBack: () => void;
     onVerify: (code: string) => void;
 }
 
-export default function StepThree({ onBack, onVerify }: StepThreeProps) {
-    const t = useTranslations("SignUp.step3");
+export default function StepFive({ onBack, onVerify }: StepFiveProps) {
+    const t = useTranslations("SignUp.step5");
     const [code, setCode] = useState(Array(6).fill(""));
     const [timeLeft, setTimeLeft] = useState(30);
     const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
